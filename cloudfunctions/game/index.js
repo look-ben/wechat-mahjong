@@ -26,6 +26,8 @@ exports.main = async (event, context) => {
         return await joinGame(event.gameId, openid, event.userInfo)
       case 'checkAndJoin':
         return await checkAndJoin(event.gameId, openid, event.userInfo)
+      case 'autoJoin':
+        return await autoJoin(event.gameId, openid)
       case 'removePlayer':
         return await removePlayer(event.gameId, event.openid)
       case 'addRound':
@@ -149,6 +151,50 @@ async function getGameDetail(gameId, openid) {
     players: players,
     rounds: formattedRounds
   }
+}
+
+// 自动加入游戏（无需用户授权，使用默认信息）
+async function autoJoin(gameId, openid) {
+  const game = await db.collection('games').doc(gameId).get()
+
+  if (!game.data) {
+    return { success: false, message: '游戏不存在' }
+  }
+
+  // 检查是否已在游戏中
+  const alreadyJoined = game.data.players.some(p => p.openid === openid)
+
+  if (alreadyJoined) {
+    // 已在游戏中，返回成功但未加入
+    return { success: true, joined: false, message: '已在游戏中' }
+  }
+
+  // 不在游戏中，自动加入
+  if (game.data.status !== 'playing') {
+    return { success: false, message: '游戏已结束，无法加入' }
+  }
+
+  if (game.data.players.length >= 4) {
+    return { success: false, message: '游戏人数已满（最多4人）' }
+  }
+
+  // 生成一个简单的昵称（玩家 + 编号）
+  const playerNum = game.data.players.length + 1
+  const nickName = `玩家${playerNum}`
+
+  // 使用默认头像和昵称添加玩家
+  await db.collection('games').doc(gameId).update({
+    data: {
+      players: _.push({
+        openid: openid,
+        nickName: nickName,
+        avatarUrl: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+        totalScore: 0
+      })
+    }
+  })
+
+  return { success: true, joined: true, message: '加入成功' }
 }
 
 // 检查并加入游戏（自动判断是否需要加入）
