@@ -69,20 +69,57 @@ Page({
 
   // 检查并加入游戏
   checkAndJoinGame(gameId) {
-    // 尝试使用云函数自动获取用户信息并加入
-    // 云函数可以通过 OPENID 获取基本信息
-    this.doCheckAndJoin(gameId)
+    const userInfo = app.globalData.userInfo
+
+    if (!userInfo) {
+      // 没有用户信息，显示授权提示
+      wx.showModal({
+        title: '加入牌局',
+        content: '需要获取您的头像和昵称才能加入牌局',
+        confirmText: '授权加入',
+        success: (res) => {
+          if (res.confirm) {
+            this.requestAuth(gameId)
+          } else {
+            // 用户拒绝授权，只加载数据不加入
+            this.loadGameData()
+          }
+        }
+      })
+    } else {
+      // 已有用户信息，直接加入
+      this.doCheckAndJoin(gameId, userInfo)
+    }
+  },
+
+  // 请求用户授权
+  requestAuth(gameId) {
+    wx.getUserProfile({
+      desc: '用于显示您的头像和昵称',
+      success: (res) => {
+        app.globalData.userInfo = res.userInfo
+        this.doCheckAndJoin(gameId, res.userInfo)
+      },
+      fail: () => {
+        wx.showToast({
+          title: '授权失败，无法加入',
+          icon: 'none'
+        })
+        this.loadGameData()
+      }
+    })
   },
 
   // 执行检查并加入
-  doCheckAndJoin(gameId) {
+  doCheckAndJoin(gameId, userInfo) {
     wx.showLoading({ title: '加载中...' })
 
     wx.cloud.callFunction({
       name: 'game',
       data: {
         action: 'checkAndJoin',
-        gameId: gameId
+        gameId: gameId,
+        userInfo: userInfo
       },
       success: (res) => {
         wx.hideLoading()
@@ -95,6 +132,9 @@ Page({
           }
           // 无论是否新加入，都刷新数据
           this.loadGameData()
+        } else if (res.result.needAuth) {
+          // 需要授权
+          this.requestAuth(gameId)
         } else {
           wx.showToast({
             title: res.result.message || '操作失败',
