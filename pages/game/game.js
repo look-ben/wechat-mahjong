@@ -114,9 +114,25 @@ Page({
       return
     }
 
+    // 开发版本：使用分享功能代替小程序码
+    wx.showModal({
+      title: '邀请好友',
+      content: '请点击右上角「···」将牌局分享给好友，好友点击即可加入',
+      confirmText: '我知道了',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showShareMenu({
+            withShareTicket: true,
+            menus: ['shareAppMessage', 'shareTimeline']
+          })
+        }
+      }
+    })
+
+    // 正式版本：生成小程序码（小程序发布后启用下面的代码，注释掉上面的代码）
+    /*
     wx.showLoading({ title: '生成中...' })
 
-    // 调用云函数获取小程序码
     wx.cloud.callFunction({
       name: 'game',
       data: {
@@ -131,21 +147,25 @@ Page({
             showModal: true
           })
         } else {
-          wx.showToast({
+          console.error('生成失败:', res.result.message)
+          wx.showModal({
             title: '生成失败',
-            icon: 'none'
+            content: res.result.message || '请确保小程序已发布',
+            showCancel: false
           })
         }
       },
       fail: (err) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '生成失败',
-          icon: 'none'
-        })
         console.error('生成二维码失败:', err)
+        wx.showModal({
+          title: '生成失败',
+          content: '请检查云函数权限配置',
+          showCancel: false
+        })
       }
     })
+    */
   },
 
   // 隐藏二维码
@@ -312,5 +332,14 @@ Page({
         })
       }
     })
+  },
+
+  // 自定义分享内容
+  onShareAppMessage() {
+    return {
+      title: '快来加入我的牌局！',
+      path: `/pages/game/game?gameId=${this.data.gameId}`,
+      imageUrl: ''
+    }
   }
 })
