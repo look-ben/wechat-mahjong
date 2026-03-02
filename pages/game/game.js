@@ -13,8 +13,12 @@ Page({
 
   onLoad(options) {
     if (options.gameId) {
-      this.setData({ gameId: options.gameId })
-      this.loadGameData()
+      const gameId = options.gameId
+      this.setData({ gameId: gameId })
+
+      // 检查是否是通过分享进入的（需要加入牌局）
+      // 如果 options 中有 gameId 但当前用户不在牌局中，则自动加入
+      this.checkAndJoinGame(gameId)
     } else if (options.scene) {
       // 通过小程序码扫码进入
       this.joinGameByScene(options.scene)
@@ -63,45 +67,53 @@ Page({
     })
   },
 
-  // 通过小程序码场景值加入游戏
-  joinGameByScene(scene) {
-    // 解码场景值
-    const gameId = decodeURIComponent(scene)
+  // 检查并加入游戏
+  checkAndJoinGame(gameId) {
+    wx.showLoading({ title: '加载中...' })
 
-    wx.showLoading({ title: '加入中...' })
-
+    // 调用云函数检查并加入
     wx.cloud.callFunction({
       name: 'game',
       data: {
-        action: 'joinGame',
+        action: 'checkAndJoin',
         gameId: gameId,
         userInfo: app.globalData.userInfo
       },
       success: (res) => {
         wx.hideLoading()
         if (res.result.success) {
-          this.setData({ gameId: gameId })
+          if (res.result.joined) {
+            wx.showToast({
+              title: '加入成功',
+              icon: 'success'
+            })
+          }
+          // 无论是否新加入，都刷新数据
           this.loadGameData()
-          wx.showToast({
-            title: '加入成功',
-            icon: 'success'
-          })
         } else {
           wx.showToast({
-            title: res.result.message || '加入失败',
+            title: res.result.message || '操作失败',
             icon: 'none'
           })
+          // 即使失败也尝试加载数据
+          this.loadGameData()
         }
       },
       fail: (err) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '加入失败',
-          icon: 'none'
-        })
-        console.error('加入游戏失败:', err)
+        console.error('检查并加入失败:', err)
+        // 失败时也尝试加载数据
+        this.loadGameData()
       }
     })
+  },
+
+  // 通过小程序码场景值加入游戏
+  joinGameByScene(scene) {
+    // 解码场景值
+    const gameId = decodeURIComponent(scene)
+    this.setData({ gameId: gameId })
+    this.checkAndJoinGame(gameId)
   },
 
   // 显示二维码

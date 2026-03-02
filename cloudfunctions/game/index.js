@@ -24,6 +24,8 @@ exports.main = async (event, context) => {
         return await getGameDetail(event.gameId, openid)
       case 'joinGame':
         return await joinGame(event.gameId, openid, event.userInfo)
+      case 'checkAndJoin':
+        return await checkAndJoin(event.gameId, openid, event.userInfo)
       case 'removePlayer':
         return await removePlayer(event.gameId, event.openid)
       case 'addRound':
@@ -147,6 +149,50 @@ async function getGameDetail(gameId, openid) {
     players: players,
     rounds: formattedRounds
   }
+}
+
+// 检查并加入游戏（自动判断是否需要加入）
+async function checkAndJoin(gameId, openid, userInfo) {
+  const game = await db.collection('games').doc(gameId).get()
+
+  if (!game.data) {
+    return { success: false, message: '游戏不存在' }
+  }
+
+  // 检查是否已在游戏中
+  const alreadyJoined = game.data.players.some(p => p.openid === openid)
+
+  if (alreadyJoined) {
+    // 已在游戏中，返回成功但未加入
+    return { success: true, joined: false, message: '已在游戏中' }
+  }
+
+  // 不在游戏中，尝试加入
+  if (game.data.status !== 'playing') {
+    return { success: false, message: '游戏已结束，无法加入' }
+  }
+
+  if (game.data.players.length >= 4) {
+    return { success: false, message: '游戏人数已满（最多4人）' }
+  }
+
+  if (!userInfo || !userInfo.nickName) {
+    return { success: false, message: '请先授权获取用户信息' }
+  }
+
+  // 添加玩家
+  await db.collection('games').doc(gameId).update({
+    data: {
+      players: _.push({
+        openid: openid,
+        nickName: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl,
+        totalScore: 0
+      })
+    }
+  })
+
+  return { success: true, joined: true, message: '加入成功' }
 }
 
 // 加入游戏
