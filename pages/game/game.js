@@ -15,6 +15,13 @@ Page({
     console.log('=== 页面加载 onLoad ===')
     console.log('接收到的参数 options:', options)
 
+    // 显示调试信息（用户可见）
+    wx.showToast({
+      title: 'onLoad触发',
+      icon: 'none',
+      duration: 2000
+    })
+
     if (options.gameId) {
       const gameId = options.gameId
       console.log('获取到 gameId:', gameId)
@@ -29,6 +36,11 @@ Page({
       this.joinGameByScene(options.scene)
     } else {
       console.error('⚠️ 没有收到 gameId 参数！')
+      wx.showModal({
+        title: '错误',
+        content: '未收到游戏ID参数',
+        showCancel: false
+      })
     }
   },
 
@@ -79,7 +91,7 @@ Page({
     console.log('=== 自动加入游戏 ===')
     console.log('gameId:', gameId)
 
-    wx.showLoading({ title: '加载中...' })
+    wx.showLoading({ title: '正在加入...' })
 
     // 直接调用云函数，云函数会自动使用 openid 作为标识
     wx.cloud.callFunction({
@@ -96,20 +108,27 @@ Page({
           if (res.result.joined) {
             console.log('自动加入成功！')
             wx.showToast({
-              title: '加入成功',
-              icon: 'success'
+              title: '✅ 加入成功',
+              icon: 'success',
+              duration: 2000
             })
           } else {
             console.log('已在游戏中')
+            // 显示已在游戏中的提示
+            wx.showToast({
+              title: '你已在游戏中',
+              icon: 'none',
+              duration: 2000
+            })
           }
           // 刷新数据
           this.loadGameData()
         } else {
           console.error('加入失败:', res.result.message)
-          wx.showToast({
-            title: res.result.message || '加入失败',
-            icon: 'none',
-            duration: 3000
+          wx.showModal({
+            title: '加入失败',
+            content: res.result.message || '未知错误',
+            showCancel: false
           })
           // 即使失败也加载数据
           this.loadGameData()
@@ -118,9 +137,10 @@ Page({
       fail: (err) => {
         wx.hideLoading()
         console.error('云函数调用失败:', err)
-        wx.showToast({
-          title: '网络错误，请重试',
-          icon: 'none'
+        wx.showModal({
+          title: '网络错误',
+          content: JSON.stringify(err),
+          showCancel: false
         })
         this.loadGameData()
       }
