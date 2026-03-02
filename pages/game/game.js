@@ -12,16 +12,23 @@ Page({
   },
 
   onLoad(options) {
+    console.log('=== 页面加载 onLoad ===')
+    console.log('接收到的参数 options:', options)
+
     if (options.gameId) {
       const gameId = options.gameId
+      console.log('获取到 gameId:', gameId)
       this.setData({ gameId: gameId })
 
       // 检查是否是通过分享进入的（需要加入牌局）
       // 如果 options 中有 gameId 但当前用户不在牌局中，则自动加入
       this.checkAndJoinGame(gameId)
     } else if (options.scene) {
+      console.log('通过小程序码进入，scene:', options.scene)
       // 通过小程序码扫码进入
       this.joinGameByScene(options.scene)
+    } else {
+      console.error('⚠️ 没有收到 gameId 参数！')
     }
   },
 
@@ -360,9 +367,20 @@ Page({
 
   // 自定义分享内容
   onShareAppMessage() {
+    const gameId = this.data.gameId
+    console.log('=== 分享牌局 ===')
+    console.log('当前 gameId:', gameId)
+
+    if (!gameId) {
+      console.error('⚠️ gameId 为空，分享可能失败！')
+    }
+
+    const sharePath = `/pages/game/game?gameId=${gameId}`
+    console.log('分享路径:', sharePath)
+
     return {
       title: '快来加入我的牌局！',
-      path: `/pages/game/game?gameId=${this.data.gameId}`,
+      path: sharePath,
       imageUrl: ''
     }
   }
