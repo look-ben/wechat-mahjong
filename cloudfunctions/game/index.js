@@ -25,7 +25,7 @@ exports.main = async (event, context) => {
       case 'joinGame':
         return await joinGame(event.gameId, openid, event.userInfo)
       case 'checkAndJoin':
-        return await checkAndJoin(event.gameId, openid, event.userInfo)
+        return await checkAndJoin(event.gameId, openid)
       case 'removePlayer':
         return await removePlayer(event.gameId, event.openid)
       case 'addRound':
@@ -152,7 +152,7 @@ async function getGameDetail(gameId, openid) {
 }
 
 // 检查并加入游戏（自动判断是否需要加入）
-async function checkAndJoin(gameId, openid, userInfo) {
+async function checkAndJoin(gameId, openid) {
   const game = await db.collection('games').doc(gameId).get()
 
   if (!game.data) {
@@ -176,23 +176,43 @@ async function checkAndJoin(gameId, openid, userInfo) {
     return { success: false, message: '游戏人数已满（最多4人）' }
   }
 
-  if (!userInfo || !userInfo.nickName) {
-    return { success: false, message: '请先授权获取用户信息' }
+  // 使用云开发API获取用户信息
+  try {
+    const userInfo = await cloud.openapi.userInfo.get({
+      openid: openid,
+      lang: 'zh_CN'
+    })
+
+    // 添加玩家
+    await db.collection('games').doc(gameId).update({
+      data: {
+        players: _.push({
+          openid: openid,
+          nickName: userInfo.nickName || '微信用户',
+          avatarUrl: userInfo.avatarUrl || '/images/default-avatar.png',
+          totalScore: 0
+        })
+      }
+    })
+
+    return { success: true, joined: true, message: '加入成功' }
+  } catch (err) {
+    console.error('获取用户信息失败:', err)
+
+    // 即使获取失败，也使用默认信息加入
+    await db.collection('games').doc(gameId).update({
+      data: {
+        players: _.push({
+          openid: openid,
+          nickName: '微信用户',
+          avatarUrl: '/images/default-avatar.png',
+          totalScore: 0
+        })
+      }
+    })
+
+    return { success: true, joined: true, message: '加入成功' }
   }
-
-  // 添加玩家
-  await db.collection('games').doc(gameId).update({
-    data: {
-      players: _.push({
-        openid: openid,
-        nickName: userInfo.nickName,
-        avatarUrl: userInfo.avatarUrl,
-        totalScore: 0
-      })
-    }
-  })
-
-  return { success: true, joined: true, message: '加入成功' }
 }
 
 // 加入游戏
