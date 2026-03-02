@@ -1,0 +1,36 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="card user-card">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="user-details">
+        <text class="username">{{userInfo.nickName}}</text>
+        <view class="stats">
+          <text class="stat-item">胜场: {{winCount}}</text>
+          <text class="stat-item">负场: {{loseCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能按钮 -->
+  <view class="actions">
+    <button class="btn-primary" bindtap="createGame">新开牌局</button>
+    <button class="btn-secondary" bindtap="goToCurrentGame" disabled="{{!hasCurrentGame}}">
+      当前牌局{{hasCurrentGame ? '' : '（无进行中的牌局）'}}
+    </button>
+    <button class="btn-secondary" bindtap="goToStats">战绩统计</button>
+  </view>
+
+  <!-- 使用说明 -->
+  <view class="card tips">
+    <view class="tips-title">💡 使用说明</view>
+    <view class="tips-content">
+      <text>1. 点击「新开牌局」创建新游戏\n</text>
+      <text>2. 生成二维码邀请好友扫码加入\n</text>
+      <text>3. 开始计分，系统自动统计\n</text>
+      <text>4. 结束后查看战绩排名</text>
+    </view>
+  </view>
+</view>

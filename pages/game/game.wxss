@@ -1,0 +1,254 @@
+/* pages/game/game.wxss */
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+/* 玩家总分 */
+.players-summary {
+  margin-top: 20rpx;
+}
+
+.players-scroll {
+  white-space: nowrap;
+  padding: 20rpx 0;
+}
+
+.player-item {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin-right: 40rpx;
+  min-width: 120rpx;
+}
+
+.player-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  display: block;
+  margin: 0 auto 16rpx;
+}
+
+.player-name {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-score {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.add-player {
+  width: 120rpx;
+}
+
+.add-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border: 2rpx dashed #1890ff;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16rpx;
+  font-size: 60rpx;
+  color: #1890ff;
+}
+
+.add-text {
+  font-size: 24rpx;
+  color: #1890ff;
+}
+
+/* 计分记录 */
+.rounds-section {
+  margin-top: 20rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 80rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.rounds-list {
+  max-height: 600rpx;
+}
+
+.round-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+  font-weight: bold;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.round-num-header {
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.round-score-header {
+  flex: 1;
+  text-align: center;
+}
+
+.header-avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+}
+
+.round-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.round-num {
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.round-num .num {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.round-num .time {
+  display: block;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.round-score {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 操作按钮 */
+.actions {
+  margin-top: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+.action-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.half {
+  flex: 1;
+  margin: 20rpx 0;
+}
+
+/* 二维码弹窗 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 60rpx 40rpx;
+  width: 600rpx;
+}
+
+.modal-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #333;
+}
+
+.qrcode-container {
+  display: flex;
+  justify-content: center;
+  margin: 40rpx 0;
+}
+
+.qrcode {
+  width: 400rpx;
+  height: 400rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 8rpx;
+}
+
+.modal-tip {
+  text-align: center;
+  color: #666;
+  font-size: 28rpx;
+  margin-bottom: 40rpx;
+}
+
+/* 玩家菜单 */
+.player-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.menu-content {
+  background-color: white;
+  border-radius: 16rpx 16rpx 0 0;
+  padding: 40rpx;
+  width: 100%;
+}
+
+.menu-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30rpx;
+  color: #333;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  font-size: 32rpx;
+}
+
+.menu-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  margin-right: 20rpx;
+}

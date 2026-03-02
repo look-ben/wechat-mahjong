@@ -1,0 +1,39 @@
+<!--pages/score/score.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="title">第{{roundNum}}轮计分</view>
+    <view class="tip">所有玩家分数总和必须为 0</view>
+
+    <!-- 玩家计分 -->
+    <view class="score-list">
+      <view class="score-item" wx:for="{{players}}" wx:key="openid">
+        <view class="player-info">
+          <image class="avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+          <text class="name">{{item.nickName}}</text>
+        </view>
+        <input
+          class="score-input"
+          type="digit"
+          placeholder="0"
+          value="{{item.score}}"
+          data-openid="{{item.openid}}"
+          bindinput="onScoreInput"
+        />
+      </view>
+    </view>
+
+    <!-- 总和提示 -->
+    <view class="total-tip" style="color: {{totalScore === 0 ? '#52c41a' : '#ff4d4f'}}">
+      当前总和：{{totalScore >= 0 ? '+' : ''}}{{totalScore}}
+      {{totalScore === 0 ? '✓' : '（必须为0）'}}
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="actions">
+      <button class="btn-primary" bindtap="submitScore" disabled="{{totalScore !== 0}}">
+        提交分数
+      </button>
+      <button class="btn-secondary" bindtap="goBack">取消</button>
+    </view>
+  </view>
+</view>

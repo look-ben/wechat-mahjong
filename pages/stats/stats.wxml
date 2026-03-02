@@ -1,0 +1,75 @@
+<!--pages/stats/stats.wxml-->
+<view class="container">
+  <view class="card">
+    <!-- 月份选择 -->
+    <view class="month-selector">
+      <view class="selector-btn" bindtap="prevMonth">
+        <text>◀</text>
+      </view>
+      <picker mode="date" fields="month" value="{{currentMonth}}" bindchange="onMonthChange">
+        <view class="month-display">{{monthDisplay}}</view>
+      </picker>
+      <view class="selector-btn" bindtap="nextMonth">
+        <text>▶</text>
+      </view>
+    </view>
+
+    <!-- 月度统计 -->
+    <view class="month-stats">
+      <view class="stat-card">
+        <text class="stat-label">参与牌局</text>
+        <text class="stat-value">{{monthStats.gamesCount}}</text>
+        <text class="stat-unit">场</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-label">总得分</text>
+        <text class="stat-value" style="color: {{monthStats.totalScore >= 0 ? '#52c41a' : '#ff4d4f'}}">
+          {{monthStats.totalScore >= 0 ? '+' : ''}}{{monthStats.totalScore}}
+        </text>
+        <text class="stat-unit">分</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-label">胜率</text>
+        <text class="stat-value" style="color: #1890ff">{{monthStats.winRate}}%</text>
+        <text class="stat-unit"></text>
+      </view>
+    </view>
+
+    <!-- 牌局列表 -->
+    <view class="games-section">
+      <view class="section-title">牌局记录</view>
+
+      <view wx:if="{{games.length === 0}}" class="empty-tip">
+        <text>本月暂无牌局记录</text>
+      </view>
+
+      <view class="game-list" wx:else>
+        <view class="game-item" wx:for="{{games}}" wx:key="_id">
+          <view class="game-header">
+            <text class="game-date">{{item.date}}</text>
+            <text class="game-result" style="color: {{item.myScore >= 0 ? '#52c41a' : '#ff4d4f'}}">
+              {{item.myScore >= 0 ? '+' : ''}}{{item.myScore}}
+            </text>
+          </view>
+          <view class="game-players">
+            <image
+              class="player-avatar-small"
+              wx:for="{{item.players}}"
+              wx:key="openid"
+              wx:for-item="player"
+              src="{{player.avatarUrl}}"
+              mode="aspectFill"
+            ></image>
+            <text class="rounds-count">{{item.rounds}}轮</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分享按钮 -->
+    <view class="actions">
+      <button class="btn-secondary" bindtap="shareStats">分享战绩</button>
+      <button class="btn-primary" bindtap="goBack">返回首页</button>
+    </view>
+  </view>
+</view>

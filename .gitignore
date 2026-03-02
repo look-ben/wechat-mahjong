@@ -1,0 +1,15 @@
+# 微信小程序
+miniprogram_npm/
+node_modules/
+
+# 云函数
+cloudfunctions/**/node_modules/
+
+# 开发工具
+.DS_Store
+*.log
+
+# 临时文件
+*.swp
+*.swo
+*~

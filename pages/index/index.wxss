@@ -1,0 +1,59 @@
+/* pages/index/index.wxss */
+.user-card {
+  margin-top: 40rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 30rpx;
+}
+
+.user-details {
+  flex: 1;
+}
+
+.username {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.stats {
+  display: flex;
+  gap: 40rpx;
+}
+
+.stat-item {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.actions {
+  margin-top: 60rpx;
+}
+
+.tips {
+  margin-top: 60rpx;
+}
+
+.tips-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.tips-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 48rpx;
+}

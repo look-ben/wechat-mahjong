@@ -1,0 +1,126 @@
+/* pages/stats/stats.wxss */
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.selector-btn {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #1890ff;
+}
+
+.month-display {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  min-width: 200rpx;
+  text-align: center;
+}
+
+.month-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 40rpx 0;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+}
+
+.stat-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.stat-unit {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.games-section {
+  margin-top: 40rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 80rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.game-list {
+  max-height: 600rpx;
+  overflow-y: auto;
+}
+
+.game-item {
+  padding: 30rpx;
+  background-color: #fafafa;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.game-date {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.game-result {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.game-players {
+  display: flex;
+  align-items: center;
+}
+
+.player-avatar-small {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin-right: 10rpx;
+  border: 2rpx solid white;
+}
+
+.rounds-count {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 20rpx;
+}
+
+.actions {
+  margin-top: 60rpx;
+}

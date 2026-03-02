@@ -1,0 +1,45 @@
+<!--pages/result/result.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="title">🎉 牌局结算</view>
+
+    <!-- 排行榜 -->
+    <view class="ranking-list">
+      <view class="ranking-item" wx:for="{{rankings}}" wx:key="openid">
+        <view class="rank-badge" style="background: {{item.rank <= 3 ? rankColors[item.rank - 1] : '#999'}}">
+          {{item.rank}}
+        </view>
+        <image class="avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        <view class="player-detail">
+          <text class="name">{{item.nickName}}</text>
+          <text class="rounds-info">{{totalRounds}}轮</text>
+        </view>
+        <view class="score" style="color: {{item.totalScore >= 0 ? '#52c41a' : '#ff4d4f'}}">
+          {{item.totalScore >= 0 ? '+' : ''}}{{item.totalScore}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 游戏信息 -->
+    <view class="game-info">
+      <view class="info-item">
+        <text class="label">开始时间</text>
+        <text class="value">{{startTime}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">结束时间</text>
+        <text class="value">{{endTime}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">游戏时长</text>
+        <text class="value">{{duration}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="actions">
+      <button class="btn-secondary" bindtap="shareResult">分享战绩</button>
+      <button class="btn-primary" bindtap="goHome">返回首页</button>
+    </view>
+  </view>
+</view>

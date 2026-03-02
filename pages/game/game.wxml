@@ -1,0 +1,90 @@
+<!--pages/game/game.wxml-->
+<view class="container">
+  <!-- 玩家总分展示 -->
+  <view class="card players-summary">
+    <view class="section-title">当前分数</view>
+    <scroll-view scroll-x class="players-scroll">
+      <view class="player-item" wx:for="{{players}}" wx:key="openid">
+        <image class="player-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        <text class="player-name">{{item.nickName}}</text>
+        <text class="player-score" style="color: {{item.totalScore >= 0 ? '#52c41a' : '#ff4d4f'}}">
+          {{item.totalScore >= 0 ? '+' : ''}}{{item.totalScore}}
+        </text>
+      </view>
+      <!-- 添加玩家按钮 -->
+      <view class="player-item add-player" bindtap="showQRCode" wx:if="{{players.length < 4}}">
+        <view class="add-icon">+</view>
+        <text class="add-text">添加牌友</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 轮次记录 -->
+  <view class="card rounds-section">
+    <view class="section-title">计分记录</view>
+
+    <view wx:if="{{rounds.length === 0}}" class="empty-tip">
+      <text>暂无计分记录，点击下方「计分」按钮开始</text>
+    </view>
+
+    <scroll-view scroll-y class="rounds-list" wx:else>
+      <!-- 表头 -->
+      <view class="round-header">
+        <view class="round-num-header">轮次</view>
+        <view class="round-score-header" wx:for="{{players}}" wx:key="openid">
+          <image class="header-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        </view>
+      </view>
+
+      <!-- 每轮数据 -->
+      <view class="round-item" wx:for="{{rounds}}" wx:key="_id" wx:for-item="round">
+        <view class="round-num">
+          <text class="num">第{{round.roundNum}}轮</text>
+          <text class="time">{{round.createTime}}</text>
+        </view>
+        <view class="round-score" wx:for="{{players}}" wx:key="openid" wx:for-item="player">
+          <text style="color: {{round.scores[player.openid] >= 0 ? '#52c41a' : '#ff4d4f'}}">
+            {{round.scores[player.openid] >= 0 ? '+' : ''}}{{round.scores[player.openid] || 0}}
+          </text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="btn-primary" bindtap="goToScore" disabled="{{players.length < 2}}">
+      计分{{players.length < 2 ? '（至少需要2名玩家）' : ''}}
+    </button>
+    <view class="action-row">
+      <button class="btn-secondary half" bindtap="showQRCode">添加牌友</button>
+      <button class="btn-danger half" bindtap="endGame">结束牌局</button>
+    </view>
+    <button class="btn-secondary" bindtap="goBack">返回首页</button>
+  </view>
+
+  <!-- 二维码弹窗 -->
+  <view class="modal" wx:if="{{showModal}}" bindtap="hideQRCode">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-title">邀请好友加入</view>
+      <view class="qrcode-container">
+        <image class="qrcode" src="{{qrcodeUrl}}" mode="aspectFit"></image>
+      </view>
+      <view class="modal-tip">让好友扫描此二维码加入牌局</view>
+      <button class="btn-primary" bindtap="hideQRCode">关闭</button>
+    </view>
+  </view>
+
+  <!-- 删除玩家菜单 -->
+  <view class="player-menu" wx:if="{{showPlayerMenu}}" bindtap="hidePlayerMenu">
+    <view class="menu-content" catchtap="stopPropagation">
+      <view class="menu-title">选择要删除的玩家</view>
+      <view class="menu-item" wx:for="{{players}}" wx:key="openid"
+            bindtap="confirmDeletePlayer" data-openid="{{item.openid}}">
+        <image class="menu-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        <text>{{item.nickName}}</text>
+      </view>
+      <button class="btn-secondary" bindtap="hidePlayerMenu">取消</button>
+    </view>
+  </view>
+</view>
