@@ -107,18 +107,18 @@ Page({
         if (res.result.success) {
           if (res.result.joined) {
             console.log('自动加入成功！')
-            wx.showToast({
+            wx.showModal({
               title: '✅ 加入成功',
-              icon: 'success',
-              duration: 2000
+              content: `你的ID: ${res.result.debugOpenid || '未知'}`,
+              showCancel: false
             })
           } else {
             console.log('已在游戏中')
             // 显示已在游戏中的提示
-            wx.showToast({
+            wx.showModal({
               title: '你已在游戏中',
-              icon: 'none',
-              duration: 2000
+              content: `你的ID: ${res.result.debugOpenid || '未知'}`,
+              showCancel: false
             })
           }
           // 刷新数据

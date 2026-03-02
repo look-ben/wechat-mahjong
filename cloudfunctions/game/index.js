@@ -155,18 +155,32 @@ async function getGameDetail(gameId, openid) {
 
 // 自动加入游戏（无需用户授权，使用默认信息）
 async function autoJoin(gameId, openid) {
+  // 添加详细日志
+  console.log('==================')
+  console.log('autoJoin 被调用')
+  console.log('gameId:', gameId)
+  console.log('当前用户 openid:', openid)
+  console.log('==================')
+
   const game = await db.collection('games').doc(gameId).get()
 
   if (!game.data) {
     return { success: false, message: '游戏不存在' }
   }
 
+  console.log('游戏中现有玩家:')
+  game.data.players.forEach((p, index) => {
+    console.log(`玩家${index + 1}: ${p.nickName}, openid: ${p.openid}`)
+  })
+
   // 检查是否已在游戏中
   const alreadyJoined = game.data.players.some(p => p.openid === openid)
+  console.log('是否已在游戏中:', alreadyJoined)
 
   if (alreadyJoined) {
     // 已在游戏中，返回成功但未加入
-    return { success: true, joined: false, message: '已在游戏中' }
+    console.log('返回: 已在游戏中')
+    return { success: true, joined: false, message: '已在游戏中', debugOpenid: openid }
   }
 
   // 不在游戏中，自动加入
@@ -183,6 +197,8 @@ async function autoJoin(gameId, openid) {
   const nickName = `玩家${playerNum}`
 
   // 使用默认头像和昵称添加玩家
+  console.log(`准备添加新玩家: ${nickName}, openid: ${openid}`)
+
   await db.collection('games').doc(gameId).update({
     data: {
       players: _.push({
@@ -194,7 +210,8 @@ async function autoJoin(gameId, openid) {
     }
   })
 
-  return { success: true, joined: true, message: '加入成功' }
+  console.log('新玩家添加成功！')
+  return { success: true, joined: true, message: '加入成功', debugOpenid: openid }
 }
 
 // 检查并加入游戏（自动判断是否需要加入）
