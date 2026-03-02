@@ -69,38 +69,49 @@ Page({
 
   // 检查并加入游戏
   checkAndJoinGame(gameId) {
+    console.log('=== 开始检查并加入游戏 ===')
+    console.log('gameId:', gameId)
+
     const userInfo = app.globalData.userInfo
+    console.log('当前用户信息:', userInfo)
 
     if (!userInfo) {
+      console.log('没有用户信息，显示授权提示')
       // 没有用户信息，显示授权提示
       wx.showModal({
         title: '加入牌局',
         content: '需要获取您的头像和昵称才能加入牌局',
         confirmText: '授权加入',
         success: (res) => {
+          console.log('授权弹窗结果:', res)
           if (res.confirm) {
             this.requestAuth(gameId)
           } else {
             // 用户拒绝授权，只加载数据不加入
+            console.log('用户拒绝授权')
             this.loadGameData()
           }
         }
       })
     } else {
       // 已有用户信息，直接加入
+      console.log('已有用户信息，直接调用加入')
       this.doCheckAndJoin(gameId, userInfo)
     }
   },
 
   // 请求用户授权
   requestAuth(gameId) {
+    console.log('=== 请求用户授权 ===')
     wx.getUserProfile({
       desc: '用于显示您的头像和昵称',
       success: (res) => {
+        console.log('授权成功，用户信息:', res.userInfo)
         app.globalData.userInfo = res.userInfo
         this.doCheckAndJoin(gameId, res.userInfo)
       },
-      fail: () => {
+      fail: (err) => {
+        console.error('授权失败:', err)
         wx.showToast({
           title: '授权失败，无法加入',
           icon: 'none'
@@ -112,6 +123,10 @@ Page({
 
   // 执行检查并加入
   doCheckAndJoin(gameId, userInfo) {
+    console.log('=== 执行检查并加入 ===')
+    console.log('gameId:', gameId)
+    console.log('userInfo:', userInfo)
+
     wx.showLoading({ title: '加载中...' })
 
     wx.cloud.callFunction({
@@ -122,20 +137,27 @@ Page({
         userInfo: userInfo
       },
       success: (res) => {
+        console.log('云函数返回结果:', res.result)
         wx.hideLoading()
+
         if (res.result.success) {
           if (res.result.joined) {
+            console.log('加入成功！')
             wx.showToast({
               title: '加入成功',
               icon: 'success'
             })
+          } else {
+            console.log('已在游戏中')
           }
           // 无论是否新加入，都刷新数据
           this.loadGameData()
         } else if (res.result.needAuth) {
           // 需要授权
+          console.log('需要授权，重新请求')
           this.requestAuth(gameId)
         } else {
+          console.error('加入失败:', res.result.message)
           wx.showToast({
             title: res.result.message || '操作失败',
             icon: 'none',
@@ -147,7 +169,7 @@ Page({
       },
       fail: (err) => {
         wx.hideLoading()
-        console.error('检查并加入失败:', err)
+        console.error('云函数调用失败:', err)
         wx.showToast({
           title: '加入失败，请重试',
           icon: 'none'
