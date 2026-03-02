@@ -69,15 +69,42 @@ Page({
 
   // 检查并加入游戏
   checkAndJoinGame(gameId) {
+    // 先检查是否有用户信息
+    if (!app.globalData.userInfo) {
+      // 没有用户信息，先请求授权
+      wx.getUserProfile({
+        desc: '用于显示您的头像和昵称',
+        success: (res) => {
+          app.globalData.userInfo = res.userInfo
+          // 授权成功后再调用加入逻辑
+          this.doCheckAndJoin(gameId, res.userInfo)
+        },
+        fail: () => {
+          // 授权失败，仍然尝试加载游戏数据（只能查看，不能加入）
+          wx.showToast({
+            title: '需要授权才能加入牌局',
+            icon: 'none',
+            duration: 3000
+          })
+          this.loadGameData()
+        }
+      })
+    } else {
+      // 已有用户信息，直接调用
+      this.doCheckAndJoin(gameId, app.globalData.userInfo)
+    }
+  },
+
+  // 执行检查并加入
+  doCheckAndJoin(gameId, userInfo) {
     wx.showLoading({ title: '加载中...' })
 
-    // 调用云函数检查并加入
     wx.cloud.callFunction({
       name: 'game',
       data: {
         action: 'checkAndJoin',
         gameId: gameId,
-        userInfo: app.globalData.userInfo
+        userInfo: userInfo
       },
       success: (res) => {
         wx.hideLoading()
@@ -93,7 +120,8 @@ Page({
         } else {
           wx.showToast({
             title: res.result.message || '操作失败',
-            icon: 'none'
+            icon: 'none',
+            duration: 3000
           })
           // 即使失败也尝试加载数据
           this.loadGameData()
@@ -102,6 +130,10 @@ Page({
       fail: (err) => {
         wx.hideLoading()
         console.error('检查并加入失败:', err)
+        wx.showToast({
+          title: '加入失败，请重试',
+          icon: 'none'
+        })
         // 失败时也尝试加载数据
         this.loadGameData()
       }
