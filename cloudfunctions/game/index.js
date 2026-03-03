@@ -380,6 +380,7 @@ async function addRound(gameId, scores, openid) {
     .count()
 
   const roundNum = rounds.total + 1
+  const now = Date.now()
 
   // 创建轮次记录
   await db.collection('rounds').add({
@@ -387,7 +388,14 @@ async function addRound(gameId, scores, openid) {
       gameId: gameId,
       roundNum: roundNum,
       scores: scores,
-      createTime: Date.now()
+      createTime: now
+    }
+  })
+
+  // 更新 games 表的 lastUpdateTime，触发数据库监听
+  await db.collection('games').doc(gameId).update({
+    data: {
+      lastUpdateTime: now
     }
   })
 

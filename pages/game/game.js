@@ -88,15 +88,12 @@ Page({
           if (snapshot.docChanges.length > 0) {
             const change = snapshot.docChanges[0]
             if (change.dataType === 'update' || change.dataType === 'init') {
-              // 数据更新，刷新页面
-              const doc = change.doc
-              this.setData({
-                players: doc.players || [],
-                rounds: doc.rounds || []
-              })
+              // 数据更新，重新加载完整数据（包括 rounds）
+              console.log('检测到数据变化，重新加载')
+              this.loadGameData(false)
 
               // 如果是玩家列表更新，显示提示
-              if (change.dataType === 'update' && doc.players) {
+              if (change.dataType === 'update' && change.updatedFields && change.updatedFields.players) {
                 wx.showToast({
                   title: '有新玩家加入',
                   icon: 'success',
