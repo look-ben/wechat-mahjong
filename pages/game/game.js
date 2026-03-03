@@ -18,13 +18,6 @@ Page({
     console.log('=== 页面加载 onLoad ===')
     console.log('接收到的参数 options:', options)
 
-    // 显示调试信息（用户可见）
-    wx.showToast({
-      title: 'onLoad触发',
-      icon: 'none',
-      duration: 2000
-    })
-
     if (options.gameId) {
       const gameId = options.gameId
       console.log('获取到 gameId:', gameId)
@@ -50,7 +43,8 @@ Page({
   onShow() {
     // 每次显示时刷新数据并启动实时监听
     if (this.data.gameId) {
-      this.loadGameData()
+      // 使用静默刷新（不显示 loading）
+      this.loadGameData(false)
       this.startWatching()
 
       // 如果还没有获取 openid，现在获取
