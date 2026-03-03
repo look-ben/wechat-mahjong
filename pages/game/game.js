@@ -18,6 +18,14 @@ Page({
     console.log('=== 页面加载 onLoad ===')
     console.log('接收到的参数 options:', options)
 
+    // 显示调试弹窗（临时）
+    wx.showModal({
+      title: 'onLoad 触发',
+      content: 'gameId: ' + (options.gameId || '无') + '\nscene: ' + (options.scene || '无'),
+      showCancel: false,
+      confirmText: '继续'
+    })
+
     if (options.gameId) {
       const gameId = options.gameId
       console.log('获取到 gameId:', gameId)
