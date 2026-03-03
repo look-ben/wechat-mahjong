@@ -3,7 +3,7 @@
 .section-title {
   font-size: 30rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   color: #00ff41;
   margin-bottom: 28rpx;
   letter-spacing: 0.15em;
@@ -42,7 +42,7 @@
   font-size: 18rpx;
   color: #ff0080;
   text-shadow: 0 0 8px #ff0080;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   letter-spacing: 0.1em;
   font-weight: 600;
 }
@@ -99,7 +99,7 @@
   white-space: nowrap;
   font-weight: 600;
   letter-spacing: 0.08em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 8px #00ccff;
   text-transform: uppercase;
 }
@@ -108,7 +108,7 @@
   display: block;
   font-size: 36rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   letter-spacing: 0.05em;
   text-shadow: 0 0 10px currentColor;
 }
@@ -146,7 +146,7 @@
   color: #00ccff;
   font-weight: 600;
   letter-spacing: 0.1em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 8px #00ccff;
   text-transform: uppercase;
 }
@@ -164,7 +164,7 @@
   background: rgba(0, 20, 10, 0.6);
   margin: 20rpx 0;
   border: 2rpx dashed #00aa33;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 5px #00aa33;
   letter-spacing: 0.05em;
 }
@@ -195,7 +195,7 @@
   top: 0;
   z-index: 10;
   letter-spacing: 0.1em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 8px #00ccff;
   text-transform: uppercase;
 }
@@ -247,7 +247,7 @@
   display: block;
   font-size: 24rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   color: #00ff41;
   margin-bottom: 8rpx;
   letter-spacing: 0.08em;
@@ -271,7 +271,7 @@
   font-size: 18rpx;
   color: #00ccff;
   letter-spacing: 0.05em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 5px #00ccff;
 }
 
@@ -280,7 +280,7 @@
   text-align: center;
   font-size: 30rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 8px currentColor;
 }
 
@@ -328,14 +328,14 @@
   text-shadow: 0 0 5px #00ff41;
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   padding: 8rpx;
 }
 
 .modal-title {
   font-size: 34rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-align: center;
   margin-bottom: 40rpx;
   margin-top: 20rpx;
@@ -390,7 +390,7 @@
   font-size: 24rpx;
   margin-bottom: 40rpx;
   line-height: 44rpx;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   letter-spacing: 0.05em;
   text-shadow: 0 0 8px #00ccff;
 }
@@ -436,14 +436,14 @@
   text-shadow: 0 0 5px #00ff41;
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   padding: 8rpx;
 }
 
 .menu-title {
   font-size: 30rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-align: center;
   margin-bottom: 32rpx;
   margin-top: 20rpx;
@@ -469,7 +469,7 @@
   border-radius: 0;
   transition: all 0.2s ease;
   margin-bottom: 8rpx;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   letter-spacing: 0.05em;
   text-shadow: 0 0 8px #00ff41;
   border: 2rpx solid transparent;

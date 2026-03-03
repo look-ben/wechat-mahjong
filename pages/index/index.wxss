@@ -20,7 +20,7 @@
   font-size: 16rpx;
   color: #00ff41;
   text-shadow: 0 0 5px #00ff41;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   padding: 8rpx;
   background: rgba(0, 0, 0, 0.5);
   border-bottom: 1rpx solid #00ff41;
@@ -59,7 +59,7 @@
 .username {
   font-size: 38rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   color: #00ff41;
   display: block;
   margin-bottom: 16rpx;
@@ -86,7 +86,7 @@
   background: transparent;
   border: 2rpx solid #00ccff;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   letter-spacing: 0.1em;
   text-shadow: 0 0 8px #00ccff;
   box-shadow: 0 0 8px rgba(0, 204, 255, 0.3);
@@ -125,7 +125,7 @@
 .tips-title {
   font-size: 26rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   color: #00ccff;
   margin-bottom: 20rpx;
   letter-spacing: 0.15em;
@@ -144,6 +144,6 @@
   color: #00ff41;
   line-height: 44rpx;
   letter-spacing: 0.02em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 5px #00ff41;
 }

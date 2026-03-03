@@ -3,7 +3,7 @@
 .title {
   font-size: 48rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-align: center;
   color: #00ff41;
   margin-bottom: 60rpx;
@@ -46,7 +46,7 @@
   text-shadow: 0 0 5px #00ff41;
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   background: rgba(0, 0, 0, 0.5);
   padding: 8rpx;
 }
@@ -80,7 +80,7 @@
   color: #00ff41;
   font-size: 32rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   margin-right: 24rpx;
   background: transparent;
   border: 3rpx solid #00ff41;
@@ -163,7 +163,7 @@
   margin-bottom: 10rpx;
   font-weight: 600;
   letter-spacing: 0.08em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 8px #00ff41;
   text-transform: uppercase;
 }
@@ -179,7 +179,7 @@
   font-size: 20rpx;
   color: #00ccff;
   letter-spacing: 0.08em;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 5px #00ccff;
 }
 
@@ -198,7 +198,7 @@
 .score {
   font-size: 44rpx;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 10px currentColor;
 }
 
@@ -223,7 +223,7 @@
   text-shadow: 0 0 5px #00ccff;
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   background: rgba(0, 0, 0, 0.5);
   padding: 8rpx;
 }
@@ -235,7 +235,7 @@
   padding-top: 36rpx;
   font-size: 26rpx;
   border-bottom: 1rpx solid rgba(0, 204, 255, 0.2);
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
 }
 
 .info-item:first-child {
@@ -262,7 +262,7 @@
 .value {
   color: #00ff41;
   font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-family: 'Courier New', 'Courier', monospace;
   text-shadow: 0 0 8px #00ff41;
 }
 
