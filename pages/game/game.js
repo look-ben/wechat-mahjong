@@ -223,6 +223,8 @@ Page({
           }
           // 刷新数据
           this.loadGameData()
+          // 启动数据库监听
+          this.startWatching()
         } else {
           console.error('加入失败:', res.result.message)
           wx.showModal({
