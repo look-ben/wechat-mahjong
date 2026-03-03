@@ -19,14 +19,6 @@ Page({
     console.log('接收到的参数 options:', options)
     console.log('当前页面 gameId:', this.data.gameId)
 
-    // 显示调试弹窗（临时 - 用于调试华为手机）
-    wx.showModal({
-      title: 'onLoad 触发',
-      content: 'options.gameId: ' + (options.gameId || '无') + '\n当前gameId: ' + (this.data.gameId || '无'),
-      showCancel: false,
-      confirmText: '继续'
-    })
-
     // 检测页面缓存问题：如果传入了新的 gameId，但与当前不同，说明页面被复用了
     if (options.gameId && this.data.gameId && options.gameId !== this.data.gameId) {
       console.log('⚠️ 检测到页面缓存问题，强制重新加载')
@@ -60,14 +52,6 @@ Page({
   onShow() {
     console.log('=== onShow 触发 ===')
     console.log('当前 gameId:', this.data.gameId)
-
-    // 显示调试弹窗（临时）
-    wx.showModal({
-      title: 'onShow 触发',
-      content: 'gameId: ' + (this.data.gameId || '无'),
-      showCancel: false,
-      confirmText: '继续'
-    })
 
     // 每次显示时刷新数据并启动实时监听
     if (this.data.gameId) {
