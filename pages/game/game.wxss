@@ -1,25 +1,21 @@
-/* pages/game/game.wxss - Hugo Shell Retro: Active Session */
+/* pages/game/game.wxss - Minimalist: Active Session */
 
 .section-title {
-  font-size: 30rpx;
-  font-weight: bold;
-  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
-  color: #00ff00;
-  margin-bottom: 28rpx;
-  position: relative;
-}
-
-.section-title::before {
-  content: '$ ';
-  color: #00ff00;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #666666;
+  margin-bottom: 32rpx;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* Connected Users Display */
 .players-summary {
-  margin-top: 24rpx;
-  background: #000000;
-  border: 2rpx solid #00ff00;
-  padding: 32rpx 24rpx;
+  margin-top: 32rpx;
+  background: #ffffff;
+  border: none;
+  border-bottom: 1rpx solid #e5e5e5;
+  padding: 40rpx 0;
 }
 
 .players-scroll {
@@ -30,24 +26,24 @@
   display: inline-block;
   vertical-align: top;
   text-align: center;
-  margin-right: 32rpx;
-  min-width: 120rpx;
+  margin-right: 48rpx;
+  min-width: 100rpx;
 }
 
 .player-avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border: 2rpx solid #00ff00;
+  width: 100rpx;
+  height: 100rpx;
+  border: none;
   display: block;
-  margin: 0 auto 16rpx;
+  margin: 0 auto 20rpx;
 }
 
 .player-name {
   display: block;
   font-size: 22rpx;
-  color: #00ff00;
-  margin-bottom: 10rpx;
-  max-width: 120rpx;
+  color: #666666;
+  margin-bottom: 12rpx;
+  max-width: 100rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -56,84 +52,74 @@
 .player-score {
   display: block;
   font-size: 32rpx;
-  font-weight: bold;
-  color: #00ff00;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 /* Add Player Interface */
 .add-player {
-  width: 120rpx;
+  width: 100rpx;
 }
 
 .add-icon {
-  width: 120rpx;
-  height: 120rpx;
-  border: 2rpx dashed #00ff00;
+  width: 100rpx;
+  height: 100rpx;
+  border: 1rpx dashed #e5e5e5;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16rpx;
-  font-size: 52rpx;
-  color: #00ff00;
+  margin: 0 auto 20rpx;
+  font-size: 48rpx;
+  color: #cccccc;
   background: transparent;
 }
 
 .add-text {
   font-size: 22rpx;
-  color: #00ff00;
-  text-decoration: underline;
+  color: #999999;
 }
 
 /* Rounds Section */
 .rounds-section {
-  margin-top: 32rpx;
+  margin-top: 48rpx;
 }
 
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #008800;
+  color: #999999;
   font-size: 26rpx;
-  background: #000000;
-  border: 2rpx dashed #00ff00;
+  background: transparent;
+  border: none;
   margin: 20rpx 0;
-}
-
-.empty-tip::before {
-  content: '[WAITING...]\n';
-  color: #00ff00;
-  display: block;
-  margin-bottom: 20rpx;
 }
 
 .rounds-list {
   max-height: 600rpx;
-  background: #000000;
-  border: 2rpx solid #00ff00;
+  background: #ffffff;
+  border: none;
   overflow: hidden;
 }
 
 .round-header {
   display: flex;
   align-items: center;
-  padding: 24rpx 20rpx;
-  border-bottom: 2rpx solid #00ff00;
-  font-weight: bold;
-  color: #00ff00;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-weight: 500;
+  color: #666666;
   font-size: 20rpx;
-  background: #000000;
+  background: #ffffff;
   position: sticky;
   top: 0;
   z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .round-num-header {
   width: 160rpx;
   flex-shrink: 0;
-}
-
-.round-num-header::before {
-  content: '# ';
 }
 
 .round-score-header {
@@ -144,15 +130,15 @@
 .header-avatar {
   width: 48rpx;
   height: 48rpx;
-  border: 2rpx solid #00ff00;
+  border: none;
 }
 
 .round-item {
   display: flex;
   align-items: center;
-  padding: 28rpx 20rpx;
-  border-bottom: 1rpx solid #00ff00;
-  background: #000000;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+  background: #ffffff;
 }
 
 .round-num {
@@ -163,36 +149,28 @@
 .round-num .num {
   display: block;
   font-size: 24rpx;
-  font-weight: bold;
-  color: #00ff00;
+  font-weight: 500;
+  color: #1a1a1a;
   margin-bottom: 8rpx;
-}
-
-.round-num .num::before {
-  content: '[';
-}
-
-.round-num .num::after {
-  content: ']';
 }
 
 .round-num .time {
   display: block;
   font-size: 18rpx;
-  color: #008800;
+  color: #999999;
 }
 
 .round-score {
   flex: 1;
   text-align: center;
-  font-size: 30rpx;
-  font-weight: bold;
-  color: #00ff00;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 /* Actions */
 .actions {
-  margin-top: 48rpx;
+  margin-top: 64rpx;
   padding-bottom: 40rpx;
 }
 
@@ -203,7 +181,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -211,22 +189,18 @@
 }
 
 .modal-content {
-  background: #000000;
-  border: 2rpx solid #00ff00;
+  background: #ffffff;
+  border: 1rpx solid #e5e5e5;
   padding: 60rpx 40rpx;
   width: 600rpx;
 }
 
 .modal-title {
-  font-size: 34rpx;
-  font-weight: bold;
+  font-size: 32rpx;
+  font-weight: 500;
   text-align: center;
-  margin-bottom: 40rpx;
-  color: #00ff00;
-}
-
-.modal-title::before {
-  content: '> ';
+  margin-bottom: 48rpx;
+  color: #1a1a1a;
 }
 
 .qrcode-container {
@@ -238,12 +212,12 @@
 .qrcode {
   width: 400rpx;
   height: 400rpx;
-  border: 2rpx solid #00ff00;
+  border: 1rpx solid #e5e5e5;
 }
 
 .modal-tip {
   text-align: center;
-  color: #00ff00;
+  color: #666666;
   font-size: 24rpx;
   margin-bottom: 40rpx;
   line-height: 40rpx;
@@ -256,52 +230,42 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: flex-end;
   z-index: 1000;
 }
 
 .menu-content {
-  background: #000000;
-  border: 2rpx solid #00ff00;
-  padding: 40rpx;
+  background: #ffffff;
+  border-top: 1rpx solid #e5e5e5;
+  padding: 40rpx 32rpx;
   width: 100%;
 }
 
 .menu-title {
-  font-size: 30rpx;
-  font-weight: bold;
+  font-size: 28rpx;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 32rpx;
-  color: #00ff00;
-}
-
-.menu-title::before {
-  content: '$ ';
+  color: #1a1a1a;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 24rpx;
+  padding: 24rpx 0;
   font-size: 28rpx;
-  color: #00ff00;
-  margin-bottom: 12rpx;
+  color: #1a1a1a;
+  margin-bottom: 0;
   background: transparent;
   border: none;
-  text-decoration: underline;
-}
-
-.menu-item::before {
-  content: '> ';
-  text-decoration: none;
-  margin-right: 12rpx;
+  border-bottom: 1rpx solid #f5f5f5;
 }
 
 .menu-avatar {
   width: 64rpx;
   height: 64rpx;
   margin-right: 24rpx;
-  border: 2rpx solid #00ff00;
+  border: none;
 }

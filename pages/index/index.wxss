@@ -1,22 +1,23 @@
-/* pages/index/index.wxss - Hugo Shell Retro: User Dashboard */
+/* pages/index/index.wxss - Minimalist: User Dashboard */
 
 /* User Profile Card */
 .user-card {
-  margin-top: 32rpx;
-  background: #000000;
-  border: 2rpx solid #00ff00;
-  padding: 32rpx 24rpx;
+  margin-top: 48rpx;
+  background: #ffffff;
+  border-bottom: 1rpx solid #e5e5e5;
+  padding: 48rpx 0;
 }
 
 .user-info {
   display: flex;
   align-items: center;
+  margin-bottom: 40rpx;
 }
 
 .avatar {
-  width: 136rpx;
-  height: 136rpx;
-  border: 2rpx solid #00ff00;
+  width: 120rpx;
+  height: 120rpx;
+  border: none;
   margin-right: 32rpx;
 }
 
@@ -26,62 +27,50 @@
 
 .username {
   font-size: 36rpx;
-  font-weight: bold;
-  color: #00ff00;
+  font-weight: 500;
+  color: #1a1a1a;
   display: block;
   margin-bottom: 16rpx;
 }
 
-.username::before {
-  content: 'user@mahjong:~$ cat profile.txt\n';
-  font-size: 24rpx;
-  display: block;
-  margin-bottom: 8rpx;
-  color: #00ff00;
-}
-
 .stats {
   display: flex;
-  gap: 16rpx;
+  gap: 24rpx;
   flex-wrap: wrap;
 }
 
 .stat-item {
   font-size: 24rpx;
-  color: #00ff00;
-  padding: 10rpx 20rpx;
+  color: #666666;
+  padding: 0;
   background: transparent;
-  border: 2rpx solid #00ff00;
-  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
+  border: none;
+  font-weight: 400;
 }
 
 .actions {
-  margin-top: 48rpx;
+  margin-top: 64rpx;
 }
 
 /* Info Card */
 .tips {
-  margin-top: 48rpx;
-  background: #000000;
-  border: 2rpx solid #00ff00;
-  padding: 32rpx 24rpx;
-}
-
-.tips::before {
-  content: '> ';
-  color: #00ff00;
-  font-weight: bold;
+  margin-top: 64rpx;
+  background: #fafafa;
+  border: none;
+  padding: 32rpx;
 }
 
 .tips-title {
-  font-size: 28rpx;
-  font-weight: bold;
-  color: #00ff00;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #666666;
   margin-bottom: 16rpx;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .tips-content {
   font-size: 26rpx;
-  color: #00ff00;
+  color: #1a1a1a;
   line-height: 44rpx;
 }
