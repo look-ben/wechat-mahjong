@@ -1,13 +1,26 @@
-/* pages/stats/stats.wxss - Ink & Jade: Statistics */
+/* pages/stats/stats.wxss - TERMINAL.MAHJONG: System Logs */
 
+/* Month Navigation - Command Interface */
 .month-selector {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 36rpx 0;
-  border-bottom: 3rpx solid rgba(87, 135, 114, 0.15);
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
-  border-radius: 16rpx 16rpx 0 0;
+  border-bottom: 2rpx solid #00ff41;
+  background: rgba(0, 20, 10, 0.8);
+  position: relative;
+}
+
+.month-selector::before {
+  content: '> SELECT_MONTH:';
+  position: absolute;
+  left: 20rpx;
+  top: 12rpx;
+  font-size: 18rpx;
+  color: #ff0080;
+  text-shadow: 0 0 8px #ff0080;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
 }
 
 .selector-btn {
@@ -17,39 +30,52 @@
   align-items: center;
   justify-content: center;
   font-size: 40rpx;
-  color: #578772;
-  border-radius: 12rpx;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 600;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  transition: all 0.1s ease;
+  text-shadow: 0 0 10px #00ff41;
 }
 
 .selector-btn:active {
-  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
+  background: rgba(0, 255, 65, 0.1);
   transform: scale(0.9);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
 }
 
 .month-display {
   font-size: 40rpx;
   font-weight: 600;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
-  color: #2D5F4E;
+  font-family: 'Courier New', monospace;
+  color: #00ff41;
   min-width: 240rpx;
   text-align: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 15px #00ff41;
 }
 
+/* Stats Grid - System Metrics */
 .month-stats {
   display: flex;
   justify-content: space-around;
   padding: 48rpx 24rpx;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
-  border-radius: 0 0 16rpx 16rpx;
-  box-shadow:
-    0 2rpx 8rpx rgba(0, 0, 0, 0.06),
-    0 12rpx 32rpx rgba(87, 135, 114, 0.1);
+  background: rgba(0, 20, 10, 0.6);
   margin-bottom: 40rpx;
-  border: 3rpx solid rgba(45, 95, 78, 0.12);
-  border-top: none;
+  border: 2rpx solid #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  position: relative;
+}
+
+.month-stats::before {
+  content: '═════════════════════════════════════════';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 12rpx;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .stat-card {
@@ -57,74 +83,110 @@
   flex-direction: column;
   align-items: center;
   padding: 24rpx 32rpx;
-  background: linear-gradient(135deg, #F5F1E8 0%, #FAFAF8 100%);
-  border-radius: 12rpx;
+  background: transparent;
+  border: 2rpx solid #00ccff;
   min-width: 160rpx;
-  box-shadow:
-    inset 0 2rpx 8rpx rgba(87, 135, 114, 0.08);
-  border: 2rpx solid rgba(87, 135, 114, 0.1);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+  position: relative;
+}
+
+.stat-card::before {
+  content: '[';
+  position: absolute;
+  left: 4rpx;
+  top: 4rpx;
+  color: #ff0080;
+  font-size: 24rpx;
+  text-shadow: 0 0 8px #ff0080;
+}
+
+.stat-card::after {
+  content: ']';
+  position: absolute;
+  right: 4rpx;
+  bottom: 4rpx;
+  color: #ff0080;
+  font-size: 24rpx;
+  text-shadow: 0 0 8px #ff0080;
 }
 
 .stat-label {
-  font-size: 22rpx;
-  color: #6B7566;
+  font-size: 20rpx;
+  color: #00aa33;
   margin-bottom: 16rpx;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #00aa33;
 }
 
 .stat-value {
   font-size: 52rpx;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", monospace;
-  color: #578772;
+  font-family: 'Courier New', monospace;
+  color: #00ff41;
   margin-bottom: 8rpx;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px #00ff41;
 }
 
 .stat-unit {
-  font-size: 22rpx;
-  color: #9B9B8F;
-  font-weight: 500;
+  font-size: 20rpx;
+  color: #00ccff;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 8px #00ccff;
 }
 
+/* Game Log Section */
 .games-section {
   margin-top: 48rpx;
 }
 
 .section-title {
-  font-size: 34rpx;
+  font-size: 30rpx;
   font-weight: 600;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
-  color: #2D5F4E;
+  font-family: 'Courier New', monospace;
+  color: #00ff41;
   margin-bottom: 30rpx;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   position: relative;
   padding-left: 24rpx;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #00ff41;
 }
 
 .section-title::before {
-  content: '';
+  content: '▶';
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 8rpx;
-  height: 28rpx;
-  background: linear-gradient(180deg, #578772, #3D6455);
-  border-radius: 2rpx;
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
+  animation: blink 1s infinite;
 }
 
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #6B7566;
+  color: #00aa33;
   font-size: 26rpx;
-  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
-  border-radius: 16rpx;
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 20, 10, 0.6);
   margin: 20rpx 0;
-  border: 2rpx dashed rgba(107, 117, 102, 0.2);
+  border: 2rpx dashed #00aa33;
+  text-shadow: 0 0 5px #00aa33;
+  letter-spacing: 0.05em;
+}
+
+.empty-tip::before {
+  content: '> NO_DATA_FOUND';
+  display: block;
+  color: #ff0080;
+  margin-bottom: 20rpx;
+  text-shadow: 0 0 10px #ff0080;
 }
 
 .game-list {
@@ -132,23 +194,35 @@
   overflow-y: auto;
 }
 
+/* Game Log Entries */
 .game-item {
   padding: 32rpx;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
-  border-radius: 16rpx;
+  background: rgba(0, 20, 10, 0.8);
   margin-bottom: 24rpx;
-  border: 2rpx solid rgba(87, 135, 114, 0.1);
-  box-shadow:
-    0 2rpx 8rpx rgba(0, 0, 0, 0.04),
-    0 6rpx 20rpx rgba(87, 135, 114, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2rpx solid #00ff41;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  transition: all 0.2s ease;
+  position: relative;
+  font-family: 'Courier New', monospace;
+}
+
+.game-item::before {
+  content: '┌─────────────────────────────────────┐';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 14rpx;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .game-item:active {
-  transform: translateY(-2rpx);
-  box-shadow:
-    0 4rpx 12rpx rgba(0, 0, 0, 0.06),
-    0 12rpx 32rpx rgba(87, 135, 114, 0.12);
+  transform: translateX(4rpx);
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.4);
+  background: rgba(0, 255, 65, 0.05);
 }
 
 .game-header {
@@ -157,20 +231,33 @@
   align-items: center;
   margin-bottom: 24rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid rgba(87, 135, 114, 0.1);
+  border-bottom: 1rpx solid #00ff41;
 }
 
 .game-date {
-  font-size: 24rpx;
-  color: #9B9B8F;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-size: 22rpx;
+  color: #00ccff;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 8px #00ccff;
+}
+
+.game-date::before {
+  content: '[TIME: ';
+  color: #00aa33;
+}
+
+.game-date::after {
+  content: ']';
+  color: #00aa33;
 }
 
 .game-result {
-  font-size: 40rpx;
+  font-size: 36rpx;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", monospace;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px currentColor;
 }
 
 .game-players {
@@ -181,24 +268,31 @@
 .player-avatar-small {
   width: 56rpx;
   height: 56rpx;
-  border-radius: 8rpx;
+  border-radius: 0;
   margin-right: 12rpx;
-  border: 2rpx solid #578772;
-  box-shadow:
-    0 0 0 2rpx rgba(87, 135, 114, 0.1),
-    0 4rpx 12rpx rgba(87, 135, 114, 0.12);
+  border: 2rpx solid #00ff41;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+  filter: contrast(1.2) brightness(1.1);
 }
 
 .rounds-count {
-  font-size: 22rpx;
-  color: #6B7566;
+  font-size: 20rpx;
+  color: #00ff41;
   margin-left: 20rpx;
   padding: 8rpx 20rpx;
-  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
-  border-radius: 8rpx;
-  font-weight: 500;
-  border: 1rpx solid rgba(87, 135, 114, 0.1);
-  letter-spacing: 0.02em;
+  background: transparent;
+  border: 2rpx solid #00ff41;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px #00ff41;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.rounds-count::before {
+  content: 'ROUNDS:';
+  margin-right: 8rpx;
+  color: #ff0080;
 }
 
 .actions {

@@ -1,40 +1,55 @@
-/* pages/game/game.wxss - Ink & Jade: Game Room */
+/* pages/game/game.wxss - TERMINAL.MAHJONG: Active Session */
 
 .section-title {
-  font-size: 34rpx;
+  font-size: 30rpx;
   font-weight: 600;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
-  color: #2D5F4E;
+  font-family: 'Courier New', monospace;
+  color: #00ff41;
   margin-bottom: 28rpx;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   position: relative;
-  padding-left: 24rpx;
+  padding-left: 32rpx;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #00ff41;
 }
 
-/* Ink brush accent */
+/* Terminal prompt indicator */
 .section-title::before {
-  content: '';
+  content: '▶';
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 8rpx;
-  height: 28rpx;
-  background: linear-gradient(180deg, #578772, #3D6455);
-  border-radius: 2rpx;
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
+  animation: blink 1s infinite;
 }
 
-/* Player Cards */
+/* Connected Users Display */
 .players-summary {
   margin-top: 24rpx;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
-  border: 3rpx solid rgba(45, 95, 78, 0.12);
+  background: rgba(0, 20, 10, 0.8);
+  border: 2rpx solid #00ff41;
   position: relative;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.players-summary::before {
+  content: '> CONNECTED_USERS';
+  position: absolute;
+  top: 12rpx;
+  left: 20rpx;
+  font-size: 18rpx;
+  color: #ff0080;
+  text-shadow: 0 0 8px #ff0080;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 .players-scroll {
   white-space: nowrap;
-  padding: 32rpx 24rpx;
+  padding: 48rpx 24rpx 32rpx;
 }
 
 .player-item {
@@ -43,7 +58,19 @@
   text-align: center;
   margin-right: 44rpx;
   min-width: 120rpx;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.player-item::before {
+  content: '●';
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #00ff41;
+  font-size: 20rpx;
+  text-shadow: 0 0 10px #00ff41;
+  animation: blink 2s infinite;
 }
 
 .player-item:active {
@@ -53,37 +80,40 @@
 .player-avatar {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 12rpx;
+  border-radius: 0;
   display: block;
   margin: 0 auto 16rpx;
-  border: 4rpx solid #578772;
-  box-shadow:
-    0 0 0 3rpx rgba(87, 135, 114, 0.15),
-    0 6rpx 20rpx rgba(87, 135, 114, 0.18);
+  border: 3rpx solid #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+  filter: contrast(1.2) brightness(1.1);
 }
 
 .player-name {
   display: block;
-  font-size: 22rpx;
-  color: #6B7566;
+  font-size: 20rpx;
+  color: #00ccff;
   margin-bottom: 10rpx;
   max-width: 120rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 8px #00ccff;
+  text-transform: uppercase;
 }
 
 .player-score {
   display: block;
   font-size: 36rpx;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", monospace;
-  letter-spacing: -0.02em;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px currentColor;
 }
 
-/* Add Player Button */
+/* Add Player Interface */
 .add-player {
   width: 120rpx;
 }
@@ -91,32 +121,37 @@
 .add-icon {
   width: 120rpx;
   height: 120rpx;
-  border: 4rpx dashed #578772;
-  border-radius: 12rpx;
+  border: 3rpx dashed #00ccff;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16rpx;
   font-size: 60rpx;
-  color: #578772;
-  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
-  box-shadow: inset 0 2rpx 8rpx rgba(87, 135, 114, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #00ccff;
+  background: transparent;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+  transition: all 0.2s ease;
+  text-shadow: 0 0 10px #00ccff;
 }
 
 .add-icon:active {
   transform: scale(0.92);
-  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
+  background: rgba(0, 204, 255, 0.1);
+  box-shadow: 0 0 25px rgba(0, 204, 255, 0.5);
 }
 
 .add-text {
-  font-size: 22rpx;
-  color: #578772;
+  font-size: 20rpx;
+  color: #00ccff;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.1em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 8px #00ccff;
+  text-transform: uppercase;
 }
 
-/* Scoring Records */
+/* Transaction Log */
 .rounds-section {
   margin-top: 24rpx;
 }
@@ -124,12 +159,23 @@
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #6B7566;
-  font-size: 26rpx;
-  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
-  border-radius: 16rpx;
+  color: #00aa33;
+  font-size: 24rpx;
+  background: rgba(0, 20, 10, 0.6);
   margin: 20rpx 0;
-  border: 2rpx dashed rgba(107, 117, 102, 0.2);
+  border: 2rpx dashed #00aa33;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #00aa33;
+  letter-spacing: 0.05em;
+}
+
+.empty-tip::before {
+  content: '> AWAITING_DATA...';
+  display: block;
+  color: #ff0080;
+  margin-bottom: 20rpx;
+  text-shadow: 0 0 10px #ff0080;
+  animation: blink 1.5s infinite;
 }
 
 .rounds-list {
@@ -140,21 +186,29 @@
   display: flex;
   align-items: center;
   padding: 24rpx 20rpx;
-  border-bottom: 3rpx solid rgba(45, 95, 78, 0.15);
+  border-bottom: 2rpx solid #00ff41;
   font-weight: 600;
-  color: #4A5447;
-  font-size: 22rpx;
-  background: linear-gradient(to bottom, #FAFAF8 0%, #F5F1E8 100%);
+  color: #00ccff;
+  font-size: 20rpx;
+  background: rgba(0, 0, 0, 0.6);
   position: sticky;
   top: 0;
   z-index: 10;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 8px #00ccff;
+  text-transform: uppercase;
 }
 
 .round-num-header {
   width: 160rpx;
   flex-shrink: 0;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+}
+
+.round-num-header::before {
+  content: '# ';
+  color: #ff0080;
+  text-shadow: 0 0 8px #ff0080;
 }
 
 .round-score-header {
@@ -165,20 +219,23 @@
 .header-avatar {
   width: 48rpx;
   height: 48rpx;
-  border-radius: 8rpx;
-  border: 2rpx solid #578772;
+  border-radius: 0;
+  border: 2rpx solid #00ff41;
+  filter: contrast(1.2) brightness(1.1);
 }
 
 .round-item {
   display: flex;
   align-items: center;
   padding: 28rpx 20rpx;
-  border-bottom: 1rpx solid rgba(87, 135, 114, 0.08);
-  transition: background-color 0.2s ease;
+  border-bottom: 1rpx solid rgba(0, 255, 65, 0.15);
+  transition: all 0.2s ease;
+  background: rgba(0, 20, 10, 0.4);
 }
 
 .round-item:active {
-  background-color: #FAFAF8;
+  background: rgba(0, 255, 65, 0.05);
+  transform: translateX(4rpx);
 }
 
 .round-num {
@@ -188,19 +245,34 @@
 
 .round-num .num {
   display: block;
-  font-size: 26rpx;
+  font-size: 24rpx;
   font-weight: 600;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
-  color: #2D5F4E;
+  font-family: 'Courier New', monospace;
+  color: #00ff41;
   margin-bottom: 8rpx;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px #00ff41;
+}
+
+.round-num .num::before {
+  content: '[';
+  color: #ff0080;
+  margin-right: 4rpx;
+}
+
+.round-num .num::after {
+  content: ']';
+  color: #ff0080;
+  margin-left: 4rpx;
 }
 
 .round-num .time {
   display: block;
-  font-size: 20rpx;
-  color: #9B9B8F;
-  letter-spacing: 0.02em;
+  font-size: 18rpx;
+  color: #00ccff;
+  letter-spacing: 0.05em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #00ccff;
 }
 
 .round-score {
@@ -208,7 +280,8 @@
   text-align: center;
   font-size: 30rpx;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", monospace;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 8px currentColor;
 }
 
 /* Actions */
@@ -217,122 +290,211 @@
   padding-bottom: 40rpx;
 }
 
-/* Modal - Paper Scroll Effect */
+/* QR Code Terminal Modal */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(26, 26, 26, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(8rpx);
+  backdrop-filter: blur(12rpx);
 }
 
 .modal-content {
-  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
-  border-radius: 20rpx;
+  background: rgba(0, 20, 10, 0.95);
+  border-radius: 0;
   padding: 60rpx 40rpx;
   width: 600rpx;
   box-shadow:
-    0 0 0 4rpx rgba(87, 135, 114, 0.1),
-    0 20rpx 60rpx rgba(0, 0, 0, 0.3);
-  border: 3rpx solid rgba(45, 95, 78, 0.15);
+    0 0 40px rgba(0, 255, 65, 0.3),
+    inset 0 0 30px rgba(0, 255, 65, 0.05);
+  border: 3rpx solid #00ff41;
+  position: relative;
+}
+
+.modal-content::before {
+  content: '╔═══════════════════════════════════════╗';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 14rpx;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Courier New', monospace;
+  padding: 8rpx;
 }
 
 .modal-title {
-  font-size: 38rpx;
+  font-size: 34rpx;
   font-weight: 600;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+  font-family: 'Courier New', monospace;
   text-align: center;
   margin-bottom: 40rpx;
-  color: #2D5F4E;
-  letter-spacing: 0.05em;
+  margin-top: 20rpx;
+  color: #00ff41;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px #00ff41;
+}
+
+.modal-title::before {
+  content: '>>> ';
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
+}
+
+.modal-title::after {
+  content: ' <<<';
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
 }
 
 .qrcode-container {
   display: flex;
   justify-content: center;
   margin: 40rpx 0;
+  position: relative;
+}
+
+.qrcode-container::before {
+  content: '';
+  position: absolute;
+  inset: -20rpx;
+  border: 2rpx solid #00ccff;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
 }
 
 .qrcode {
   width: 400rpx;
   height: 400rpx;
-  border: 4rpx solid #578772;
-  border-radius: 16rpx;
+  border: 4rpx solid #00ff41;
+  border-radius: 0;
   box-shadow:
-    0 0 0 8rpx rgba(87, 135, 114, 0.1),
-    0 12rpx 32rpx rgba(87, 135, 114, 0.2);
+    0 0 30px rgba(0, 255, 65, 0.5),
+    inset 0 0 20px rgba(0, 255, 65, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .modal-tip {
   text-align: center;
-  color: #6B7566;
-  font-size: 26rpx;
+  color: #00ccff;
+  font-size: 24rpx;
   margin-bottom: 40rpx;
   line-height: 44rpx;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 8px #00ccff;
 }
 
-/* Player Menu */
+.modal-tip::before {
+  content: '[INFO] ';
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
+}
+
+/* Player Selection Terminal */
 .player-menu {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(26, 26, 26, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: flex-end;
   z-index: 1000;
-  backdrop-filter: blur(8rpx);
+  backdrop-filter: blur(12rpx);
 }
 
 .menu-content {
-  background: linear-gradient(to top, #FAFAF8 0%, #F5F1E8 100%);
-  border-radius: 28rpx 28rpx 0 0;
+  background: rgba(0, 20, 10, 0.95);
+  border-radius: 0;
   padding: 40rpx;
   width: 100%;
-  box-shadow:
-    0 -8rpx 32rpx rgba(0, 0, 0, 0.2);
-  border-top: 4rpx solid rgba(87, 135, 114, 0.2);
+  box-shadow: 0 -12rpx 40rpx rgba(0, 255, 65, 0.3);
+  border-top: 3rpx solid #00ff41;
+  position: relative;
+}
+
+.menu-content::before {
+  content: '═══════════════════════════════════════';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 14rpx;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Courier New', monospace;
+  padding: 8rpx;
 }
 
 .menu-title {
-  font-size: 34rpx;
+  font-size: 30rpx;
   font-weight: 600;
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+  font-family: 'Courier New', monospace;
   text-align: center;
   margin-bottom: 32rpx;
-  color: #2D5F4E;
-  letter-spacing: 0.05em;
+  margin-top: 20rpx;
+  color: #00ff41;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px #00ff41;
+}
+
+.menu-title::before {
+  content: '> ';
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   padding: 28rpx 24rpx;
-  border-bottom: 1rpx solid rgba(87, 135, 114, 0.1);
-  font-size: 30rpx;
-  color: #1A1A1A;
-  border-radius: 12rpx;
+  border-bottom: 1rpx solid rgba(0, 255, 65, 0.2);
+  font-size: 28rpx;
+  color: #00ff41;
+  border-radius: 0;
   transition: all 0.2s ease;
   margin-bottom: 8rpx;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 8px #00ff41;
+  border: 2rpx solid transparent;
 }
 
 .menu-item:active {
-  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
+  background: rgba(0, 255, 65, 0.05);
   transform: translateX(4rpx);
+  border-color: #00ccff;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+}
+
+.menu-item::before {
+  content: '▸';
+  margin-right: 16rpx;
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
 }
 
 .menu-avatar {
   width: 64rpx;
   height: 64rpx;
-  border-radius: 10rpx;
+  border-radius: 0;
   margin-right: 24rpx;
-  border: 3rpx solid #578772;
-  box-shadow: 0 4rpx 12rpx rgba(87, 135, 114, 0.15);
+  border: 3rpx solid #00ff41;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+  filter: contrast(1.2) brightness(1.1);
 }
