@@ -231,10 +231,13 @@ Page({
     // 判断是否是点击自己的头像
     // 如果 myOpenid 为空，通过云函数获取
     if (!this.data.myOpenid) {
+      wx.showLoading({ title: '加载中...' })
       wx.cloud.callFunction({
         name: 'game',
         data: { action: 'getMyOpenid' },
         success: (res) => {
+          wx.hideLoading()
+          console.log('获取到的 openid:', res.result.openid)
           const myOpenid = res.result.openid
           this.setData({ myOpenid: myOpenid })
 
@@ -246,6 +249,14 @@ Page({
               icon: 'none'
             })
           }
+        },
+        fail: (err) => {
+          wx.hideLoading()
+          console.error('获取 openid 失败:', err)
+          wx.showToast({
+            title: '获取信息失败',
+            icon: 'none'
+          })
         }
       })
     } else {
@@ -489,6 +500,7 @@ Page({
 
   // 更新我的信息
   updateMyInfo() {
+    console.log('开始更新信息')
     wx.getUserProfile({
       desc: '用于更新您的昵称和头像',
       success: (res) => {
@@ -503,27 +515,31 @@ Page({
             userInfo: res.userInfo
           },
           success: (cloudRes) => {
+            console.log('云函数返回:', cloudRes.result)
             wx.hideLoading()
             if (cloudRes.result.success) {
               wx.showToast({
                 title: '更新成功',
                 icon: 'success'
               })
-              this.loadGameData()
+              // 不需要手动刷新，数据库监听会自动更新
+              // this.loadGameData()
             } else {
-              wx.showToast({
-                title: cloudRes.result.message || '更新失败',
-                icon: 'none'
+              wx.showModal({
+                title: '更新失败',
+                content: cloudRes.result.message || '未知错误',
+                showCancel: false
               })
             }
           },
           fail: (err) => {
             wx.hideLoading()
-            wx.showToast({
+            console.error('云函数调用失败:', err)
+            wx.showModal({
               title: '更新失败',
-              icon: 'none'
+              content: JSON.stringify(err),
+              showCancel: false
             })
-            console.error('更新信息失败:', err)
           }
         })
       },
