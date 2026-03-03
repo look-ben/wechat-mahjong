@@ -1,6 +1,7 @@
-/* pages/index/index.wxss */
+/* pages/index/index.wxss - Claude.ai 风格 */
 .user-card {
   margin-top: 40rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF7F5 100%);
 }
 
 .user-info {
@@ -9,10 +10,12 @@
 }
 
 .avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 60rpx;
-  margin-right: 30rpx;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 65rpx;
+  margin-right: 32rpx;
+  border: 4rpx solid rgba(217, 119, 87, 0.1);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
 }
 
 .user-details {
@@ -20,9 +23,9 @@
 }
 
 .username {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333;
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #2C1810;
   display: block;
   margin-bottom: 16rpx;
 }
@@ -34,26 +37,31 @@
 
 .stat-item {
   font-size: 28rpx;
-  color: #666;
+  color: #9B8B7E;
+  padding: 8rpx 16rpx;
+  background-color: #FAF7F5;
+  border-radius: 12rpx;
 }
 
 .actions {
-  margin-top: 60rpx;
+  margin-top: 48rpx;
 }
 
 .tips {
-  margin-top: 60rpx;
+  margin-top: 48rpx;
+  background: linear-gradient(135deg, #FFF9F5 0%, #FFEEE5 100%);
+  border-left: 4rpx solid #D97757;
 }
 
 .tips-title {
   font-size: 32rpx;
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  color: #D97757;
   margin-bottom: 20rpx;
 }
 
 .tips-content {
   font-size: 28rpx;
-  color: #666;
-  line-height: 48rpx;
+  color: #6B5B4F;
+  line-height: 52rpx;
 }

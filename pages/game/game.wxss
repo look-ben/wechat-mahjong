@@ -1,19 +1,21 @@
-/* pages/game/game.wxss */
+/* pages/game/game.wxss - Claude.ai 风格 */
 .section-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #333;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #2C1810;
   margin-bottom: 30rpx;
+  letter-spacing: 0.5rpx;
 }
 
 /* 玩家总分 */
 .players-summary {
   margin-top: 20rpx;
+  background: linear-gradient(135deg, #FFF9F5 0%, #FFFFFF 100%);
 }
 
 .players-scroll {
   white-space: nowrap;
-  padding: 20rpx 0;
+  padding: 24rpx 0;
 }
 
 .player-item {
@@ -22,20 +24,27 @@
   text-align: center;
   margin-right: 40rpx;
   min-width: 120rpx;
+  transition: transform 0.3s ease;
+}
+
+.player-item:active {
+  transform: scale(0.95);
 }
 
 .player-avatar {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50rpx;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 55rpx;
   display: block;
   margin: 0 auto 16rpx;
+  border: 3rpx solid rgba(217, 119, 87, 0.15);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
 }
 
 .player-name {
   display: block;
   font-size: 24rpx;
-  color: #666;
+  color: #9B8B7E;
   margin-bottom: 8rpx;
   max-width: 120rpx;
   overflow: hidden;
@@ -45,8 +54,8 @@
 
 .player-score {
   display: block;
-  font-size: 32rpx;
-  font-weight: bold;
+  font-size: 34rpx;
+  font-weight: 600;
 }
 
 .add-player {
@@ -54,21 +63,30 @@
 }
 
 .add-icon {
-  width: 100rpx;
-  height: 100rpx;
-  border: 2rpx dashed #1890ff;
-  border-radius: 50rpx;
+  width: 110rpx;
+  height: 110rpx;
+  border: 3rpx dashed #D97757;
+  border-radius: 55rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16rpx;
   font-size: 60rpx;
-  color: #1890ff;
+  color: #D97757;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF9F5 100%);
+  box-shadow: 0 2rpx 8rpx rgba(217, 119, 87, 0.1);
+  transition: all 0.3s ease;
+}
+
+.add-icon:active {
+  transform: scale(0.95);
+  background: linear-gradient(135deg, #FFF9F5 0%, #FFEEE5 100%);
 }
 
 .add-text {
   font-size: 24rpx;
-  color: #1890ff;
+  color: #D97757;
+  font-weight: 500;
 }
 
 /* 计分记录 */
@@ -78,9 +96,12 @@
 
 .empty-tip {
   text-align: center;
-  padding: 80rpx 0;
-  color: #999;
+  padding: 100rpx 0;
+  color: #9B8B7E;
   font-size: 28rpx;
+  background: linear-gradient(135deg, #FAF7F5 0%, #F5EDE6 100%);
+  border-radius: 16rpx;
+  margin: 20rpx 0;
 }
 
 .rounds-list {
@@ -90,11 +111,15 @@
 .round-header {
   display: flex;
   align-items: center;
-  padding: 20rpx 0;
-  border-bottom: 2rpx solid #f0f0f0;
-  font-weight: bold;
-  color: #666;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid rgba(217, 119, 87, 0.1);
+  font-weight: 600;
+  color: #6B5B4F;
   font-size: 24rpx;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FAF7F5 100%);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .round-num-header {
@@ -108,16 +133,22 @@
 }
 
 .header-avatar {
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 20rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 22rpx;
+  border: 2rpx solid rgba(217, 119, 87, 0.1);
 }
 
 .round-item {
   display: flex;
   align-items: center;
-  padding: 24rpx 0;
-  border-bottom: 1rpx solid #f0f0f0;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid rgba(217, 119, 87, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.round-item:active {
+  background-color: #FAF7F5;
 }
 
 .round-num {
@@ -128,21 +159,22 @@
 .round-num .num {
   display: block;
   font-size: 28rpx;
-  color: #333;
+  font-weight: 600;
+  color: #2C1810;
   margin-bottom: 8rpx;
 }
 
 .round-num .time {
   display: block;
   font-size: 20rpx;
-  color: #999;
+  color: #9B8B7E;
 }
 
 .round-score {
   flex: 1;
   text-align: center;
-  font-size: 28rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  font-weight: 600;
 }
 
 /* 操作按钮 */
@@ -168,26 +200,28 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(44, 24, 16, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(4rpx);
 }
 
 .modal-content {
-  background-color: white;
-  border-radius: 16rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF7F5 100%);
+  border-radius: 24rpx;
   padding: 60rpx 40rpx;
   width: 600rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
 }
 
 .modal-title {
-  font-size: 36rpx;
-  font-weight: bold;
+  font-size: 38rpx;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 40rpx;
-  color: #333;
+  color: #2C1810;
 }
 
 .qrcode-container {
@@ -199,15 +233,17 @@
 .qrcode {
   width: 400rpx;
   height: 400rpx;
-  border: 2rpx solid #f0f0f0;
-  border-radius: 8rpx;
+  border: 2rpx solid rgba(217, 119, 87, 0.1);
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
 }
 
 .modal-tip {
   text-align: center;
-  color: #666;
+  color: #9B8B7E;
   font-size: 28rpx;
   margin-bottom: 40rpx;
+  line-height: 44rpx;
 }
 
 /* 玩家菜单 */
@@ -217,38 +253,49 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(44, 24, 16, 0.5);
   display: flex;
   align-items: flex-end;
   z-index: 1000;
+  backdrop-filter: blur(4rpx);
 }
 
 .menu-content {
-  background-color: white;
-  border-radius: 16rpx 16rpx 0 0;
+  background: linear-gradient(to top, #FFFFFF 0%, #FAF7F5 100%);
+  border-radius: 24rpx 24rpx 0 0;
   padding: 40rpx;
   width: 100%;
+  box-shadow: 0 -4rpx 24rpx rgba(0, 0, 0, 0.12);
 }
 
 .menu-title {
-  font-size: 32rpx;
-  font-weight: bold;
+  font-size: 34rpx;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 30rpx;
-  color: #333;
+  color: #2C1810;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   padding: 30rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid rgba(217, 119, 87, 0.08);
   font-size: 32rpx;
+  color: #2C1810;
+  border-radius: 12rpx;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:active {
+  background-color: #FAF7F5;
 }
 
 .menu-avatar {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 30rpx;
-  margin-right: 20rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 32rpx;
+  margin-right: 24rpx;
+  border: 2rpx solid rgba(217, 119, 87, 0.1);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
 }
