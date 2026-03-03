@@ -4,10 +4,10 @@
 
 page {
   background: #ffffff;
-  font-family: 'STXinwei', 'STXingkai', 'KaiTi', 'SimSun', serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
   color: #1a1a1a;
   font-size: 28rpx;
-  line-height: 1.8;
+  line-height: 1.6;
   padding: 0;
 }
 
