@@ -52,6 +52,18 @@ Page({
     if (this.data.gameId) {
       this.loadGameData()
       this.startWatching()
+
+      // 如果还没有获取 openid，现在获取
+      if (!this.data.myOpenid) {
+        wx.cloud.callFunction({
+          name: 'game',
+          data: { action: 'getMyOpenid' },
+          success: (res) => {
+            console.log('onShow 获取 openid:', res.result.openid)
+            this.setData({ myOpenid: res.result.openid })
+          }
+        })
+      }
     }
   },
 
@@ -522,8 +534,8 @@ Page({
                 title: '更新成功',
                 icon: 'success'
               })
-              // 不需要手动刷新，数据库监听会自动更新
-              // this.loadGameData()
+              // 手动刷新数据以确保显示更新
+              this.loadGameData()
             } else {
               wx.showModal({
                 title: '更新失败',
