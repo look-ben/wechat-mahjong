@@ -11,6 +11,8 @@ Page({
     qrcodeUrl: ''
   },
 
+  watcher: null, // 数据库监听器
+
   onLoad(options) {
     console.log('=== 页面加载 onLoad ===')
     console.log('接收到的参数 options:', options)
@@ -45,42 +47,69 @@ Page({
   },
 
   onShow() {
-    // 每次显示时刷新数据
+    // 每次显示时刷新数据并启动实时监听
     if (this.data.gameId) {
       this.loadGameData()
-      // 启动自动刷新（每5秒刷新一次，检测新玩家加入）
-      this.startAutoRefresh()
+      this.startWatching()
     }
   },
 
   onHide() {
-    // 页面隐藏时停止自动刷新
-    this.stopAutoRefresh()
+    // 页面隐藏时停止监听
+    this.stopWatching()
   },
 
   onUnload() {
-    // 页面卸载时停止自动刷新
-    this.stopAutoRefresh()
+    // 页面卸载时停止监听
+    this.stopWatching()
   },
 
-  // 启动自动刷新
-  startAutoRefresh() {
-    // 清除之前的定时器
-    this.stopAutoRefresh()
+  // 启动数据库实时监听
+  startWatching() {
+    // 先停止之前的监听
+    this.stopWatching()
 
-    // 每5秒刷新一次数据（静默刷新，不显示 loading）
-    this.refreshTimer = setInterval(() => {
-      if (this.data.gameId) {
-        this.loadGameData(false)  // false = 不显示 loading
-      }
-    }, 5000)
+    const db = wx.cloud.database()
+
+    // 监听游戏数据变化
+    this.watcher = db.collection('games')
+      .doc(this.data.gameId)
+      .watch({
+        onChange: (snapshot) => {
+          console.log('数据库变化触发:', snapshot)
+
+          if (snapshot.docChanges.length > 0) {
+            const change = snapshot.docChanges[0]
+            if (change.dataType === 'update' || change.dataType === 'init') {
+              // 数据更新，刷新页面
+              const doc = change.doc
+              this.setData({
+                players: doc.players || [],
+                rounds: doc.rounds || []
+              })
+
+              // 如果是玩家列表更新，显示提示
+              if (change.dataType === 'update' && doc.players) {
+                wx.showToast({
+                  title: '有新玩家加入',
+                  icon: 'success',
+                  duration: 1500
+                })
+              }
+            }
+          }
+        },
+        onError: (err) => {
+          console.error('数据库监听错误:', err)
+        }
+      })
   },
 
-  // 停止自动刷新
-  stopAutoRefresh() {
-    if (this.refreshTimer) {
-      clearInterval(this.refreshTimer)
-      this.refreshTimer = null
+  // 停止数据库监听
+  stopWatching() {
+    if (this.watcher) {
+      this.watcher.close()
+      this.watcher = null
     }
   },
 
