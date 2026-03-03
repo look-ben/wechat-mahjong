@@ -1,9 +1,9 @@
-/* pages/index/index.wxss - Dark Theme Dashboard */
+/* pages/index/index.wxss - Minimalist Dashboard */
 
 .container {
-  background: #0a0a0a;
+  background: #ffffff;
   min-height: 100vh;
-  padding: 32rpx 24rpx;
+  padding: 48rpx 32rpx;
 }
 
 /* Header */
@@ -11,9 +11,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40rpx;
-  padding-bottom: 24rpx;
-  border-bottom: 1rpx solid #333333;
+  margin-bottom: 64rpx;
+  padding-bottom: 32rpx;
+  border-bottom: 1rpx solid #e5e5e5;
 }
 
 .header-title {
@@ -22,18 +22,17 @@
 }
 
 .title-bar {
-  width: 6rpx;
+  width: 4rpx;
   height: 32rpx;
-  background: #ff6b35;
+  background: #1a1a1a;
   margin-right: 16rpx;
 }
 
 .title-text {
   font-size: 32rpx;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
 }
 
 .user-info-compact {
@@ -45,53 +44,50 @@
 .avatar-small {
   width: 48rpx;
   height: 48rpx;
-  border-radius: 4rpx;
-  border: 1rpx solid #333333;
+  border: none;
 }
 
 .username-small {
   font-size: 24rpx;
-  color: #999999;
+  color: #666666;
 }
 
 /* Info Card */
 .info-card {
-  background: #1a1a1a;
-  border: 1rpx solid #333333;
-  margin-bottom: 32rpx;
-  padding: 32rpx 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #e5e5e5;
+  margin-bottom: 64rpx;
+  padding: 40rpx 32rpx;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32rpx;
-  padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #333333;
+  margin-bottom: 40rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #f5f5f5;
 }
 
 .card-title {
-  font-size: 24rpx;
-  color: #cccccc;
+  font-size: 20rpx;
+  color: #999999;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .card-status {
-  font-size: 22rpx;
-  color: #00ff88;
+  font-size: 20rpx;
+  color: #1a1a1a;
   padding: 6rpx 16rpx;
-  background: rgba(0, 255, 136, 0.1);
-  border: 1rpx solid #00ff88;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  background: #f5f5f5;
+  font-weight: 500;
 }
 
 .card-status.inactive {
-  color: #666666;
-  background: rgba(102, 102, 102, 0.1);
-  border-color: #666666;
+  color: #999999;
+  background: #fafafa;
 }
 
 .card-content {
@@ -101,7 +97,7 @@
 .info-row {
   display: flex;
   justify-content: space-between;
-  gap: 24rpx;
+  gap: 32rpx;
 }
 
 .info-item {
@@ -109,126 +105,123 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16rpx;
+  gap: 20rpx;
 }
 
 .info-label {
   font-size: 20rpx;
-  color: #888888;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  color: #999999;
+  font-weight: 400;
 }
 
 .info-value {
-  font-size: 40rpx;
-  font-weight: 600;
-  color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-size: 48rpx;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 /* Stats Section */
 .stats-section {
-  margin-bottom: 40rpx;
+  margin-bottom: 64rpx;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  margin-bottom: 24rpx;
+  margin-bottom: 32rpx;
 }
 
 .section-title {
-  font-size: 24rpx;
-  color: #cccccc;
+  font-size: 20rpx;
+  color: #999999;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .stats-list {
   display: flex;
   flex-direction: column;
-  gap: 20rpx;
+  gap: 32rpx;
 }
 
 /* Stat Card */
 .stat-card {
-  background: #1a1a1a;
-  border: 1rpx solid #333333;
-  padding: 28rpx 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #e5e5e5;
+  padding: 40rpx 32rpx;
 }
 
 .stat-month {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24rpx;
-  padding-bottom: 16rpx;
-  border-bottom: 1rpx solid #333333;
+  margin-bottom: 32rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #f5f5f5;
 }
 
 .month-label {
   font-size: 18rpx;
-  color: #666666;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  color: #999999;
+  font-weight: 400;
 }
 
 .month-value {
-  font-size: 24rpx;
-  font-weight: 600;
-  color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 .stat-details {
   display: flex;
   flex-direction: column;
-  gap: 20rpx;
+  gap: 32rpx;
 }
 
 .stat-row {
   display: flex;
   justify-content: space-between;
-  gap: 16rpx;
+  gap: 24rpx;
 }
 
 .stat-col {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12rpx;
+  gap: 16rpx;
 }
 
 .stat-label {
   font-size: 18rpx;
-  color: #888888;
-  letter-spacing: 0.05em;
+  color: #999999;
+  font-weight: 400;
 }
 
 .stat-num {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 .stat-num.highlight {
-  color: #00ff88;
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
 .stat-num.positive {
-  color: #00ff88;
+  color: #1a1a1a;
 }
 
 .stat-num.negative {
-  color: #ff4444;
+  color: #666666;
 }
 
 /* Empty Stats */
 .empty-stats {
-  background: #1a1a1a;
-  border: 1rpx dashed #333333;
-  padding: 80rpx 24rpx;
+  background: #fafafa;
+  border: none;
+  padding: 100rpx 32rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -237,14 +230,12 @@
 
 .empty-text {
   font-size: 24rpx;
-  color: #666666;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.05em;
+  color: #999999;
 }
 
 .empty-hint {
   font-size: 20rpx;
-  color: #444444;
+  color: #cccccc;
 }
 
 /* Actions */
@@ -252,41 +243,39 @@
   display: flex;
   flex-direction: column;
   gap: 16rpx;
-  margin-top: 40rpx;
+  margin-top: 64rpx;
   padding-bottom: 40rpx;
 }
 
 .btn-primary,
 .btn-secondary {
-  background: #ffffff;
-  color: #000000;
+  background: #1a1a1a;
+  color: #ffffff;
   border: none;
-  padding: 28rpx 32rpx;
-  font-size: 26rpx;
-  font-weight: 600;
+  padding: 28rpx 48rpx;
+  font-size: 28rpx;
+  font-weight: 500;
   text-align: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   transition: opacity 0.2s ease;
 }
 
 .btn-primary:active {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #ffffff;
-  border: 1rpx solid #ffffff;
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1rpx solid #1a1a1a;
 }
 
 .btn-secondary:active {
-  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.7;
 }
 
 .btn-secondary[disabled] {
-  background: transparent;
-  color: #444444;
-  border-color: #444444;
-  opacity: 0.5;
+  background: #f5f5f5;
+  color: #cccccc;
+  border-color: #e5e5e5;
+  opacity: 1;
 }
