@@ -30,7 +30,9 @@ Page({
           // 初始化玩家分数为0
           const players = res.result.players.map(p => ({
             ...p,
-            score: 0
+            score: 0,
+            hasInput: false,
+            isLast: false
           }))
 
           this.setData({
@@ -65,31 +67,43 @@ Page({
     if (value === '' || value === '-') {
       value = 0
     } else {
-      value = parseInt(value)
-      // 限制分数范围
-      if (value > 1000) value = 1000
-      if (value < -1000) value = -1000
+      // 只保留数字和负号
+      value = value.replace(/[^\d-]/g, '')
+      if (value === '' || value === '-') {
+        value = 0
+      } else {
+        value = parseInt(value)
+        // 限制分数范围
+        if (value > 1000) value = 1000
+        if (value < -1000) value = -1000
+      }
     }
 
     // 更新当前玩家分数
-    const players = this.data.players.map(p => {
+    let players = this.data.players.map((p, i) => {
       if (p.openid === openid) {
-        return { ...p, score: value }
+        return { ...p, score: value, hasInput: true }
       }
       return p
     })
 
-    // 如果有N个玩家，前N-1个玩家输入完后，自动计算最后一个玩家的分数
-    const inputCount = players.filter((p, i) => i < players.length - 1 && p.score !== 0).length
+    // 判断是否需要自动计算最后一个玩家的分数
+    // 规则：前 N-1 个玩家都有输入（不为0或者明确输入了0）时，自动计算最后一个
+    const totalPlayers = players.length
+    if (totalPlayers >= 2) {
+      // 统计前 N-1 个玩家中有多少个已经输入了
+      const inputCountExceptLast = players.slice(0, -1).filter(p => p.hasInput).length
 
-    if (inputCount === players.length - 1) {
-      // 前N-1个玩家都输入了，自动计算最后一个
-      const sumExceptLast = players.slice(0, -1).reduce((sum, p) => sum + p.score, 0)
-      players[players.length - 1].score = -sumExceptLast
-      players[players.length - 1].isLast = true
-    } else {
-      // 还没输入完，取消自动计算
-      players.forEach(p => p.isLast = false)
+      if (inputCountExceptLast === totalPlayers - 1) {
+        // 前 N-1 个玩家都输入了，自动计算最后一个
+        const sumExceptLast = players.slice(0, -1).reduce((sum, p) => sum + p.score, 0)
+        players[totalPlayers - 1].score = -sumExceptLast
+        players[totalPlayers - 1].isLast = true
+        players[totalPlayers - 1].hasInput = true
+      } else {
+        // 还没输入完，如果最后一个玩家被标记为自动计算，现在取消
+        players[totalPlayers - 1].isLast = false
+      }
     }
 
     // 计算总和
