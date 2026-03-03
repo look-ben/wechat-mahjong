@@ -17,14 +17,27 @@ Page({
   onLoad(options) {
     console.log('=== 页面加载 onLoad ===')
     console.log('接收到的参数 options:', options)
+    console.log('当前页面 gameId:', this.data.gameId)
 
-    // 显示调试弹窗（临时）
+    // 显示调试弹窗（临时 - 用于调试华为手机）
     wx.showModal({
       title: 'onLoad 触发',
-      content: 'gameId: ' + (options.gameId || '无') + '\nscene: ' + (options.scene || '无'),
+      content: 'options.gameId: ' + (options.gameId || '无') + '\n当前gameId: ' + (this.data.gameId || '无'),
       showCancel: false,
       confirmText: '继续'
     })
+
+    // 检测页面缓存问题：如果传入了新的 gameId，但与当前不同，说明页面被复用了
+    if (options.gameId && this.data.gameId && options.gameId !== this.data.gameId) {
+      console.log('⚠️ 检测到页面缓存问题，强制重新加载')
+      console.log('新 gameId:', options.gameId, '旧 gameId:', this.data.gameId)
+
+      // 使用 reLaunch 彻底重新加载页面（比 redirectTo 更强制）
+      wx.reLaunch({
+        url: `/pages/game/game?gameId=${options.gameId}`
+      })
+      return
+    }
 
     if (options.gameId) {
       const gameId = options.gameId
@@ -40,11 +53,7 @@ Page({
       this.joinGameByScene(options.scene)
     } else {
       console.error('⚠️ 没有收到 gameId 参数！')
-      wx.showModal({
-        title: '错误',
-        content: '未收到游戏ID参数',
-        showCancel: false
-      })
+      // 不再显示错误弹窗，因为可能是从其他页面正常进入的
     }
   },
 
