@@ -28,6 +28,8 @@ exports.main = async (event, context) => {
         return await checkAndJoin(event.gameId, openid, event.userInfo)
       case 'autoJoin':
         return await autoJoin(event.gameId, openid, event.userInfo)
+      case 'updatePlayerInfo':
+        return await updatePlayerInfo(event.gameId, openid, event.userInfo)
       case 'removePlayer':
         return await removePlayer(event.gameId, event.openid)
       case 'addRound':
@@ -221,6 +223,39 @@ async function autoJoin(gameId, openid, userInfo) {
 
   console.log('新玩家添加成功！')
   return { success: true, joined: true, message: '加入成功' }
+}
+
+// 更新玩家信息
+async function updatePlayerInfo(gameId, openid, userInfo) {
+  if (!userInfo || !userInfo.nickName) {
+    return { success: false, message: '用户信息不能为空' }
+  }
+
+  const game = await db.collection('games').doc(gameId).get()
+
+  if (!game.data) {
+    return { success: false, message: '游戏不存在' }
+  }
+
+  // 查找玩家在数组中的索引
+  const playerIndex = game.data.players.findIndex(p => p.openid === openid)
+
+  if (playerIndex === -1) {
+    return { success: false, message: '你不在游戏中' }
+  }
+
+  // 更新玩家信息
+  const updateKey = `players.${playerIndex}.nickName`
+  const updateAvatarKey = `players.${playerIndex}.avatarUrl`
+
+  await db.collection('games').doc(gameId).update({
+    data: {
+      [updateKey]: userInfo.nickName,
+      [updateAvatarKey]: userInfo.avatarUrl
+    }
+  })
+
+  return { success: true, message: '更新成功' }
 }
 
 // 检查并加入游戏（自动判断是否需要加入）

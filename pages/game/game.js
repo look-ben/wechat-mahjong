@@ -157,37 +157,13 @@ Page({
     })
   },
 
-  // 检查并加入游戏（需要用户授权获取真实信息）
+  // 检查并加入游戏（先用默认信息快速加入）
   checkAndJoinGame(gameId) {
     console.log('=== 自动加入游戏 ===')
     console.log('gameId:', gameId)
 
-    // 先获取用户信息
-    wx.getUserProfile({
-      desc: '用于显示玩家昵称和头像',
-      success: (res) => {
-        console.log('获取用户信息成功:', res.userInfo)
-        // 调用云函数加入游戏
-        this.joinGameWithUserInfo(gameId, res.userInfo)
-      },
-      fail: (err) => {
-        console.error('获取用户信息失败:', err)
-        wx.showModal({
-          title: '需要授权',
-          content: '需要获取您的昵称和头像用于显示',
-          confirmText: '去授权',
-          success: (modalRes) => {
-            if (modalRes.confirm) {
-              // 用户点击确定，重试授权
-              this.checkAndJoinGame(gameId)
-            } else {
-              // 用户取消，使用默认信息加入
-              this.joinGameWithUserInfo(gameId, null)
-            }
-          }
-        })
-      }
-    })
+    // 直接用默认信息加入，后续可以更新
+    this.joinGameWithUserInfo(gameId, null)
   },
 
   // 使用用户信息加入游戏
@@ -462,6 +438,56 @@ Page({
           icon: 'none'
         })
         console.error('结束游戏失败:', err)
+      }
+    })
+  },
+
+  // 更新我的信息
+  updateMyInfo() {
+    wx.getUserProfile({
+      desc: '用于更新您的昵称和头像',
+      success: (res) => {
+        console.log('获取用户信息成功:', res.userInfo)
+        wx.showLoading({ title: '更新中...' })
+
+        wx.cloud.callFunction({
+          name: 'game',
+          data: {
+            action: 'updatePlayerInfo',
+            gameId: this.data.gameId,
+            userInfo: res.userInfo
+          },
+          success: (cloudRes) => {
+            wx.hideLoading()
+            if (cloudRes.result.success) {
+              wx.showToast({
+                title: '更新成功',
+                icon: 'success'
+              })
+              this.loadGameData()
+            } else {
+              wx.showToast({
+                title: cloudRes.result.message || '更新失败',
+                icon: 'none'
+              })
+            }
+          },
+          fail: (err) => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '更新失败',
+              icon: 'none'
+            })
+            console.error('更新信息失败:', err)
+          }
+        })
+      },
+      fail: (err) => {
+        console.error('获取用户信息失败:', err)
+        wx.showToast({
+          title: '需要授权才能更新',
+          icon: 'none'
+        })
       }
     })
   },
