@@ -27,7 +27,7 @@ exports.main = async (event, context) => {
       case 'checkAndJoin':
         return await checkAndJoin(event.gameId, openid, event.userInfo)
       case 'autoJoin':
-        return await autoJoin(event.gameId, openid)
+        return await autoJoin(event.gameId, openid, event.userInfo)
       case 'removePlayer':
         return await removePlayer(event.gameId, event.openid)
       case 'addRound':
@@ -153,13 +153,13 @@ async function getGameDetail(gameId, openid) {
   }
 }
 
-// 自动加入游戏（无需用户授权，使用默认信息）
-async function autoJoin(gameId, openid) {
-  // 添加详细日志
+// 自动加入游戏（使用真实用户信息或默认信息）
+async function autoJoin(gameId, openid, userInfo) {
   console.log('==================')
   console.log('autoJoin 被调用')
   console.log('gameId:', gameId)
   console.log('当前用户 openid:', openid)
+  console.log('用户信息:', userInfo)
   console.log('==================')
 
   const game = await db.collection('games').doc(gameId).get()
@@ -180,7 +180,7 @@ async function autoJoin(gameId, openid) {
   if (alreadyJoined) {
     // 已在游戏中，返回成功但未加入
     console.log('返回: 已在游戏中')
-    return { success: true, joined: false, message: '已在游戏中', debugOpenid: openid }
+    return { success: true, joined: false, message: '已在游戏中' }
   }
 
   // 不在游戏中，自动加入
@@ -192,11 +192,20 @@ async function autoJoin(gameId, openid) {
     return { success: false, message: '游戏人数已满（最多4人）' }
   }
 
-  // 生成一个简单的昵称（玩家 + 编号）
-  const playerNum = game.data.players.length + 1
-  const nickName = `玩家${playerNum}`
+  // 确定使用的昵称和头像
+  let nickName, avatarUrl
 
-  // 使用默认头像和昵称添加玩家
+  if (userInfo && userInfo.nickName) {
+    // 使用真实的微信信息
+    nickName = userInfo.nickName
+    avatarUrl = userInfo.avatarUrl
+  } else {
+    // 使用默认信息
+    const playerNum = game.data.players.length + 1
+    nickName = `玩家${playerNum}`
+    avatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+  }
+
   console.log(`准备添加新玩家: ${nickName}, openid: ${openid}`)
 
   await db.collection('games').doc(gameId).update({
@@ -204,14 +213,14 @@ async function autoJoin(gameId, openid) {
       players: _.push({
         openid: openid,
         nickName: nickName,
-        avatarUrl: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+        avatarUrl: avatarUrl,
         totalScore: 0
       })
     }
   })
 
   console.log('新玩家添加成功！')
-  return { success: true, joined: true, message: '加入成功', debugOpenid: openid }
+  return { success: true, joined: true, message: '加入成功' }
 }
 
 // 检查并加入游戏（自动判断是否需要加入）

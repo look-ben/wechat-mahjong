@@ -157,19 +157,49 @@ Page({
     })
   },
 
-  // 检查并加入游戏（直接调用云函数，无需授权）
+  // 检查并加入游戏（需要用户授权获取真实信息）
   checkAndJoinGame(gameId) {
     console.log('=== 自动加入游戏 ===')
     console.log('gameId:', gameId)
 
+    // 先获取用户信息
+    wx.getUserProfile({
+      desc: '用于显示玩家昵称和头像',
+      success: (res) => {
+        console.log('获取用户信息成功:', res.userInfo)
+        // 调用云函数加入游戏
+        this.joinGameWithUserInfo(gameId, res.userInfo)
+      },
+      fail: (err) => {
+        console.error('获取用户信息失败:', err)
+        wx.showModal({
+          title: '需要授权',
+          content: '需要获取您的昵称和头像用于显示',
+          confirmText: '去授权',
+          success: (modalRes) => {
+            if (modalRes.confirm) {
+              // 用户点击确定，重试授权
+              this.checkAndJoinGame(gameId)
+            } else {
+              // 用户取消，使用默认信息加入
+              this.joinGameWithUserInfo(gameId, null)
+            }
+          }
+        })
+      }
+    })
+  },
+
+  // 使用用户信息加入游戏
+  joinGameWithUserInfo(gameId, userInfo) {
     wx.showLoading({ title: '正在加入...' })
 
-    // 直接调用云函数，云函数会自动使用 openid 作为标识
     wx.cloud.callFunction({
       name: 'game',
       data: {
         action: 'autoJoin',
-        gameId: gameId
+        gameId: gameId,
+        userInfo: userInfo
       },
       success: (res) => {
         console.log('云函数返回结果:', res.result)
@@ -178,19 +208,12 @@ Page({
         if (res.result.success) {
           if (res.result.joined) {
             console.log('自动加入成功！')
-            wx.showModal({
-              title: '✅ 加入成功',
-              content: `你的ID: ${res.result.debugOpenid || '未知'}`,
-              showCancel: false
+            wx.showToast({
+              title: '加入成功',
+              icon: 'success'
             })
           } else {
             console.log('已在游戏中')
-            // 显示已在游戏中的提示
-            wx.showModal({
-              title: '你已在游戏中',
-              content: `你的ID: ${res.result.debugOpenid || '未知'}`,
-              showCancel: false
-            })
           }
           // 刷新数据
           this.loadGameData()
@@ -201,7 +224,6 @@ Page({
             content: res.result.message || '未知错误',
             showCancel: false
           })
-          // 即使失败也加载数据
           this.loadGameData()
         }
       },
