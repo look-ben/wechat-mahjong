@@ -99,18 +99,22 @@ async function createGame(openid, userInfo) {
 
 // 获取当前游戏
 async function getCurrentGame(openid) {
+  // 查询所有进行中的牌局
   const result = await db.collection('games')
     .where({
-      creatorOpenid: openid,
       status: 'playing'
     })
     .orderBy('createTime', 'desc')
-    .limit(1)
     .get()
 
-  if (result.data.length > 0) {
+  // 筛选出包含当前用户的牌局
+  const myGames = result.data.filter(game => {
+    return game.players.some(player => player.openid === openid)
+  })
+
+  if (myGames.length > 0) {
     return {
-      gameId: result.data[0]._id
+      gameId: myGames[0]._id
     }
   }
 
