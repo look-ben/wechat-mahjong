@@ -68,10 +68,10 @@ Page({
     // 清除之前的定时器
     this.stopAutoRefresh()
 
-    // 每5秒刷新一次数据
+    // 每5秒刷新一次数据（静默刷新，不显示 loading）
     this.refreshTimer = setInterval(() => {
       if (this.data.gameId) {
-        this.loadGameData()
+        this.loadGameData(false)  // false = 不显示 loading
       }
     }, 5000)
   },
@@ -85,8 +85,11 @@ Page({
   },
 
   // 加载游戏数据
-  loadGameData() {
-    wx.showLoading({ title: '加载中...' })
+  loadGameData(showLoading = true) {
+    // 只有手动刷新时才显示 loading
+    if (showLoading) {
+      wx.showLoading({ title: '加载中...' })
+    }
 
     wx.cloud.callFunction({
       name: 'game',
@@ -95,25 +98,31 @@ Page({
         gameId: this.data.gameId
       },
       success: (res) => {
-        wx.hideLoading()
+        if (showLoading) {
+          wx.hideLoading()
+        }
         if (res.result.success) {
           this.setData({
             players: res.result.players,
             rounds: res.result.rounds
           })
         } else {
-          wx.showToast({
-            title: res.result.message || '加载失败',
-            icon: 'none'
-          })
+          if (showLoading) {
+            wx.showToast({
+              title: res.result.message || '加载失败',
+              icon: 'none'
+            })
+          }
         }
       },
       fail: (err) => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '加载失败',
-          icon: 'none'
-        })
+        if (showLoading) {
+          wx.hideLoading()
+          wx.showToast({
+            title: '加载失败',
+            icon: 'none'
+          })
+        }
         console.error('加载游戏数据失败:', err)
       }
     })
