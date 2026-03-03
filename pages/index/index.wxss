@@ -1,7 +1,8 @@
-/* pages/index/index.wxss - Claude.ai 风格 */
+/* pages/index/index.wxss - Travel App 清新风格 */
 .user-card {
-  margin-top: 40rpx;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAF7F5 100%);
+  margin-top: 20rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
+  border: 2rpx solid rgba(78, 205, 196, 0.15);
 }
 
 .user-info {
@@ -10,12 +11,12 @@
 }
 
 .avatar {
-  width: 130rpx;
-  height: 130rpx;
-  border-radius: 65rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 70rpx;
   margin-right: 32rpx;
-  border: 4rpx solid rgba(217, 119, 87, 0.1);
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  border: 4rpx solid rgba(78, 205, 196, 0.2);
+  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
 }
 
 .user-details {
@@ -23,45 +24,47 @@
 }
 
 .username {
-  font-size: 38rpx;
+  font-size: 44rpx;
   font-weight: 600;
-  color: #2C1810;
+  color: #1A2B3C;
   display: block;
   margin-bottom: 16rpx;
 }
 
 .stats {
   display: flex;
-  gap: 40rpx;
+  gap: 24rpx;
 }
 
 .stat-item {
-  font-size: 28rpx;
-  color: #9B8B7E;
-  padding: 8rpx 16rpx;
-  background-color: #FAF7F5;
-  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #44A8A0;
+  padding: 10rpx 24rpx;
+  background: linear-gradient(135deg, #E8F4F8 0%, #F0F9FB 100%);
+  border-radius: 16rpx;
+  font-weight: 500;
 }
 
 .actions {
-  margin-top: 48rpx;
+  margin-top: 40rpx;
 }
 
 .tips {
-  margin-top: 48rpx;
-  background: linear-gradient(135deg, #FFF9F5 0%, #FFEEE5 100%);
-  border-left: 4rpx solid #D97757;
+  margin-top: 40rpx;
+  background: linear-gradient(135deg, #E8F4F8 0%, #D4EEF5 100%);
+  border-left: 5rpx solid #4ECDC4;
+  box-shadow: 0 4rpx 16rpx rgba(78, 205, 196, 0.1);
 }
 
 .tips-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #D97757;
-  margin-bottom: 20rpx;
+  color: #1A2B3C;
+  margin-bottom: 24rpx;
 }
 
 .tips-content {
   font-size: 28rpx;
-  color: #6B5B4F;
-  line-height: 52rpx;
+  color: #5A7A85;
+  line-height: 48rpx;
 }

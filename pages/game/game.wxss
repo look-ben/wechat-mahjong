@@ -1,8 +1,8 @@
-/* pages/game/game.wxss - Claude.ai 风格 */
+/* pages/game/game.wxss - Travel App 清新风格 */
 .section-title {
-  font-size: 34rpx;
+  font-size: 36rpx;
   font-weight: 600;
-  color: #2C1810;
+  color: #1A2B3C;
   margin-bottom: 30rpx;
   letter-spacing: 0.5rpx;
 }
@@ -10,7 +10,8 @@
 /* 玩家总分 */
 .players-summary {
   margin-top: 20rpx;
-  background: linear-gradient(135deg, #FFF9F5 0%, #FFFFFF 100%);
+  background: linear-gradient(135deg, #E8F4F8 0%, #FFFFFF 100%);
+  border: 2rpx solid rgba(78, 205, 196, 0.1);
 }
 
 .players-scroll {
@@ -32,19 +33,19 @@
 }
 
 .player-avatar {
-  width: 110rpx;
-  height: 110rpx;
-  border-radius: 55rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
   display: block;
   margin: 0 auto 16rpx;
-  border: 3rpx solid rgba(217, 119, 87, 0.15);
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  border: 4rpx solid rgba(78, 205, 196, 0.2);
+  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
 }
 
 .player-name {
   display: block;
   font-size: 24rpx;
-  color: #9B8B7E;
+  color: #7A9CA5;
   margin-bottom: 8rpx;
   max-width: 120rpx;
   overflow: hidden;
@@ -54,7 +55,7 @@
 
 .player-score {
   display: block;
-  font-size: 34rpx;
+  font-size: 36rpx;
   font-weight: 600;
 }
 
@@ -63,29 +64,29 @@
 }
 
 .add-icon {
-  width: 110rpx;
-  height: 110rpx;
-  border: 3rpx dashed #D97757;
-  border-radius: 55rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border: 3rpx dashed #4ECDC4;
+  border-radius: 60rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16rpx;
   font-size: 60rpx;
-  color: #D97757;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FFF9F5 100%);
-  box-shadow: 0 2rpx 8rpx rgba(217, 119, 87, 0.1);
+  color: #4ECDC4;
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8F4F8 100%);
+  box-shadow: 0 4rpx 16rpx rgba(78, 205, 196, 0.1);
   transition: all 0.3s ease;
 }
 
 .add-icon:active {
   transform: scale(0.95);
-  background: linear-gradient(135deg, #FFF9F5 0%, #FFEEE5 100%);
+  background: linear-gradient(135deg, #E8F4F8 0%, #D4EEF5 100%);
 }
 
 .add-text {
   font-size: 24rpx;
-  color: #D97757;
+  color: #4ECDC4;
   font-weight: 500;
 }
 
@@ -97,10 +98,10 @@
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #9B8B7E;
+  color: #7A9CA5;
   font-size: 28rpx;
-  background: linear-gradient(135deg, #FAF7F5 0%, #F5EDE6 100%);
-  border-radius: 16rpx;
+  background: linear-gradient(135deg, #E8F4F8 0%, #F0F9FB 100%);
+  border-radius: 20rpx;
   margin: 20rpx 0;
 }
 
@@ -112,11 +113,11 @@
   display: flex;
   align-items: center;
   padding: 24rpx 0;
-  border-bottom: 2rpx solid rgba(217, 119, 87, 0.1);
+  border-bottom: 2rpx solid rgba(78, 205, 196, 0.15);
   font-weight: 600;
-  color: #6B5B4F;
+  color: #5A7A85;
   font-size: 24rpx;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #FAF7F5 100%);
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F8FCFD 100%);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -133,22 +134,22 @@
 }
 
 .header-avatar {
-  width: 44rpx;
-  height: 44rpx;
-  border-radius: 22rpx;
-  border: 2rpx solid rgba(217, 119, 87, 0.1);
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid rgba(78, 205, 196, 0.2);
 }
 
 .round-item {
   display: flex;
   align-items: center;
   padding: 28rpx 0;
-  border-bottom: 1rpx solid rgba(217, 119, 87, 0.05);
+  border-bottom: 1rpx solid rgba(78, 205, 196, 0.08);
   transition: background-color 0.2s ease;
 }
 
 .round-item:active {
-  background-color: #FAF7F5;
+  background-color: #F8FCFD;
 }
 
 .round-num {
@@ -160,14 +161,14 @@
   display: block;
   font-size: 28rpx;
   font-weight: 600;
-  color: #2C1810;
+  color: #1A2B3C;
   margin-bottom: 8rpx;
 }
 
 .round-num .time {
   display: block;
   font-size: 20rpx;
-  color: #9B8B7E;
+  color: #7A9CA5;
 }
 
 .round-score {
@@ -186,11 +187,12 @@
 .action-row {
   display: flex;
   gap: 20rpx;
+  margin: 16rpx 0;
 }
 
 .half {
   flex: 1;
-  margin: 20rpx 0;
+  margin: 0;
 }
 
 /* 二维码弹窗 */
@@ -200,28 +202,29 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(44, 24, 16, 0.5);
+  background-color: rgba(26, 43, 60, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(4rpx);
+  backdrop-filter: blur(8rpx);
 }
 
 .modal-content {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAF7F5 100%);
-  border-radius: 24rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
+  border-radius: 32rpx;
   padding: 60rpx 40rpx;
   width: 600rpx;
-  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16rpx 48rpx rgba(78, 205, 196, 0.2);
+  border: 2rpx solid rgba(78, 205, 196, 0.1);
 }
 
 .modal-title {
-  font-size: 38rpx;
+  font-size: 40rpx;
   font-weight: 600;
   text-align: center;
   margin-bottom: 40rpx;
-  color: #2C1810;
+  color: #1A2B3C;
 }
 
 .qrcode-container {
@@ -233,14 +236,14 @@
 .qrcode {
   width: 400rpx;
   height: 400rpx;
-  border: 2rpx solid rgba(217, 119, 87, 0.1);
-  border-radius: 16rpx;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  border: 3rpx solid rgba(78, 205, 196, 0.2);
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
 }
 
 .modal-tip {
   text-align: center;
-  color: #9B8B7E;
+  color: #7A9CA5;
   font-size: 28rpx;
   margin-bottom: 40rpx;
   line-height: 44rpx;
@@ -253,42 +256,42 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(44, 24, 16, 0.5);
+  background-color: rgba(26, 43, 60, 0.6);
   display: flex;
   align-items: flex-end;
   z-index: 1000;
-  backdrop-filter: blur(4rpx);
+  backdrop-filter: blur(8rpx);
 }
 
 .menu-content {
-  background: linear-gradient(to top, #FFFFFF 0%, #FAF7F5 100%);
-  border-radius: 24rpx 24rpx 0 0;
+  background: linear-gradient(to top, #FFFFFF 0%, #F8FCFD 100%);
+  border-radius: 32rpx 32rpx 0 0;
   padding: 40rpx;
   width: 100%;
-  box-shadow: 0 -4rpx 24rpx rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -8rpx 32rpx rgba(78, 205, 196, 0.15);
 }
 
 .menu-title {
-  font-size: 34rpx;
+  font-size: 36rpx;
   font-weight: 600;
   text-align: center;
   margin-bottom: 30rpx;
-  color: #2C1810;
+  color: #1A2B3C;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   padding: 30rpx;
-  border-bottom: 1rpx solid rgba(217, 119, 87, 0.08);
+  border-bottom: 1rpx solid rgba(78, 205, 196, 0.1);
   font-size: 32rpx;
-  color: #2C1810;
-  border-radius: 12rpx;
+  color: #1A2B3C;
+  border-radius: 16rpx;
   transition: background-color 0.2s ease;
 }
 
 .menu-item:active {
-  background-color: #FAF7F5;
+  background-color: #E8F4F8;
 }
 
 .menu-avatar {
@@ -296,6 +299,6 @@
   height: 64rpx;
   border-radius: 32rpx;
   margin-right: 24rpx;
-  border: 2rpx solid rgba(217, 119, 87, 0.1);
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+  border: 2rpx solid rgba(78, 205, 196, 0.2);
+  box-shadow: 0 4rpx 12rpx rgba(78, 205, 196, 0.1);
 }
