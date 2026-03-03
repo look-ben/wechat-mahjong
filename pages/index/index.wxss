@@ -48,7 +48,7 @@
 .username {
   font-size: 42rpx;
   font-weight: 600;
-  font-family: 'Noto Serif SC', serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   color: #1A1A1A;
   display: block;
   margin-bottom: 16rpx;
@@ -104,7 +104,7 @@
 .tips-title {
   font-size: 30rpx;
   font-weight: 600;
-  font-family: 'Noto Serif SC', serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   color: #2D5F4E;
   margin-bottom: 20rpx;
   letter-spacing: 0.05em;

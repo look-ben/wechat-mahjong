@@ -3,7 +3,7 @@
 .title {
   font-size: 54rpx;
   font-weight: 600;
-  font-family: 'Noto Serif SC', serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   text-align: center;
   color: #2D5F4E;
   margin-bottom: 60rpx;
@@ -49,7 +49,7 @@
   color: #F5F1E8;
   font-size: 32rpx;
   font-weight: 600;
-  font-family: 'Noto Serif SC', serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   margin-right: 24rpx;
   background: linear-gradient(135deg, #578772 0%, #3D6455 100%);
   box-shadow:
@@ -121,7 +121,7 @@
 .score {
   font-size: 44rpx;
   font-weight: 600;
-  font-family: 'IBM Plex Sans', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", monospace;
 }
 
 .game-info {
@@ -155,7 +155,7 @@
 .value {
   color: #2D5F4E;
   font-weight: 600;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
 }
 
 .actions {

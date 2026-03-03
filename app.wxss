@@ -5,34 +5,32 @@
    Jade greens, ink blacks, paper cream, with calligraphic influences
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
-
 page {
   /* Textured paper background with subtle noise */
   background: #F5F1E8;
   background-image:
     radial-gradient(at 40% 20%, rgba(163, 177, 138, 0.05) 0px, transparent 50%),
     radial-gradient(at 80% 80%, rgba(87, 135, 114, 0.03) 0px, transparent 50%);
-  font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   min-height: 100vh;
   color: #1A1A1A;
 }
 
-/* Typography System */
+/* Typography System - 使用系统中文字体 */
 .title-display {
-  font-family: 'Noto Serif SC', serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .title-accent {
-  font-family: 'Noto Serif SC', serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
   font-weight: 600;
   color: #2D5F4E;
 }
 
 .body-text {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   letter-spacing: -0.01em;
 }
 
