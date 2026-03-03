@@ -1,100 +1,69 @@
-/* pages/result/result.wxss - AI Workflows: Final Scores */
+/* pages/result/result.wxss - Hugo Shell Retro: Final Scores */
 
 .title {
   font-size: 48rpx;
-  font-weight: 700;
+  font-weight: bold;
   text-align: center;
-  color: #ffffff;
+  color: #00ff00;
   margin-bottom: 60rpx;
-  letter-spacing: -0.02em;
+}
+
+.title::before {
+  content: '## ';
 }
 
 /* Leaderboard */
 .ranking-list {
   margin: 48rpx 0;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx solid #00ff00;
   padding: 24rpx 0;
-  box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
 }
 
 .ranking-item {
   display: flex;
   align-items: center;
   padding: 32rpx 36rpx;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.2s ease;
-  position: relative;
+  border-bottom: 1rpx solid #00ff00;
 }
 
 .ranking-item:last-child {
   border-bottom: none;
 }
 
-.ranking-item:active {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Modern rank badges */
+/* Rank badges - terminal style */
 .rank-badge {
   width: 72rpx;
   height: 72rpx;
-  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: #00ff00;
   font-size: 32rpx;
-  font-weight: 700;
+  font-weight: bold;
   margin-right: 24rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  letter-spacing: -0.02em;
+  background: transparent;
+  border: 2rpx solid #00ff00;
+  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
 }
 
-.rank-badge.first {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  border-color: rgba(251, 191, 36, 0.5);
-  color: #ffffff;
-  box-shadow:
-    0 8rpx 24rpx rgba(251, 191, 36, 0.4),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
+.rank-badge.first::before {
+  content: '1';
 }
 
-.rank-badge.second {
-  background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%);
-  border-color: rgba(156, 163, 175, 0.5);
-  color: #ffffff;
-  box-shadow:
-    0 8rpx 24rpx rgba(156, 163, 175, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
+.rank-badge.second::before {
+  content: '2';
 }
 
-.rank-badge.third {
-  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
-  border-color: rgba(249, 115, 22, 0.5);
-  color: #ffffff;
-  box-shadow:
-    0 8rpx 24rpx rgba(249, 115, 22, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
+.rank-badge.third::before {
+  content: '3';
 }
 
 .avatar {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 20rpx;
   margin-right: 28rpx;
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  box-shadow:
-    0 8rpx 24rpx rgba(139, 92, 246, 0.2),
-    0 0 0 4rpx rgba(139, 92, 246, 0.1);
+  border: 2rpx solid #00ff00;
 }
 
 .player-detail {
@@ -104,37 +73,29 @@
 .name {
   display: block;
   font-size: 30rpx;
-  color: #ffffff;
+  color: #00ff00;
   margin-bottom: 10rpx;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: bold;
 }
 
 .rounds-info {
   display: block;
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: #008800;
 }
 
 .score {
   font-size: 44rpx;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: bold;
+  color: #00ff00;
 }
 
 /* Game Session Info */
 .game-info {
   margin: 60rpx 0;
   padding: 40rpx;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
-  box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
-  position: relative;
+  background: #000000;
+  border: 2rpx solid #00ff00;
 }
 
 .info-item {
@@ -142,7 +103,7 @@
   justify-content: space-between;
   padding: 22rpx 0;
   font-size: 26rpx;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1rpx solid #00ff00;
 }
 
 .info-item:last-child {
@@ -150,13 +111,16 @@
 }
 
 .label {
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
+  color: #00ff00;
+}
+
+.label::after {
+  content: ':';
 }
 
 .value {
-  color: #ffffff;
-  font-weight: 600;
+  color: #00ff00;
+  font-weight: bold;
 }
 
 .actions {

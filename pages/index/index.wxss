@@ -1,56 +1,23 @@
-/* pages/index/index.wxss - AI Workflows: User Dashboard */
+/* pages/index/index.wxss - Hugo Shell Retro: User Dashboard */
 
 /* User Profile Card */
 .user-card {
   margin-top: 32rpx;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx solid #00ff00;
   padding: 32rpx 24rpx;
-  box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Accent Gradient Bar */
-.user-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6rpx;
-  height: 100%;
-  background: linear-gradient(180deg, #8b5cf6, #6366f1);
-  box-shadow: 0 0 20rpx rgba(139, 92, 246, 0.5);
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  padding-left: 16rpx;
 }
 
 .avatar {
   width: 136rpx;
   height: 136rpx;
-  border-radius: 24rpx;
+  border: 2rpx solid #00ff00;
   margin-right: 32rpx;
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  box-shadow:
-    0 8rpx 24rpx rgba(139, 92, 246, 0.2),
-    0 0 0 4rpx rgba(139, 92, 246, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.avatar:active {
-  transform: scale(0.95);
-  box-shadow:
-    0 4rpx 16rpx rgba(139, 92, 246, 0.3),
-    0 0 0 4rpx rgba(139, 92, 246, 0.15);
 }
 
 .user-details {
@@ -58,12 +25,19 @@
 }
 
 .username {
-  font-size: 40rpx;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #00ff00;
   display: block;
   margin-bottom: 16rpx;
-  letter-spacing: -0.02em;
+}
+
+.username::before {
+  content: 'user@mahjong:~$ cat profile.txt\n';
+  font-size: 24rpx;
+  display: block;
+  margin-bottom: 8rpx;
+  color: #00ff00;
 }
 
 .stats {
@@ -74,14 +48,11 @@
 
 .stat-item {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.7);
+  color: #00ff00;
   padding: 10rpx 20rpx;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12rpx;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: transparent;
+  border: 2rpx solid #00ff00;
+  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
 }
 
 .actions {
@@ -91,50 +62,26 @@
 /* Info Card */
 .tips {
   margin-top: 48rpx;
-  background: rgba(251, 191, 36, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(251, 191, 36, 0.2);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx solid #00ff00;
   padding: 32rpx 24rpx;
-  position: relative;
-  box-shadow:
-    0 8rpx 32rpx rgba(251, 191, 36, 0.1),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Accent glow on left */
 .tips::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6rpx;
-  height: 60%;
-  background: linear-gradient(180deg, #fbbf24, #f59e0b);
-  border-radius: 0 4rpx 4rpx 0;
-  box-shadow: 0 0 20rpx rgba(251, 191, 36, 0.5);
+  content: '> ';
+  color: #00ff00;
+  font-weight: bold;
 }
 
 .tips-title {
   font-size: 28rpx;
-  font-weight: 600;
-  color: #fbbf24;
+  font-weight: bold;
+  color: #00ff00;
   margin-bottom: 16rpx;
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-}
-
-.tips-title::before {
-  content: '💡';
-  font-size: 32rpx;
 }
 
 .tips-content {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.8);
+  color: #00ff00;
   line-height: 44rpx;
-  letter-spacing: 0.01em;
 }

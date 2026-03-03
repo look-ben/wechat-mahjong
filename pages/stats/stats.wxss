@@ -1,4 +1,4 @@
-/* pages/stats/stats.wxss - AI Workflows: Statistics */
+/* pages/stats/stats.wxss - Hugo Shell Retro: Statistics */
 
 /* Month Navigation */
 .month-selector {
@@ -6,15 +6,9 @@
   align-items: center;
   justify-content: center;
   padding: 36rpx 0;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx solid #00ff00;
   margin-bottom: 24rpx;
-  box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .selector-btn {
@@ -24,23 +18,18 @@
   align-items: center;
   justify-content: center;
   font-size: 40rpx;
-  color: rgba(255, 255, 255, 0.7);
-  transition: all 0.2s ease;
-  border-radius: 16rpx;
-}
-
-.selector-btn:active {
-  background: rgba(139, 92, 246, 0.2);
-  transform: scale(0.9);
+  color: #00ff00;
+  background: transparent;
+  text-decoration: underline;
 }
 
 .month-display {
   font-size: 40rpx;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: bold;
+  color: #00ff00;
   min-width: 240rpx;
   text-align: center;
-  letter-spacing: -0.02em;
+  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
 }
 
 /* Stats Grid */
@@ -48,15 +37,9 @@
   display: flex;
   justify-content: space-around;
   padding: 48rpx 24rpx;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx solid #00ff00;
   margin-bottom: 40rpx;
-  box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .stat-card {
@@ -64,34 +47,35 @@
   flex-direction: column;
   align-items: center;
   padding: 24rpx 32rpx;
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 20rpx;
+  background: transparent;
+  border: 2rpx solid #00ff00;
   min-width: 160rpx;
-  box-shadow: 0 4rpx 16rpx rgba(139, 92, 246, 0.2);
 }
 
 .stat-label {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.7);
+  color: #00ff00;
   margin-bottom: 16rpx;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.stat-label::after {
+  content: ':';
 }
 
 .stat-value {
   font-size: 52rpx;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: bold;
+  color: #00ff00;
   margin-bottom: 8rpx;
-  letter-spacing: -0.02em;
+  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
 }
 
 .stat-unit {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 500;
+  color: #008800;
 }
 
 /* Game Log Section */
@@ -101,37 +85,34 @@
 
 .section-title {
   font-size: 30rpx;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: bold;
+  color: #00ff00;
   margin-bottom: 30rpx;
-  letter-spacing: -0.02em;
-  position: relative;
-  padding-left: 16rpx;
+  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
 }
 
 .section-title::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4rpx;
-  height: 24rpx;
-  background: linear-gradient(180deg, #8b5cf6, #6366f1);
-  border-radius: 2rpx;
+  content: '$ tree ./games/\n├── ';
+  display: block;
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
 }
 
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: rgba(255, 255, 255, 0.5);
+  color: #008800;
   font-size: 26rpx;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx dashed #00ff00;
   margin: 20rpx 0;
+}
+
+.empty-tip::before {
+  content: '[NO DATA]\n';
+  color: #00ff00;
+  display: block;
+  margin-bottom: 20rpx;
 }
 
 .game-list {
@@ -142,23 +123,9 @@
 /* Game Log Entries */
 .game-item {
   padding: 32rpx;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #000000;
+  border: 2rpx solid #00ff00;
   margin-bottom: 24rpx;
-  box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-}
-
-.game-item:active {
-  transform: translateY(-2rpx);
-  box-shadow:
-    0 12rpx 40rpx rgba(0, 0, 0, 0.4),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .game-header {
@@ -167,19 +134,23 @@
   align-items: center;
   margin-bottom: 24rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1rpx solid #00ff00;
 }
 
 .game-date {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
+  color: #00ff00;
+}
+
+.game-date::before {
+  content: '└── ';
 }
 
 .game-result {
   font-size: 36rpx;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: bold;
+  color: #00ff00;
+  font-family: 'Courier New', 'Courier', 'Monaco', 'Menlo', monospace;
 }
 
 .game-players {
@@ -190,21 +161,26 @@
 .player-avatar-small {
   width: 56rpx;
   height: 56rpx;
-  border-radius: 12rpx;
   margin-right: 12rpx;
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 4rpx 16rpx rgba(139, 92, 246, 0.2);
+  border: 2rpx solid #00ff00;
 }
 
 .rounds-count {
   font-size: 20rpx;
-  color: #a78bfa;
+  color: #00ff00;
   margin-left: 20rpx;
   padding: 8rpx 20rpx;
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 12rpx;
-  font-weight: 600;
+  background: transparent;
+  border: 2rpx solid #00ff00;
+  font-weight: bold;
+}
+
+.rounds-count::before {
+  content: '[';
+}
+
+.rounds-count::after {
+  content: ']';
 }
 
 .actions {
