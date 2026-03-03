@@ -624,7 +624,8 @@ Page({
     wx.navigateBack({
       delta: 1,
       fail: () => {
-        wx.switchTab({
+        // 如果没有上一页（比如通过分享链接直接进入），使用 reLaunch 跳转到首页
+        wx.reLaunch({
           url: '/pages/index/index'
         })
       }
