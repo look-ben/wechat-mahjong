@@ -19,7 +19,7 @@
   font-size: 18rpx;
   color: #ff0080;
   text-shadow: 0 0 8px #ff0080;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   letter-spacing: 0.1em;
 }
 
@@ -31,7 +31,7 @@
   justify-content: center;
   font-size: 40rpx;
   color: #00ff41;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   transition: all 0.1s ease;
   text-shadow: 0 0 10px #00ff41;
 }
@@ -45,7 +45,7 @@
 .month-display {
   font-size: 40rpx;
   font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   color: #00ff41;
   min-width: 240rpx;
   text-align: center;
@@ -117,14 +117,14 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   text-shadow: 0 0 5px #00aa33;
 }
 
 .stat-value {
   font-size: 52rpx;
   font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   color: #00ff41;
   margin-bottom: 8rpx;
   letter-spacing: 0.05em;
@@ -135,7 +135,7 @@
   font-size: 20rpx;
   color: #00ccff;
   font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   text-shadow: 0 0 8px #00ccff;
 }
 
@@ -147,7 +147,7 @@
 .section-title {
   font-size: 30rpx;
   font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   color: #00ff41;
   margin-bottom: 30rpx;
   letter-spacing: 0.15em;
@@ -173,7 +173,7 @@
   padding: 100rpx 0;
   color: #00aa33;
   font-size: 26rpx;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   background: rgba(0, 20, 10, 0.6);
   margin: 20rpx 0;
   border: 2rpx dashed #00aa33;
@@ -203,7 +203,7 @@
   box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
   transition: all 0.2s ease;
   position: relative;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
 }
 
 .game-item::before {
@@ -239,7 +239,7 @@
   color: #00ccff;
   font-weight: 600;
   letter-spacing: 0.08em;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   text-shadow: 0 0 8px #00ccff;
 }
 
@@ -256,7 +256,7 @@
 .game-result {
   font-size: 36rpx;
   font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   text-shadow: 0 0 10px currentColor;
 }
 
@@ -283,7 +283,7 @@
   background: transparent;
   border: 2rpx solid #00ff41;
   font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
   letter-spacing: 0.1em;
   text-shadow: 0 0 8px #00ff41;
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
