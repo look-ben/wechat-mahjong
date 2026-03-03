@@ -8,7 +8,8 @@ Page({
     rounds: [],
     showModal: false,
     showPlayerMenu: false,
-    qrcodeUrl: ''
+    qrcodeUrl: '',
+    myOpenid: '' // 当前用户的 openid
   },
 
   watcher: null, // 数据库监听器
@@ -182,6 +183,11 @@ Page({
         wx.hideLoading()
 
         if (res.result.success) {
+          // 保存当前用户的 openid
+          if (res.result.openid) {
+            this.setData({ myOpenid: res.result.openid })
+          }
+
           if (res.result.joined) {
             console.log('自动加入成功！')
             wx.showToast({
@@ -214,6 +220,45 @@ Page({
         this.loadGameData()
       }
     })
+  },
+
+  // 点击玩家头像
+  onPlayerAvatarTap(e) {
+    const openid = e.currentTarget.dataset.openid
+    console.log('点击玩家头像, openid:', openid)
+    console.log('我的 openid:', this.data.myOpenid)
+
+    // 判断是否是点击自己的头像
+    // 如果 myOpenid 为空，通过云函数获取
+    if (!this.data.myOpenid) {
+      wx.cloud.callFunction({
+        name: 'game',
+        data: { action: 'getMyOpenid' },
+        success: (res) => {
+          const myOpenid = res.result.openid
+          this.setData({ myOpenid: myOpenid })
+
+          if (openid === myOpenid) {
+            this.updateMyInfo()
+          } else {
+            wx.showToast({
+              title: '只能更新自己的信息',
+              icon: 'none'
+            })
+          }
+        }
+      })
+    } else {
+      if (openid === this.data.myOpenid) {
+        this.updateMyInfo()
+      } else {
+        wx.showToast({
+          title: '只能更新自己的信息',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    }
   },
 
   // 通过小程序码场景值加入游戏

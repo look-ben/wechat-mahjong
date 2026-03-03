@@ -44,6 +44,8 @@ exports.main = async (event, context) => {
         return await getMonthStats(openid, event.month)
       case 'getQRCode':
         return await getQRCode(event.gameId)
+      case 'getMyOpenid':
+        return { success: true, openid: openid }
       default:
         return { success: false, message: '未知操作' }
     }
@@ -182,7 +184,7 @@ async function autoJoin(gameId, openid, userInfo) {
   if (alreadyJoined) {
     // 已在游戏中，返回成功但未加入
     console.log('返回: 已在游戏中')
-    return { success: true, joined: false, message: '已在游戏中' }
+    return { success: true, joined: false, message: '已在游戏中', openid: openid }
   }
 
   // 不在游戏中，自动加入
@@ -222,7 +224,7 @@ async function autoJoin(gameId, openid, userInfo) {
   })
 
   console.log('新玩家添加成功！')
-  return { success: true, joined: true, message: '加入成功' }
+  return { success: true, joined: true, message: '加入成功', openid: openid }
 }
 
 // 更新玩家信息
