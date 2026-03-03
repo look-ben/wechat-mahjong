@@ -193,6 +193,7 @@ Page({
 
   // 使用用户信息加入游戏
   joinGameWithUserInfo(gameId, userInfo) {
+    console.log('准备加入游戏, gameId:', gameId)
     wx.showLoading({ title: '正在加入...' })
 
     wx.cloud.callFunction({
@@ -203,46 +204,57 @@ Page({
         userInfo: userInfo
       },
       success: (res) => {
-        console.log('云函数返回结果:', res.result)
+        console.log('云函数调用成功，返回结果:', res)
+        console.log('res.result:', res.result)
         wx.hideLoading()
 
-        if (res.result.success) {
+        if (res.result && res.result.success) {
           // 保存当前用户的 openid
           if (res.result.openid) {
             this.setData({ myOpenid: res.result.openid })
           }
 
           if (res.result.joined) {
-            console.log('自动加入成功！')
+            console.log('✅ 自动加入成功！')
             wx.showToast({
-              title: '加入成功',
-              icon: 'success'
+              title: '✅ 加入成功',
+              icon: 'success',
+              duration: 2000
             })
           } else {
             console.log('已在游戏中')
+            wx.showToast({
+              title: '你已在游戏中',
+              icon: 'none',
+              duration: 2000
+            })
           }
           // 刷新数据
           this.loadGameData()
           // 启动数据库监听
           this.startWatching()
         } else {
-          console.error('加入失败:', res.result.message)
+          console.error('❌ 加入失败:', res.result ? res.result.message : '未知错误')
           wx.showModal({
             title: '加入失败',
-            content: res.result.message || '未知错误',
-            showCancel: false
+            content: (res.result ? res.result.message : '未知错误') + '\n\ngameId: ' + gameId,
+            showCancel: false,
+            confirmText: '我知道了'
           })
+          // 即使失败也尝试加载数据
           this.loadGameData()
         }
       },
       fail: (err) => {
+        console.error('❌ 云函数调用失败:', err)
         wx.hideLoading()
-        console.error('云函数调用失败:', err)
         wx.showModal({
           title: '网络错误',
-          content: JSON.stringify(err),
-          showCancel: false
+          content: '云函数调用失败\n' + (err.errMsg || JSON.stringify(err)) + '\n\ngameId: ' + gameId,
+          showCancel: false,
+          confirmText: '我知道了'
         })
+        // 即使失败也尝试加载数据
         this.loadGameData()
       }
     })
