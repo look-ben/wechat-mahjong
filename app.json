@@ -3,8 +3,7 @@
     "pages/index/index",
     "pages/game/game",
     "pages/score/score",
-    "pages/result/result",
-    "pages/stats/stats"
+    "pages/result/result"
   ],
   "window": {
     "backgroundTextStyle": "light",

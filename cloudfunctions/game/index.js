@@ -40,6 +40,8 @@ exports.main = async (event, context) => {
         return await getGameResult(event.gameId)
       case 'getUserStats':
         return await getUserStats(openid)
+      case 'getMonthlyStats':
+        return await getMonthlyStats(openid)
       case 'getMonthStats':
         return await getMonthStats(openid, event.month)
       case 'getQRCode':
@@ -515,6 +517,85 @@ async function getUserStats(openid) {
   return {
     winCount: winCount,
     loseCount: loseCount
+  }
+}
+
+// 获取所有月份统计（用于首页显示）
+async function getMonthlyStats(openid) {
+  try {
+    // 获取用户所有已结束的游戏
+    const games = await db.collection('games')
+      .where({
+        players: _.elemMatch({
+          openid: openid
+        }),
+        status: 'finished'
+      })
+      .orderBy('createTime', 'desc')
+      .get()
+
+    // 按月份分组统计
+    const monthlyData = {}
+
+    for (const game of games.data) {
+      const gameDate = new Date(game.createTime)
+      const monthKey = `${gameDate.getFullYear()}-${String(gameDate.getMonth() + 1).padStart(2, '0')}`
+
+      if (!monthlyData[monthKey]) {
+        monthlyData[monthKey] = {
+          month: monthKey,
+          totalGames: 0,
+          wins: 0,
+          totalScore: 0,
+          maxScore: 0,
+          scores: []
+        }
+      }
+
+      // 获取该游戏的轮次
+      const rounds = await db.collection('rounds')
+        .where({ gameId: game._id })
+        .get()
+
+      // 计算玩家在该游戏的得分
+      let myScore = 0
+      rounds.data.forEach(round => {
+        myScore += round.scores[openid] || 0
+      })
+
+      monthlyData[monthKey].totalGames++
+      monthlyData[monthKey].totalScore += myScore
+      monthlyData[monthKey].scores.push(myScore)
+      if (myScore > 0) monthlyData[monthKey].wins++
+      if (myScore > monthlyData[monthKey].maxScore) {
+        monthlyData[monthKey].maxScore = myScore
+      }
+    }
+
+    // 转换为数组并计算额外统计数据
+    const stats = Object.values(monthlyData).map(data => ({
+      month: data.month,
+      totalGames: data.totalGames,
+      wins: data.wins,
+      winRate: data.totalGames > 0 ? Math.round((data.wins / data.totalGames) * 100) : 0,
+      totalScore: data.totalScore,
+      avgScore: data.totalGames > 0 ? Math.round(data.totalScore / data.totalGames) : 0,
+      maxScore: data.maxScore
+    }))
+
+    // 按月份降序排序
+    stats.sort((a, b) => b.month.localeCompare(a.month))
+
+    return {
+      success: true,
+      stats: stats
+    }
+  } catch (err) {
+    console.error('获取月度统计失败:', err)
+    return {
+      success: false,
+      message: '获取统计数据失败'
+    }
   }
 }
 
