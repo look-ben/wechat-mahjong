@@ -76,6 +76,7 @@ Page({
     // 先停止之前的监听
     this.stopWatching()
 
+    console.log('启动数据库监听，gameId:', this.data.gameId)
     const db = wx.cloud.database()
 
     // 监听游戏数据变化
@@ -83,17 +84,35 @@ Page({
       .doc(this.data.gameId)
       .watch({
         onChange: (snapshot) => {
-          console.log('数据库变化触发:', snapshot)
+          console.log('==================')
+          console.log('数据库变化触发!')
+          console.log('snapshot:', snapshot)
+          console.log('docChanges:', snapshot.docChanges)
+          console.log('==================')
 
           if (snapshot.docChanges.length > 0) {
             const change = snapshot.docChanges[0]
+            console.log('change.dataType:', change.dataType)
+            console.log('change.updatedFields:', change.updatedFields)
+
             if (change.dataType === 'update' || change.dataType === 'init') {
               // 数据更新，重新加载完整数据（包括 rounds）
-              console.log('检测到数据变化，重新加载')
+              console.log('✅ 检测到数据变化，开始重新加载数据')
               this.loadGameData(false)
+
+              // 如果是分数更新，显示提示
+              if (change.dataType === 'update' && change.updatedFields && change.updatedFields.lastUpdateTime) {
+                console.log('检测到分数更新')
+                wx.showToast({
+                  title: '分数已更新',
+                  icon: 'success',
+                  duration: 1500
+                })
+              }
 
               // 如果是玩家列表更新，显示提示
               if (change.dataType === 'update' && change.updatedFields && change.updatedFields.players) {
+                console.log('检测到玩家加入')
                 wx.showToast({
                   title: '有新玩家加入',
                   icon: 'success',
@@ -104,9 +123,11 @@ Page({
           }
         },
         onError: (err) => {
-          console.error('数据库监听错误:', err)
+          console.error('❌ 数据库监听错误:', err)
         }
       })
+
+    console.log('数据库监听已启动')
   },
 
   // 停止数据库监听
