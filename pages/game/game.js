@@ -48,6 +48,39 @@ Page({
     // 每次显示时刷新数据
     if (this.data.gameId) {
       this.loadGameData()
+      // 启动自动刷新（每5秒刷新一次，检测新玩家加入）
+      this.startAutoRefresh()
+    }
+  },
+
+  onHide() {
+    // 页面隐藏时停止自动刷新
+    this.stopAutoRefresh()
+  },
+
+  onUnload() {
+    // 页面卸载时停止自动刷新
+    this.stopAutoRefresh()
+  },
+
+  // 启动自动刷新
+  startAutoRefresh() {
+    // 清除之前的定时器
+    this.stopAutoRefresh()
+
+    // 每5秒刷新一次数据
+    this.refreshTimer = setInterval(() => {
+      if (this.data.gameId) {
+        this.loadGameData()
+      }
+    }, 5000)
+  },
+
+  // 停止自动刷新
+  stopAutoRefresh() {
+    if (this.refreshTimer) {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = null
     }
   },
 
