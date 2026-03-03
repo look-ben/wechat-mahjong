@@ -1,76 +1,292 @@
-/* pages/index/index.wxss - Minimalist: User Dashboard */
+/* pages/index/index.wxss - Dark Theme Dashboard */
 
-/* User Profile Card */
-.user-card {
-  margin-top: 48rpx;
-  background: #ffffff;
-  border-bottom: 1rpx solid #e5e5e5;
-  padding: 48rpx 0;
+.container {
+  background: #0a0a0a;
+  min-height: 100vh;
+  padding: 32rpx 24rpx;
 }
 
-.user-info {
+/* Header */
+.header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 40rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #333333;
 }
 
-.avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border: none;
-  margin-right: 32rpx;
-}
-
-.user-details {
-  flex: 1;
-}
-
-.username {
-  font-size: 36rpx;
-  font-weight: 500;
-  color: #1a1a1a;
-  display: block;
-  margin-bottom: 16rpx;
-}
-
-.stats {
+.header-title {
   display: flex;
-  gap: 24rpx;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-.stat-item {
+.title-bar {
+  width: 6rpx;
+  height: 32rpx;
+  background: #ff6b35;
+  margin-right: 16rpx;
+}
+
+.title-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.user-info-compact {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.avatar-small {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #333333;
+}
+
+.username-small {
   font-size: 24rpx;
-  color: #666666;
-  padding: 0;
-  background: transparent;
-  border: none;
-  font-weight: 400;
-}
-
-.actions {
-  margin-top: 64rpx;
+  color: #999999;
 }
 
 /* Info Card */
-.tips {
-  margin-top: 64rpx;
-  background: #fafafa;
-  border: none;
-  padding: 32rpx;
+.info-card {
+  background: #1a1a1a;
+  border: 1rpx solid #333333;
+  margin-bottom: 32rpx;
+  padding: 32rpx 24rpx;
 }
 
-.tips-title {
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #333333;
+}
+
+.card-title {
   font-size: 24rpx;
-  font-weight: 500;
-  color: #666666;
-  margin-bottom: 16rpx;
-  text-transform: uppercase;
+  color: #cccccc;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.tips-content {
+.card-status {
+  font-size: 22rpx;
+  color: #00ff88;
+  padding: 6rpx 16rpx;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1rpx solid #00ff88;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.card-status.inactive {
+  color: #666666;
+  background: rgba(102, 102, 102, 0.1);
+  border-color: #666666;
+}
+
+.card-content {
+  padding: 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+}
+
+.info-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.info-label {
+  font-size: 20rpx;
+  color: #888888;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.info-value {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+}
+
+/* Stats Section */
+.stats-section {
+  margin-bottom: 40rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 24rpx;
+  color: #cccccc;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* Stat Card */
+.stat-card {
+  background: #1a1a1a;
+  border: 1rpx solid #333333;
+  padding: 28rpx 24rpx;
+}
+
+.stat-month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #333333;
+}
+
+.month-label {
+  font-size: 18rpx;
+  color: #666666;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.month-value {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+}
+
+.stat-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.stat-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.stat-label {
+  font-size: 18rpx;
+  color: #888888;
+  letter-spacing: 0.05em;
+}
+
+.stat-num {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+}
+
+.stat-num.highlight {
+  color: #00ff88;
+}
+
+.stat-num.positive {
+  color: #00ff88;
+}
+
+.stat-num.negative {
+  color: #ff4444;
+}
+
+/* Empty Stats */
+.empty-stats {
+  background: #1a1a1a;
+  border: 1rpx dashed #333333;
+  padding: 80rpx 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.empty-text {
+  font-size: 24rpx;
+  color: #666666;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+.empty-hint {
+  font-size: 20rpx;
+  color: #444444;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-top: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+.btn-primary,
+.btn-secondary {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 28rpx 32rpx;
   font-size: 26rpx;
-  color: #1a1a1a;
-  line-height: 44rpx;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.btn-primary:active {
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1rpx solid #ffffff;
+}
+
+.btn-secondary:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary[disabled] {
+  background: transparent;
+  color: #444444;
+  border-color: #444444;
+  opacity: 0.5;
 }

@@ -1,36 +1,99 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-  <!-- 用户信息卡片 -->
-  <view class="card user-card">
-    <view class="user-info">
-      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
-      <view class="user-details">
-        <text class="username">{{userInfo.nickName}}</text>
-        <view class="stats">
-          <text class="stat-item">胜场: {{winCount}}</text>
-          <text class="stat-item">负场: {{loseCount}}</text>
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="header-title">
+      <view class="title-bar"></view>
+      <text class="title-text">麻将记分系统</text>
+    </view>
+    <view class="user-info-compact">
+      <image class="avatar-small" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <text class="username-small">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+
+  <!-- 当前游戏状态卡片 -->
+  <view class="info-card">
+    <view class="card-header">
+      <text class="card-title">当前状态</text>
+      <text class="card-status" wx:if="{{hasCurrentGame}}">进行中</text>
+      <text class="card-status inactive" wx:else>无活动牌局</text>
+    </view>
+    <view class="card-content">
+      <view class="info-row">
+        <view class="info-item">
+          <text class="info-label">总胜场</text>
+          <text class="info-value">{{winCount}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">总负场</text>
+          <text class="info-value">{{loseCount}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">胜率</text>
+          <text class="info-value">{{winRate}}%</text>
         </view>
       </view>
     </view>
   </view>
 
-  <!-- 功能按钮 -->
+  <!-- 月度战绩统计 -->
+  <view class="stats-section">
+    <view class="section-header">
+      <view class="title-bar"></view>
+      <text class="section-title">战绩统计</text>
+    </view>
+
+    <view class="stats-list" wx:if="{{monthlyStats.length > 0}}">
+      <view class="stat-card" wx:for="{{monthlyStats}}" wx:key="month">
+        <view class="stat-month">
+          <text class="month-label">时间段</text>
+          <text class="month-value">{{item.month}}</text>
+        </view>
+        <view class="stat-details">
+          <view class="stat-row">
+            <view class="stat-col">
+              <text class="stat-label">场次</text>
+              <text class="stat-num">{{item.totalGames}}</text>
+            </view>
+            <view class="stat-col">
+              <text class="stat-label">胜场</text>
+              <text class="stat-num highlight">{{item.wins}}</text>
+            </view>
+            <view class="stat-col">
+              <text class="stat-label">胜率</text>
+              <text class="stat-num">{{item.winRate}}%</text>
+            </view>
+          </view>
+          <view class="stat-row">
+            <view class="stat-col">
+              <text class="stat-label">总得分</text>
+              <text class="stat-num {{item.totalScore >= 0 ? 'positive' : 'negative'}}">{{item.totalScore}}</text>
+            </view>
+            <view class="stat-col">
+              <text class="stat-label">平均分</text>
+              <text class="stat-num">{{item.avgScore}}</text>
+            </view>
+            <view class="stat-col">
+              <text class="stat-label">最高分</text>
+              <text class="stat-num">{{item.maxScore}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-stats" wx:else>
+      <text class="empty-text">> 暂无战绩数据</text>
+      <text class="empty-hint">开始第一局游戏来记录你的战绩</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
   <view class="actions">
     <button class="btn-primary" bindtap="createGame">新开牌局</button>
     <button class="btn-secondary" bindtap="goToCurrentGame" disabled="{{!hasCurrentGame}}">
-      当前牌局{{hasCurrentGame ? '' : '（无进行中的牌局）'}}
+      {{hasCurrentGame ? '继续当前牌局' : '无进行中的牌局'}}
     </button>
-    <button class="btn-secondary" bindtap="goToStats">战绩统计</button>
-  </view>
-
-  <!-- 使用说明 -->
-  <view class="card tips">
-    <view class="tips-title">💡 使用说明</view>
-    <view class="tips-content">
-      <text>1. 点击「新开牌局」创建新游戏\n</text>
-      <text>2. 生成二维码邀请好友扫码加入\n</text>
-      <text>3. 开始计分，系统自动统计\n</text>
-      <text>4. 结束后查看战绩排名</text>
-    </view>
   </view>
 </view>

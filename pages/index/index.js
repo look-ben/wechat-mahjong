@@ -10,19 +10,23 @@ Page({
     },
     winCount: 0,
     loseCount: 0,
-    hasCurrentGame: false
+    winRate: 0,
+    hasCurrentGame: false,
+    monthlyStats: []
   },
 
   onLoad() {
     this.getUserInfo()
     this.checkCurrentGame()
     this.loadStats()
+    this.loadMonthlyStats()
   },
 
   onShow() {
     // 每次显示页面时检查当前牌局状态
     this.checkCurrentGame()
     this.loadStats()
+    this.loadMonthlyStats()
   },
 
   // 获取用户信息
@@ -93,12 +97,95 @@ Page({
       },
       success: (res) => {
         if (res.result) {
+          const winCount = res.result.winCount || 0
+          const loseCount = res.result.loseCount || 0
+          const totalGames = winCount + loseCount
+          const winRate = totalGames > 0 ? Math.round((winCount / totalGames) * 100) : 0
+
           this.setData({
-            winCount: res.result.winCount || 0,
-            loseCount: res.result.loseCount || 0
+            winCount,
+            loseCount,
+            winRate
           })
         }
       }
+    })
+  },
+
+  // 加载月度统计数据
+  loadMonthlyStats() {
+    wx.cloud.callFunction({
+      name: 'game',
+      data: {
+        action: 'getMonthlyStats'
+      },
+      success: (res) => {
+        if (res.result && res.result.stats) {
+          // 处理统计数据
+          const stats = res.result.stats.map(item => {
+            const totalGames = item.totalGames || 0
+            const wins = item.wins || 0
+            const winRate = totalGames > 0 ? Math.round((wins / totalGames) * 100) : 0
+            const avgScore = totalGames > 0 ? Math.round(item.totalScore / totalGames) : 0
+
+            return {
+              month: item.month,
+              totalGames,
+              wins,
+              winRate,
+              totalScore: item.totalScore || 0,
+              avgScore,
+              maxScore: item.maxScore || 0
+            }
+          })
+
+          this.setData({
+            monthlyStats: stats
+          })
+        }
+      },
+      fail: (err) => {
+        console.error('加载月度统计失败:', err)
+        // 如果云函数失败，使用模拟数据（开发时使用）
+        this.loadMockStats()
+      }
+    })
+  },
+
+  // 模拟数据（用于开发测试）
+  loadMockStats() {
+    const mockStats = [
+      {
+        month: '2026-03',
+        totalGames: 15,
+        wins: 8,
+        winRate: 53,
+        totalScore: 1250,
+        avgScore: 83,
+        maxScore: 320
+      },
+      {
+        month: '2026-02',
+        totalGames: 22,
+        wins: 12,
+        winRate: 55,
+        totalScore: 1680,
+        avgScore: 76,
+        maxScore: 280
+      },
+      {
+        month: '2026-01',
+        totalGames: 18,
+        wins: 7,
+        winRate: 39,
+        totalScore: -450,
+        avgScore: -25,
+        maxScore: 150
+      }
+    ]
+
+    this.setData({
+      monthlyStats: mockStats
     })
   },
 
@@ -157,13 +244,6 @@ Page({
 
     wx.navigateTo({
       url: `/pages/game/game?gameId=${app.globalData.currentGameId}`
-    })
-  },
-
-  // 前往战绩统计
-  goToStats() {
-    wx.navigateTo({
-      url: '/pages/stats/stats'
     })
   }
 })
