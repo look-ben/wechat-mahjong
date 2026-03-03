@@ -1,28 +1,33 @@
-/* pages/result/result.wxss - Travel App 清新风格 */
+/* pages/result/result.wxss - Ink & Jade: Results */
+
 .title {
-  font-size: 56rpx;
+  font-size: 54rpx;
   font-weight: 600;
+  font-family: 'Noto Serif SC', serif;
   text-align: center;
-  color: #1A2B3C;
+  color: #2D5F4E;
   margin-bottom: 60rpx;
-  letter-spacing: 0.5rpx;
+  letter-spacing: 0.05em;
 }
 
 .ranking-list {
   margin: 48rpx 0;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
-  border-radius: 28rpx;
-  padding: 20rpx 0;
-  box-shadow: 0 8rpx 32rpx rgba(78, 205, 196, 0.1);
-  border: 2rpx solid rgba(78, 205, 196, 0.1);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
+  border-radius: 16rpx;
+  padding: 24rpx 0;
+  box-shadow:
+    0 2rpx 8rpx rgba(0, 0, 0, 0.06),
+    0 12rpx 32rpx rgba(87, 135, 114, 0.1);
+  border: 3rpx solid rgba(45, 95, 78, 0.12);
 }
 
 .ranking-item {
   display: flex;
   align-items: center;
   padding: 32rpx 36rpx;
-  border-bottom: 1rpx solid rgba(78, 205, 196, 0.1);
-  transition: background-color 0.2s ease;
+  border-bottom: 1rpx solid rgba(87, 135, 114, 0.1);
+  transition: all 0.2s ease;
+  position: relative;
 }
 
 .ranking-item:last-child {
@@ -30,46 +35,67 @@
 }
 
 .ranking-item:active {
-  background-color: #E8F4F8;
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
 }
 
+/* Traditional ranking badges - inspired by Chinese seals */
 .rank-badge {
-  width: 68rpx;
-  height: 68rpx;
-  border-radius: 34rpx;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #F5F1E8;
   font-size: 32rpx;
   font-weight: 600;
+  font-family: 'Noto Serif SC', serif;
   margin-right: 24rpx;
-  background: linear-gradient(135deg, #4ECDC4 0%, #44A8A0 100%);
-  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.3);
+  background: linear-gradient(135deg, #578772 0%, #3D6455 100%);
+  box-shadow:
+    0 2rpx 0 0 rgba(29, 47, 39, 0.6),
+    0 6rpx 20rpx rgba(87, 135, 114, 0.3);
+  position: relative;
+}
+
+.rank-badge::after {
+  content: '';
+  position: absolute;
+  inset: 6rpx;
+  border: 2rpx solid rgba(245, 241, 232, 0.3);
+  border-radius: 6rpx;
 }
 
 .rank-badge.first {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  box-shadow: 0 8rpx 24rpx rgba(255, 215, 0, 0.4);
+  background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+  box-shadow:
+    0 2rpx 0 0 rgba(160, 120, 30, 0.8),
+    0 8rpx 24rpx rgba(212, 175, 55, 0.4);
 }
 
 .rank-badge.second {
-  background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
-  box-shadow: 0 8rpx 24rpx rgba(192, 192, 192, 0.4);
+  background: linear-gradient(135deg, #9CA3AF 0%, #6B7280 100%);
+  box-shadow:
+    0 2rpx 0 0 rgba(75, 85, 99, 0.8),
+    0 8rpx 24rpx rgba(156, 163, 175, 0.4);
 }
 
 .rank-badge.third {
   background: linear-gradient(135deg, #CD7F32 0%, #B8722D 100%);
-  box-shadow: 0 8rpx 24rpx rgba(205, 127, 50, 0.4);
+  box-shadow:
+    0 2rpx 0 0 rgba(150, 90, 35, 0.8),
+    0 8rpx 24rpx rgba(205, 127, 50, 0.4);
 }
 
 .avatar {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 50rpx;
+  border-radius: 12rpx;
   margin-right: 28rpx;
-  border: 4rpx solid rgba(78, 205, 196, 0.2);
-  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
+  border: 4rpx solid #578772;
+  box-shadow:
+    0 0 0 3rpx rgba(87, 135, 114, 0.12),
+    0 6rpx 20rpx rgba(87, 135, 114, 0.15);
 }
 
 .player-detail {
@@ -78,38 +104,42 @@
 
 .name {
   display: block;
-  font-size: 34rpx;
-  color: #1A2B3C;
+  font-size: 32rpx;
+  color: #1A1A1A;
   margin-bottom: 10rpx;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .rounds-info {
   display: block;
   font-size: 24rpx;
-  color: #7A9CA5;
+  color: #6B7566;
+  letter-spacing: 0.01em;
 }
 
 .score {
   font-size: 44rpx;
   font-weight: 600;
+  font-family: 'IBM Plex Sans', monospace;
 }
 
 .game-info {
   margin: 60rpx 0;
-  padding: 36rpx;
-  background: linear-gradient(135deg, #E8F4F8 0%, #D4EEF5 100%);
-  border-radius: 28rpx;
-  border: 3rpx solid rgba(78, 205, 196, 0.15);
-  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.1);
+  padding: 40rpx;
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
+  border-radius: 16rpx;
+  border: 3rpx solid rgba(87, 135, 114, 0.15);
+  box-shadow:
+    0 4rpx 16rpx rgba(87, 135, 114, 0.1);
 }
 
 .info-item {
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 0;
+  padding: 22rpx 0;
   font-size: 28rpx;
-  border-bottom: 1rpx solid rgba(78, 205, 196, 0.1);
+  border-bottom: 1rpx solid rgba(87, 135, 114, 0.1);
 }
 
 .info-item:last-child {
@@ -117,13 +147,15 @@
 }
 
 .label {
-  color: #5A7A85;
+  color: #6B7566;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .value {
-  color: #1A2B3C;
+  color: #2D5F4E;
   font-weight: 600;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .actions {

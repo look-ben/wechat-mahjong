@@ -1,64 +1,89 @@
-/* pages/game/game.wxss - Travel App 清新风格 */
+/* pages/game/game.wxss - Ink & Jade: Game Room */
+
 .section-title {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-weight: 600;
-  color: #1A2B3C;
-  margin-bottom: 30rpx;
-  letter-spacing: 0.5rpx;
+  font-family: 'Noto Serif SC', serif;
+  color: #2D5F4E;
+  margin-bottom: 28rpx;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding-left: 24rpx;
 }
 
-/* 玩家总分 */
+/* Ink brush accent */
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 28rpx;
+  background: linear-gradient(180deg, #578772, #3D6455);
+  border-radius: 2rpx;
+}
+
+/* Player Cards */
 .players-summary {
-  margin-top: 20rpx;
-  background: linear-gradient(135deg, #E8F4F8 0%, #FFFFFF 100%);
-  border: 2rpx solid rgba(78, 205, 196, 0.1);
+  margin-top: 24rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
+  border: 3rpx solid rgba(45, 95, 78, 0.12);
+  position: relative;
 }
 
 .players-scroll {
   white-space: nowrap;
-  padding: 24rpx 0;
+  padding: 32rpx 24rpx;
 }
 
 .player-item {
   display: inline-block;
   vertical-align: top;
   text-align: center;
-  margin-right: 40rpx;
+  margin-right: 44rpx;
   min-width: 120rpx;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .player-item:active {
-  transform: scale(0.95);
+  transform: translateY(-4rpx);
 }
 
 .player-avatar {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 60rpx;
+  border-radius: 12rpx;
   display: block;
   margin: 0 auto 16rpx;
-  border: 4rpx solid rgba(78, 205, 196, 0.2);
-  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
+  border: 4rpx solid #578772;
+  box-shadow:
+    0 0 0 3rpx rgba(87, 135, 114, 0.15),
+    0 6rpx 20rpx rgba(87, 135, 114, 0.18);
 }
 
 .player-name {
   display: block;
-  font-size: 24rpx;
-  color: #7A9CA5;
-  margin-bottom: 8rpx;
+  font-size: 22rpx;
+  color: #6B7566;
+  margin-bottom: 10rpx;
   max-width: 120rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .player-score {
   display: block;
   font-size: 36rpx;
   font-weight: 600;
+  font-family: 'IBM Plex Sans', monospace;
+  letter-spacing: -0.02em;
 }
 
+/* Add Player Button */
 .add-player {
   width: 120rpx;
 }
@@ -66,43 +91,45 @@
 .add-icon {
   width: 120rpx;
   height: 120rpx;
-  border: 3rpx dashed #4ECDC4;
-  border-radius: 60rpx;
+  border: 4rpx dashed #578772;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16rpx;
   font-size: 60rpx;
-  color: #4ECDC4;
-  background: linear-gradient(135deg, #FFFFFF 0%, #E8F4F8 100%);
-  box-shadow: 0 4rpx 16rpx rgba(78, 205, 196, 0.1);
-  transition: all 0.3s ease;
+  color: #578772;
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
+  box-shadow: inset 0 2rpx 8rpx rgba(87, 135, 114, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .add-icon:active {
-  transform: scale(0.95);
-  background: linear-gradient(135deg, #E8F4F8 0%, #D4EEF5 100%);
+  transform: scale(0.92);
+  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
 }
 
 .add-text {
-  font-size: 24rpx;
-  color: #4ECDC4;
-  font-weight: 500;
+  font-size: 22rpx;
+  color: #578772;
+  font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
-/* 计分记录 */
+/* Scoring Records */
 .rounds-section {
-  margin-top: 20rpx;
+  margin-top: 24rpx;
 }
 
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #7A9CA5;
-  font-size: 28rpx;
-  background: linear-gradient(135deg, #E8F4F8 0%, #F0F9FB 100%);
-  border-radius: 20rpx;
+  color: #6B7566;
+  font-size: 26rpx;
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
+  border-radius: 16rpx;
   margin: 20rpx 0;
+  border: 2rpx dashed rgba(107, 117, 102, 0.2);
 }
 
 .rounds-list {
@@ -112,20 +139,22 @@
 .round-header {
   display: flex;
   align-items: center;
-  padding: 24rpx 0;
-  border-bottom: 2rpx solid rgba(78, 205, 196, 0.15);
+  padding: 24rpx 20rpx;
+  border-bottom: 3rpx solid rgba(45, 95, 78, 0.15);
   font-weight: 600;
-  color: #5A7A85;
-  font-size: 24rpx;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #F8FCFD 100%);
+  color: #4A5447;
+  font-size: 22rpx;
+  background: linear-gradient(to bottom, #FAFAF8 0%, #F5F1E8 100%);
   position: sticky;
   top: 0;
   z-index: 10;
+  letter-spacing: 0.05em;
 }
 
 .round-num-header {
   width: 160rpx;
   flex-shrink: 0;
+  font-family: 'Noto Serif SC', serif;
 }
 
 .round-score-header {
@@ -136,20 +165,20 @@
 .header-avatar {
   width: 48rpx;
   height: 48rpx;
-  border-radius: 24rpx;
-  border: 2rpx solid rgba(78, 205, 196, 0.2);
+  border-radius: 8rpx;
+  border: 2rpx solid #578772;
 }
 
 .round-item {
   display: flex;
   align-items: center;
-  padding: 28rpx 0;
-  border-bottom: 1rpx solid rgba(78, 205, 196, 0.08);
+  padding: 28rpx 20rpx;
+  border-bottom: 1rpx solid rgba(87, 135, 114, 0.08);
   transition: background-color 0.2s ease;
 }
 
 .round-item:active {
-  background-color: #F8FCFD;
+  background-color: #FAFAF8;
 }
 
 .round-num {
@@ -159,16 +188,19 @@
 
 .round-num .num {
   display: block;
-  font-size: 28rpx;
+  font-size: 26rpx;
   font-weight: 600;
-  color: #1A2B3C;
+  font-family: 'Noto Serif SC', serif;
+  color: #2D5F4E;
   margin-bottom: 8rpx;
+  letter-spacing: 0.03em;
 }
 
 .round-num .time {
   display: block;
   font-size: 20rpx;
-  color: #7A9CA5;
+  color: #9B9B8F;
+  letter-spacing: 0.02em;
 }
 
 .round-score {
@@ -176,33 +208,23 @@
   text-align: center;
   font-size: 30rpx;
   font-weight: 600;
+  font-family: 'IBM Plex Sans', monospace;
 }
 
-/* 操作按钮 */
+/* Actions */
 .actions {
-  margin-top: 40rpx;
+  margin-top: 48rpx;
   padding-bottom: 40rpx;
 }
 
-.action-row {
-  display: flex;
-  gap: 20rpx;
-  margin: 16rpx 0;
-}
-
-.half {
-  flex: 1;
-  margin: 0;
-}
-
-/* 二维码弹窗 */
+/* Modal - Paper Scroll Effect */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(26, 43, 60, 0.6);
+  background-color: rgba(26, 26, 26, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -211,20 +233,24 @@
 }
 
 .modal-content {
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
-  border-radius: 32rpx;
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
+  border-radius: 20rpx;
   padding: 60rpx 40rpx;
   width: 600rpx;
-  box-shadow: 0 16rpx 48rpx rgba(78, 205, 196, 0.2);
-  border: 2rpx solid rgba(78, 205, 196, 0.1);
+  box-shadow:
+    0 0 0 4rpx rgba(87, 135, 114, 0.1),
+    0 20rpx 60rpx rgba(0, 0, 0, 0.3);
+  border: 3rpx solid rgba(45, 95, 78, 0.15);
 }
 
 .modal-title {
-  font-size: 40rpx;
+  font-size: 38rpx;
   font-weight: 600;
+  font-family: 'Noto Serif SC', serif;
   text-align: center;
   margin-bottom: 40rpx;
-  color: #1A2B3C;
+  color: #2D5F4E;
+  letter-spacing: 0.05em;
 }
 
 .qrcode-container {
@@ -236,27 +262,29 @@
 .qrcode {
   width: 400rpx;
   height: 400rpx;
-  border: 3rpx solid rgba(78, 205, 196, 0.2);
-  border-radius: 20rpx;
-  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
+  border: 4rpx solid #578772;
+  border-radius: 16rpx;
+  box-shadow:
+    0 0 0 8rpx rgba(87, 135, 114, 0.1),
+    0 12rpx 32rpx rgba(87, 135, 114, 0.2);
 }
 
 .modal-tip {
   text-align: center;
-  color: #7A9CA5;
-  font-size: 28rpx;
+  color: #6B7566;
+  font-size: 26rpx;
   margin-bottom: 40rpx;
   line-height: 44rpx;
 }
 
-/* 玩家菜单 */
+/* Player Menu */
 .player-menu {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(26, 43, 60, 0.6);
+  background-color: rgba(26, 26, 26, 0.7);
   display: flex;
   align-items: flex-end;
   z-index: 1000;
@@ -264,41 +292,47 @@
 }
 
 .menu-content {
-  background: linear-gradient(to top, #FFFFFF 0%, #F8FCFD 100%);
-  border-radius: 32rpx 32rpx 0 0;
+  background: linear-gradient(to top, #FAFAF8 0%, #F5F1E8 100%);
+  border-radius: 28rpx 28rpx 0 0;
   padding: 40rpx;
   width: 100%;
-  box-shadow: 0 -8rpx 32rpx rgba(78, 205, 196, 0.15);
+  box-shadow:
+    0 -8rpx 32rpx rgba(0, 0, 0, 0.2);
+  border-top: 4rpx solid rgba(87, 135, 114, 0.2);
 }
 
 .menu-title {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-weight: 600;
+  font-family: 'Noto Serif SC', serif;
   text-align: center;
-  margin-bottom: 30rpx;
-  color: #1A2B3C;
+  margin-bottom: 32rpx;
+  color: #2D5F4E;
+  letter-spacing: 0.05em;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 30rpx;
-  border-bottom: 1rpx solid rgba(78, 205, 196, 0.1);
-  font-size: 32rpx;
-  color: #1A2B3C;
-  border-radius: 16rpx;
-  transition: background-color 0.2s ease;
+  padding: 28rpx 24rpx;
+  border-bottom: 1rpx solid rgba(87, 135, 114, 0.1);
+  font-size: 30rpx;
+  color: #1A1A1A;
+  border-radius: 12rpx;
+  transition: all 0.2s ease;
+  margin-bottom: 8rpx;
 }
 
 .menu-item:active {
-  background-color: #E8F4F8;
+  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
+  transform: translateX(4rpx);
 }
 
 .menu-avatar {
   width: 64rpx;
   height: 64rpx;
-  border-radius: 32rpx;
+  border-radius: 10rpx;
   margin-right: 24rpx;
-  border: 2rpx solid rgba(78, 205, 196, 0.2);
-  box-shadow: 0 4rpx 12rpx rgba(78, 205, 196, 0.1);
+  border: 3rpx solid #578772;
+  box-shadow: 0 4rpx 12rpx rgba(87, 135, 114, 0.15);
 }

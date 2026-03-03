@@ -1,12 +1,13 @@
-/* pages/stats/stats.wxss - Travel App 清新风格 */
+/* pages/stats/stats.wxss - Ink & Jade: Statistics */
+
 .month-selector {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 36rpx 0;
-  border-bottom: 2rpx solid rgba(78, 205, 196, 0.15);
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
-  border-radius: 28rpx 28rpx 0 0;
+  border-bottom: 3rpx solid rgba(87, 135, 114, 0.15);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
+  border-radius: 16rpx 16rpx 0 0;
 }
 
 .selector-btn {
@@ -16,34 +17,38 @@
   align-items: center;
   justify-content: center;
   font-size: 40rpx;
-  color: #4ECDC4;
-  border-radius: 40rpx;
-  transition: all 0.3s ease;
+  color: #578772;
+  border-radius: 12rpx;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
 }
 
 .selector-btn:active {
-  background-color: #E8F4F8;
-  transform: scale(0.95);
+  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
+  transform: scale(0.9);
 }
 
 .month-display {
   font-size: 40rpx;
   font-weight: 600;
-  color: #1A2B3C;
+  font-family: 'Noto Serif SC', serif;
+  color: #2D5F4E;
   min-width: 240rpx;
   text-align: center;
-  letter-spacing: 0.5rpx;
+  letter-spacing: 0.05em;
 }
 
 .month-stats {
   display: flex;
   justify-content: space-around;
-  padding: 48rpx 0;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
-  border-radius: 0 0 28rpx 28rpx;
-  box-shadow: 0 8rpx 32rpx rgba(78, 205, 196, 0.1);
+  padding: 48rpx 24rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
+  border-radius: 0 0 16rpx 16rpx;
+  box-shadow:
+    0 2rpx 8rpx rgba(0, 0, 0, 0.06),
+    0 12rpx 32rpx rgba(87, 135, 114, 0.1);
   margin-bottom: 40rpx;
-  border: 2rpx solid rgba(78, 205, 196, 0.1);
+  border: 3rpx solid rgba(45, 95, 78, 0.12);
   border-top: none;
 }
 
@@ -51,30 +56,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20rpx 28rpx;
-  background: linear-gradient(135deg, #E8F4F8 0%, #FFFFFF 100%);
-  border-radius: 20rpx;
+  padding: 24rpx 32rpx;
+  background: linear-gradient(135deg, #F5F1E8 0%, #FAFAF8 100%);
+  border-radius: 12rpx;
   min-width: 160rpx;
-  box-shadow: 0 4rpx 16rpx rgba(78, 205, 196, 0.1);
+  box-shadow:
+    inset 0 2rpx 8rpx rgba(87, 135, 114, 0.08);
+  border: 2rpx solid rgba(87, 135, 114, 0.1);
 }
 
 .stat-label {
-  font-size: 24rpx;
-  color: #7A9CA5;
+  font-size: 22rpx;
+  color: #6B7566;
   margin-bottom: 16rpx;
   font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .stat-value {
   font-size: 52rpx;
   font-weight: 600;
-  color: #4ECDC4;
+  font-family: 'IBM Plex Sans', monospace;
+  color: #578772;
   margin-bottom: 8rpx;
+  letter-spacing: -0.02em;
 }
 
 .stat-unit {
-  font-size: 24rpx;
-  color: #7A9CA5;
+  font-size: 22rpx;
+  color: #9B9B8F;
+  font-weight: 500;
 }
 
 .games-section {
@@ -84,19 +96,35 @@
 .section-title {
   font-size: 34rpx;
   font-weight: 600;
-  color: #1A2B3C;
+  font-family: 'Noto Serif SC', serif;
+  color: #2D5F4E;
   margin-bottom: 30rpx;
-  letter-spacing: 0.5rpx;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding-left: 24rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 28rpx;
+  background: linear-gradient(180deg, #578772, #3D6455);
+  border-radius: 2rpx;
 }
 
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #7A9CA5;
-  font-size: 28rpx;
-  background: linear-gradient(135deg, #E8F4F8 0%, #F0F9FB 100%);
-  border-radius: 20rpx;
+  color: #6B7566;
+  font-size: 26rpx;
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
+  border-radius: 16rpx;
   margin: 20rpx 0;
+  border: 2rpx dashed rgba(107, 117, 102, 0.2);
 }
 
 .game-list {
@@ -106,17 +134,21 @@
 
 .game-item {
   padding: 32rpx;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8FCFD 100%);
-  border-radius: 20rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
+  border-radius: 16rpx;
   margin-bottom: 24rpx;
-  border: 2rpx solid rgba(78, 205, 196, 0.1);
-  box-shadow: 0 4rpx 16rpx rgba(78, 205, 196, 0.08);
-  transition: all 0.3s ease;
+  border: 2rpx solid rgba(87, 135, 114, 0.1);
+  box-shadow:
+    0 2rpx 8rpx rgba(0, 0, 0, 0.04),
+    0 6rpx 20rpx rgba(87, 135, 114, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .game-item:active {
   transform: translateY(-2rpx);
-  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.15);
+  box-shadow:
+    0 4rpx 12rpx rgba(0, 0, 0, 0.06),
+    0 12rpx 32rpx rgba(87, 135, 114, 0.12);
 }
 
 .game-header {
@@ -125,18 +157,20 @@
   align-items: center;
   margin-bottom: 24rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid rgba(78, 205, 196, 0.1);
+  border-bottom: 1rpx solid rgba(87, 135, 114, 0.1);
 }
 
 .game-date {
-  font-size: 26rpx;
-  color: #7A9CA5;
+  font-size: 24rpx;
+  color: #9B9B8F;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .game-result {
   font-size: 40rpx;
   font-weight: 600;
+  font-family: 'IBM Plex Sans', monospace;
 }
 
 .game-players {
@@ -147,19 +181,24 @@
 .player-avatar-small {
   width: 56rpx;
   height: 56rpx;
-  border-radius: 28rpx;
+  border-radius: 8rpx;
   margin-right: 12rpx;
-  border: 2rpx solid rgba(78, 205, 196, 0.2);
-  box-shadow: 0 4rpx 12rpx rgba(78, 205, 196, 0.1);
+  border: 2rpx solid #578772;
+  box-shadow:
+    0 0 0 2rpx rgba(87, 135, 114, 0.1),
+    0 4rpx 12rpx rgba(87, 135, 114, 0.12);
 }
 
 .rounds-count {
-  font-size: 24rpx;
-  color: #7A9CA5;
+  font-size: 22rpx;
+  color: #6B7566;
   margin-left: 20rpx;
-  padding: 6rpx 16rpx;
-  background: linear-gradient(135deg, #E8F4F8 0%, #F0F9FB 100%);
-  border-radius: 12rpx;
+  padding: 8rpx 20rpx;
+  background: linear-gradient(135deg, #F5F1E8 0%, #EBE7DE 100%);
+  border-radius: 8rpx;
+  font-weight: 500;
+  border: 1rpx solid rgba(87, 135, 114, 0.1);
+  letter-spacing: 0.02em;
 }
 
 .actions {
