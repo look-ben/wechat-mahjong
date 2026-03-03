@@ -13,11 +13,13 @@
         </view>
         <input
           class="score-input"
-          type="digit"
+          type="number"
           placeholder="0"
-          value="{{item.score}}"
+          value="{{item.score === 0 ? '' : item.score}}"
           data-openid="{{item.openid}}"
+          data-index="{{index}}"
           bindinput="onScoreInput"
+          disabled="{{item.isLast}}"
         />
       </view>
     </view>

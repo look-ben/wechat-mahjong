@@ -58,18 +58,39 @@ Page({
   // 输入分数
   onScoreInput(e) {
     const openid = e.currentTarget.dataset.openid
-    let value = parseInt(e.detail.value) || 0
+    const index = e.currentTarget.dataset.index
+    let value = e.detail.value
 
-    // 限制分数范围
-    if (value > 1000) value = 1000
-    if (value < -1000) value = -1000
+    // 处理空字符串和负号
+    if (value === '' || value === '-') {
+      value = 0
+    } else {
+      value = parseInt(value)
+      // 限制分数范围
+      if (value > 1000) value = 1000
+      if (value < -1000) value = -1000
+    }
 
+    // 更新当前玩家分数
     const players = this.data.players.map(p => {
       if (p.openid === openid) {
         return { ...p, score: value }
       }
       return p
     })
+
+    // 如果有N个玩家，前N-1个玩家输入完后，自动计算最后一个玩家的分数
+    const inputCount = players.filter((p, i) => i < players.length - 1 && p.score !== 0).length
+
+    if (inputCount === players.length - 1) {
+      // 前N-1个玩家都输入了，自动计算最后一个
+      const sumExceptLast = players.slice(0, -1).reduce((sum, p) => sum + p.score, 0)
+      players[players.length - 1].score = -sumExceptLast
+      players[players.length - 1].isLast = true
+    } else {
+      // 还没输入完，取消自动计算
+      players.forEach(p => p.isLast = false)
+    }
 
     // 计算总和
     const totalScore = players.reduce((sum, p) => sum + p.score, 0)
