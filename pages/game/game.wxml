@@ -60,7 +60,6 @@
       <button class="btn-secondary half" bindtap="showQRCode">添加牌友</button>
       <button class="btn-danger half" bindtap="endGame">结束牌局</button>
     </view>
-    <button class="btn-secondary" bindtap="goBack">返回首页</button>
   </view>
 
   <!-- 二维码弹窗 -->
