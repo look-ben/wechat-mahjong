@@ -49,6 +49,17 @@ Page({
   },
 
   onShow() {
+    console.log('=== onShow 触发 ===')
+    console.log('当前 gameId:', this.data.gameId)
+
+    // 显示调试弹窗（临时）
+    wx.showModal({
+      title: 'onShow 触发',
+      content: 'gameId: ' + (this.data.gameId || '无'),
+      showCancel: false,
+      confirmText: '继续'
+    })
+
     // 每次显示时刷新数据并启动实时监听
     if (this.data.gameId) {
       // 使用静默刷新（不显示 loading）
