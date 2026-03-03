@@ -1,61 +1,35 @@
-/* pages/result/result.wxss - TERMINAL.MAHJONG: Final Scores */
+/* pages/result/result.wxss - AI Workflows: Final Scores */
 
 .title {
   font-size: 48rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
+  font-weight: 700;
   text-align: center;
-  color: #00ff41;
+  color: #ffffff;
   margin-bottom: 60rpx;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-shadow: 0 0 20px #00ff41;
-  animation: glow 2s ease-in-out infinite;
+  letter-spacing: -0.02em;
 }
 
-.title::before {
-  content: '━━━━━ ';
-  color: #ff0080;
-  text-shadow: 0 0 15px #ff0080;
-}
-
-.title::after {
-  content: ' ━━━━━';
-  color: #ff0080;
-  text-shadow: 0 0 15px #ff0080;
-}
-
-/* Leaderboard Terminal */
+/* Leaderboard */
 .ranking-list {
   margin: 48rpx 0;
-  background: rgba(0, 20, 10, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 24rpx 0;
-  box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
-  border: 2rpx solid #00ff41;
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
   position: relative;
-}
-
-.ranking-list::before {
-  content: '╔═══════════════ LEADERBOARD ═══════════════╗';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-size: 14rpx;
-  color: #00ff41;
-  text-shadow: 0 0 5px #00ff41;
   overflow: hidden;
-  white-space: nowrap;
-  font-family: 'Courier New', 'Courier', monospace;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 8rpx;
 }
 
 .ranking-item {
   display: flex;
   align-items: center;
   padding: 32rpx 36rpx;
-  border-bottom: 1rpx solid rgba(0, 255, 65, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
   position: relative;
 }
@@ -65,91 +39,62 @@
 }
 
 .ranking-item:active {
-  background: rgba(0, 255, 65, 0.05);
-  transform: translateX(4rpx);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-/* Hacker-style rank badges */
+/* Modern rank badges */
 .rank-badge {
   width: 72rpx;
   height: 72rpx;
-  border-radius: 0;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #00ff41;
+  color: #ffffff;
   font-size: 32rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
+  font-weight: 700;
   margin-right: 24rpx;
-  background: transparent;
-  border: 3rpx solid #00ff41;
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
-  position: relative;
-  text-shadow: 0 0 10px #00ff41;
-}
-
-.rank-badge::after {
-  content: '';
-  position: absolute;
-  inset: 6rpx;
-  border: 1rpx solid rgba(0, 255, 65, 0.3);
-}
-
-.rank-badge::before {
-  content: '#';
-  position: absolute;
-  left: -12rpx;
-  top: -12rpx;
-  font-size: 20rpx;
-  color: #ff0080;
-  text-shadow: 0 0 8px #ff0080;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: -0.02em;
 }
 
 .rank-badge.first {
-  background: rgba(255, 215, 0, 0.1);
-  border-color: #ffd700;
-  color: #ffd700;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border-color: rgba(251, 191, 36, 0.5);
+  color: #ffffff;
   box-shadow:
-    0 0 20px rgba(255, 215, 0, 0.6),
-    inset 0 0 15px rgba(255, 215, 0, 0.1);
-  text-shadow: 0 0 15px #ffd700;
-  animation: pulse-gold 2s infinite;
-}
-
-@keyframes pulse-gold {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-  }
+    0 8rpx 24rpx rgba(251, 191, 36, 0.4),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
 }
 
 .rank-badge.second {
-  background: rgba(192, 192, 192, 0.1);
-  border-color: #c0c0c0;
-  color: #c0c0c0;
-  box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
-  text-shadow: 0 0 10px #c0c0c0;
+  background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%);
+  border-color: rgba(156, 163, 175, 0.5);
+  color: #ffffff;
+  box-shadow:
+    0 8rpx 24rpx rgba(156, 163, 175, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
 }
 
 .rank-badge.third {
-  background: rgba(205, 127, 50, 0.1);
-  border-color: #cd7f32;
-  color: #cd7f32;
-  box-shadow: 0 0 15px rgba(205, 127, 50, 0.5);
-  text-shadow: 0 0 10px #cd7f32;
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+  border-color: rgba(249, 115, 22, 0.5);
+  color: #ffffff;
+  box-shadow:
+    0 8rpx 24rpx rgba(249, 115, 22, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
 }
 
 .avatar {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 0;
+  border-radius: 20rpx;
   margin-right: 28rpx;
-  border: 3rpx solid #00ff41;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-  filter: contrast(1.2) brightness(1.1);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow:
+    0 8rpx 24rpx rgba(139, 92, 246, 0.2),
+    0 0 0 4rpx rgba(139, 92, 246, 0.1);
 }
 
 .player-detail {
@@ -159,87 +104,45 @@
 .name {
   display: block;
   font-size: 30rpx;
-  color: #00ff41;
+  color: #ffffff;
   margin-bottom: 10rpx;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 8px #00ff41;
-  text-transform: uppercase;
-}
-
-.name::before {
-  content: '> ';
-  color: #ff0080;
-  text-shadow: 0 0 10px #ff0080;
+  letter-spacing: -0.02em;
 }
 
 .rounds-info {
   display: block;
   font-size: 20rpx;
-  color: #00ccff;
-  letter-spacing: 0.08em;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 5px #00ccff;
-}
-
-.rounds-info::before {
-  content: '[';
-  color: #ff0080;
-  margin-right: 4rpx;
-}
-
-.rounds-info::after {
-  content: ']';
-  color: #ff0080;
-  margin-left: 4rpx;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .score {
   font-size: 44rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 10px currentColor;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* Game Session Info */
 .game-info {
   margin: 60rpx 0;
   padding: 40rpx;
-  background: rgba(0, 20, 10, 0.8);
-  border: 2rpx solid #00ccff;
-  box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
   position: relative;
-}
-
-.game-info::before {
-  content: '╔══════════════ SESSION_INFO ══════════════╗';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-size: 14rpx;
-  color: #00ccff;
-  text-shadow: 0 0 5px #00ccff;
-  overflow: hidden;
-  white-space: nowrap;
-  font-family: 'Courier New', 'Courier', monospace;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 8rpx;
 }
 
 .info-item {
   display: flex;
   justify-content: space-between;
   padding: 22rpx 0;
-  padding-top: 36rpx;
   font-size: 26rpx;
-  border-bottom: 1rpx solid rgba(0, 204, 255, 0.2);
-  font-family: 'Courier New', 'Courier', monospace;
-}
-
-.info-item:first-child {
-  padding-top: 22rpx;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .info-item:last-child {
@@ -247,23 +150,13 @@
 }
 
 .label {
-  color: #00ccff;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 8px #00ccff;
-  text-transform: uppercase;
-}
-
-.label::after {
-  content: ':';
-  margin-left: 4rpx;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
 }
 
 .value {
-  color: #00ff41;
+  color: #ffffff;
   font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 8px #00ff41;
 }
 
 .actions {

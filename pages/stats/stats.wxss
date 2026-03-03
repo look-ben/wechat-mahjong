@@ -1,26 +1,20 @@
-/* pages/stats/stats.wxss - TERMINAL.MAHJONG: System Logs */
+/* pages/stats/stats.wxss - AI Workflows: Statistics */
 
-/* Month Navigation - Command Interface */
+/* Month Navigation */
 .month-selector {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 36rpx 0;
-  border-bottom: 2rpx solid #00ff41;
-  background: rgba(0, 20, 10, 0.8);
-  position: relative;
-}
-
-.month-selector::before {
-  content: '> SELECT_MONTH:';
-  position: absolute;
-  left: 20rpx;
-  top: 12rpx;
-  font-size: 18rpx;
-  color: #ff0080;
-  text-shadow: 0 0 8px #ff0080;
-  font-family: 'Courier New', 'Courier', monospace;
-  letter-spacing: 0.1em;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .selector-btn {
@@ -30,52 +24,39 @@
   align-items: center;
   justify-content: center;
   font-size: 40rpx;
-  color: #00ff41;
-  font-family: 'Courier New', 'Courier', monospace;
-  transition: all 0.1s ease;
-  text-shadow: 0 0 10px #00ff41;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s ease;
+  border-radius: 16rpx;
 }
 
 .selector-btn:active {
-  background: rgba(0, 255, 65, 0.1);
+  background: rgba(139, 92, 246, 0.2);
   transform: scale(0.9);
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
 }
 
 .month-display {
   font-size: 40rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  color: #00ff41;
+  font-weight: 700;
+  color: #ffffff;
   min-width: 240rpx;
   text-align: center;
-  letter-spacing: 0.1em;
-  text-shadow: 0 0 15px #00ff41;
+  letter-spacing: -0.02em;
 }
 
-/* Stats Grid - System Metrics */
+/* Stats Grid */
 .month-stats {
   display: flex;
   justify-content: space-around;
   padding: 48rpx 24rpx;
-  background: rgba(0, 20, 10, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   margin-bottom: 40rpx;
-  border: 2rpx solid #00ff41;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
-  position: relative;
-}
-
-.month-stats::before {
-  content: '═════════════════════════════════════════';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-size: 12rpx;
-  color: #00ff41;
-  text-shadow: 0 0 5px #00ff41;
-  overflow: hidden;
-  white-space: nowrap;
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .stat-card {
@@ -83,60 +64,34 @@
   flex-direction: column;
   align-items: center;
   padding: 24rpx 32rpx;
-  background: transparent;
-  border: 2rpx solid #00ccff;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20rpx;
   min-width: 160rpx;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
-  position: relative;
-}
-
-.stat-card::before {
-  content: '[';
-  position: absolute;
-  left: 4rpx;
-  top: 4rpx;
-  color: #ff0080;
-  font-size: 24rpx;
-  text-shadow: 0 0 8px #ff0080;
-}
-
-.stat-card::after {
-  content: ']';
-  position: absolute;
-  right: 4rpx;
-  bottom: 4rpx;
-  color: #ff0080;
-  font-size: 24rpx;
-  text-shadow: 0 0 8px #ff0080;
+  box-shadow: 0 4rpx 16rpx rgba(139, 92, 246, 0.2);
 }
 
 .stat-label {
   font-size: 20rpx;
-  color: #00aa33;
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 16rpx;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 5px #00aa33;
 }
 
 .stat-value {
   font-size: 52rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  color: #00ff41;
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: 8rpx;
-  letter-spacing: 0.05em;
-  text-shadow: 0 0 15px #00ff41;
+  letter-spacing: -0.02em;
 }
 
 .stat-unit {
   font-size: 20rpx;
-  color: #00ccff;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 8px #00ccff;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
 }
 
 /* Game Log Section */
@@ -146,47 +101,37 @@
 
 .section-title {
   font-size: 30rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  color: #00ff41;
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: 30rpx;
-  letter-spacing: 0.15em;
+  letter-spacing: -0.02em;
   position: relative;
-  padding-left: 24rpx;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px #00ff41;
+  padding-left: 16rpx;
 }
 
 .section-title::before {
-  content: '▶';
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  color: #ff0080;
-  text-shadow: 0 0 10px #ff0080;
-  animation: blink 1s infinite;
+  width: 4rpx;
+  height: 24rpx;
+  background: linear-gradient(180deg, #8b5cf6, #6366f1);
+  border-radius: 2rpx;
 }
 
 .empty-tip {
   text-align: center;
   padding: 100rpx 0;
-  color: #00aa33;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 26rpx;
-  font-family: 'Courier New', 'Courier', monospace;
-  background: rgba(0, 20, 10, 0.6);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   margin: 20rpx 0;
-  border: 2rpx dashed #00aa33;
-  text-shadow: 0 0 5px #00aa33;
-  letter-spacing: 0.05em;
-}
-
-.empty-tip::before {
-  content: '> NO_DATA_FOUND';
-  display: block;
-  color: #ff0080;
-  margin-bottom: 20rpx;
-  text-shadow: 0 0 10px #ff0080;
 }
 
 .game-list {
@@ -197,32 +142,23 @@
 /* Game Log Entries */
 .game-item {
   padding: 32rpx;
-  background: rgba(0, 20, 10, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   margin-bottom: 24rpx;
-  border: 2rpx solid #00ff41;
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
-  position: relative;
-  font-family: 'Courier New', 'Courier', monospace;
-}
-
-.game-item::before {
-  content: '┌─────────────────────────────────────┐';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-size: 14rpx;
-  color: #00ff41;
-  text-shadow: 0 0 5px #00ff41;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .game-item:active {
-  transform: translateX(4rpx);
-  box-shadow: 0 0 25px rgba(0, 255, 65, 0.4);
-  background: rgba(0, 255, 65, 0.05);
+  transform: translateY(-2rpx);
+  box-shadow:
+    0 12rpx 40rpx rgba(0, 0, 0, 0.4),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .game-header {
@@ -231,33 +167,19 @@
   align-items: center;
   margin-bottom: 24rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #00ff41;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .game-date {
   font-size: 22rpx;
-  color: #00ccff;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 8px #00ccff;
-}
-
-.game-date::before {
-  content: '[TIME: ';
-  color: #00aa33;
-}
-
-.game-date::after {
-  content: ']';
-  color: #00aa33;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
 }
 
 .game-result {
   font-size: 36rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 10px currentColor;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .game-players {
@@ -268,31 +190,21 @@
 .player-avatar-small {
   width: 56rpx;
   height: 56rpx;
-  border-radius: 0;
+  border-radius: 12rpx;
   margin-right: 12rpx;
-  border: 2rpx solid #00ff41;
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
-  filter: contrast(1.2) brightness(1.1);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4rpx 16rpx rgba(139, 92, 246, 0.2);
 }
 
 .rounds-count {
   font-size: 20rpx;
-  color: #00ff41;
+  color: #a78bfa;
   margin-left: 20rpx;
   padding: 8rpx 20rpx;
-  background: transparent;
-  border: 2rpx solid #00ff41;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12rpx;
   font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
-  letter-spacing: 0.1em;
-  text-shadow: 0 0 8px #00ff41;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-}
-
-.rounds-count::before {
-  content: 'ROUNDS:';
-  margin-right: 8rpx;
-  color: #ff0080;
 }
 
 .actions {

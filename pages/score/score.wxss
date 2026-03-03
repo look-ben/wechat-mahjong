@@ -1,74 +1,34 @@
-/* pages/score/score.wxss - TERMINAL.MAHJONG: Data Input */
+/* pages/score/score.wxss - AI Workflows: Score Input */
 
 .title {
   font-size: 42rpx;
-  font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
+  font-weight: 700;
   text-align: center;
-  color: #00ff41;
+  color: #ffffff;
   margin-bottom: 24rpx;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-shadow: 0 0 15px #00ff41;
-}
-
-.title::before {
-  content: '>>> ';
-  color: #ff0080;
-  text-shadow: 0 0 10px #ff0080;
-}
-
-.title::after {
-  content: ' <<<';
-  color: #ff0080;
-  text-shadow: 0 0 10px #ff0080;
+  letter-spacing: -0.02em;
 }
 
 .tip {
   text-align: center;
-  color: #00ccff;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 24rpx;
   margin-bottom: 48rpx;
-  line-height: 44rpx;
-  letter-spacing: 0.05em;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 8px #00ccff;
+  line-height: 40rpx;
 }
 
-.tip::before {
-  content: '[';
-  color: #ff0080;
-  margin-right: 4rpx;
-}
-
-.tip::after {
-  content: ']';
-  color: #ff0080;
-  margin-left: 4rpx;
-}
-
-/* Score Input Terminal */
+/* Score Input Card */
 .score-list {
   margin: 48rpx 0;
-  background: rgba(0, 20, 10, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 24rpx 0;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
-  border: 2rpx solid #00ff41;
-  position: relative;
-}
-
-.score-list::before {
-  content: '╔═══════════════ INPUT_SCORES ═══════════════╗';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-size: 14rpx;
-  color: #00ff41;
-  text-shadow: 0 0 5px #00ff41;
-  overflow: hidden;
-  white-space: nowrap;
-  font-family: 'Courier New', 'Courier', monospace;
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .score-item {
@@ -76,7 +36,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 36rpx;
-  border-bottom: 1rpx solid rgba(0, 255, 65, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
 }
 
@@ -85,7 +45,7 @@
 }
 
 .score-item:active {
-  background: rgba(0, 255, 65, 0.05);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .player-info {
@@ -94,68 +54,51 @@
   flex: 1;
 }
 
-.player-info::before {
-  content: '>';
-  color: #ff0080;
-  margin-right: 16rpx;
-  font-size: 28rpx;
-  font-weight: bold;
-  text-shadow: 0 0 10px #ff0080;
-}
-
 .avatar {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 0;
+  border-radius: 20rpx;
   margin-right: 24rpx;
-  border: 3rpx solid #00ff41;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-  filter: contrast(1.2) brightness(1.1);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow:
+    0 8rpx 24rpx rgba(139, 92, 246, 0.2),
+    0 0 0 4rpx rgba(139, 92, 246, 0.1);
 }
 
 .name {
   font-size: 28rpx;
-  color: #00ff41;
+  color: #ffffff;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  font-family: 'Courier New', 'Courier', monospace;
-  text-shadow: 0 0 8px #00ff41;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .score-input {
   width: 200rpx;
   height: 88rpx;
-  border: 3rpx solid #00ccff;
-  border-radius: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16rpx;
   padding: 0 24rpx;
   font-size: 40rpx;
   font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
   text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  color: #00ff41;
-  box-shadow:
-    inset 0 0 10px rgba(0, 255, 65, 0.1),
-    0 0 15px rgba(0, 204, 255, 0.3);
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
-  text-shadow: 0 0 10px #00ff41;
 }
 
 .score-input:focus {
-  border-color: #00ff41;
+  border-color: #8b5cf6;
   box-shadow:
-    inset 0 0 15px rgba(0, 255, 65, 0.2),
-    0 0 25px rgba(0, 255, 65, 0.5);
-  background: rgba(0, 0, 0, 0.8);
+    inset 0 2rpx 8rpx rgba(0, 0, 0, 0.2),
+    0 0 0 4rpx rgba(139, 92, 246, 0.2);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .score-input[disabled] {
-  background: rgba(0, 20, 10, 0.4);
-  border-color: #1a3a1a;
-  color: #00aa33;
-  box-shadow: none;
-  text-shadow: 0 0 5px #00aa33;
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 /* Validation Display */
@@ -163,22 +106,17 @@
   text-align: center;
   font-size: 30rpx;
   font-weight: 600;
-  font-family: 'Courier New', 'Courier', monospace;
   margin: 48rpx 0;
   padding: 32rpx;
-  background: rgba(0, 20, 10, 0.8);
-  border: 3rpx solid #00ccff;
-  color: #00ccff;
-  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 10px #00ccff;
-  text-transform: uppercase;
-}
-
-.total-tip::before {
-  content: '[VALIDATION] ';
-  color: #ff0080;
-  text-shadow: 0 0 10px #ff0080;
+  background: rgba(139, 92, 246, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20rpx;
+  color: #a78bfa;
+  box-shadow:
+    0 8rpx 24rpx rgba(139, 92, 246, 0.2),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.1);
 }
 
 .actions {
